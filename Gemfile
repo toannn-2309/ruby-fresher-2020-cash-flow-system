@@ -3,15 +3,20 @@ git_source(:github){|repo| "https://github.com/#{repo}.git"}
 
 ruby "2.6.5"
 
+gem "bootsnap", ">= 1.4.2", require: false
+gem "config"
+gem "figaro"
+gem "html2slim", "~> 0.2.0"
 gem "jbuilder", "~> 2.7"
 gem "mysql2", ">= 0.4.4"
 gem "puma", "~> 4.1"
 gem "rails", "~> 6.0.3", ">= 6.0.3.3"
+gem "rails-i18n"
 gem "sass-rails", ">= 6"
+gem "simple_form"
+gem "slim-rails"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
-
-gem "bootsnap", ">= 1.4.2", require: false
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -22,6 +27,8 @@ group :development, :test do
 end
 
 group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
   gem "listen", "~> 3.2"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"

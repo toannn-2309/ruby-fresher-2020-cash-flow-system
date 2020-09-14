@@ -14,7 +14,6 @@ AllCops:
   # Include gemspec and Rakefile
   Include:
     - 'app/**/*'
-    - 'lib/**/*'
     - '**/*.gemspec'
     - 'Gemfile'
   Exclude:
@@ -31,6 +30,7 @@ AllCops:
     - '.idea/**/*'
     - '**/.DS_Store'
     - '**/.keep'
+    - 'lib/**/*'
 
 # Indent private/protected/public as deep as method definitions
 Layout/AccessModifierIndentation:

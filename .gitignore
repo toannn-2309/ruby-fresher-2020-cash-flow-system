@@ -44,10 +44,10 @@ yarn-debug.log*
 /config/database.yml
 /test
 
-# Install gem config
-# config/settings.local.yml
-# config/settings/*.local.yml
-# config/environments/*.local.yml
-
 # Ignore application configuration
-# /config/application.yml
+/config/application.yml
+
+# Install gem config
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml

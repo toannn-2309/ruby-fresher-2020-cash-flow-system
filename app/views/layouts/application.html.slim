@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title
+      = t "title"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
+    = javascript_pack_tag "application", "data-turbolinks-track": "reload"
+  body
+    = link_to t("english"), locale: :en
+    = link_to t("vietnam"), locale: :vi
+    = yield
