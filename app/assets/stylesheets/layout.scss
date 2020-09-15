@@ -1,0 +1,14 @@
+// side bar
+.slimScrollDiv {
+  position: relative;
+  overflow: hidden;
+  width: auto;
+  height: 652px;
+
+  .sidebar {
+    min-height: 652px;
+    overflow: hidden;
+    width: auto;
+    height: 652px;
+  }
+}

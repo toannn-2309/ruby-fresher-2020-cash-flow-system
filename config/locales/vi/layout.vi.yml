@@ -1,4 +1,13 @@
-en:
+vi:
   english: "Tiếng Anh"
   vietnam: "Tiếng Việt"
   title: "Hệ thống quản lý chi tiêu"
+  header:
+    home: "Trang chủ"
+  side_bar:
+    activity: "Hành động"
+    request: "Yêu cầu"
+    history_rq: "Lịch sử yêu cầu"
+    name: "Tên"
+  footer:
+    copyrigh: "Bản quyền © 2020"
