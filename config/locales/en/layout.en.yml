@@ -2,3 +2,12 @@ en:
   english: "English"
   vietnam: "Vietnamese"
   title: "Cash Flow System"
+  header:
+    home: "Home"
+  side_bar:
+    activity: "Activity"
+    request: "Request"
+    history_rq: "Requested history"
+    name: "name"
+  footer:
+    copyrigh: "Copyright © 2020"
