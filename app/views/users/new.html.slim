@@ -1,0 +1,18 @@
+.row
+  .col-md-6.offset-md-3
+    .bg-form
+      h1 = t "user.sigup"
+      = simple_form_for @user, url: signup_path do |f|
+        .row
+          .col-md-12
+            = f.error_notification
+            = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+        .row
+          .col-md-6
+            = f.input :name, label: t("user.name"), placeholder: t("user.pl_name")
+          .col-md-6
+            = f.input :group_id, label: t("user.group"), collection: @groups_view, prompt: t("user.pl_group")
+        = f.input :email, label: t("user.email"), placeholder: t("user.pl_email")
+        = f.input :password, label: t("user.pw"), placeholder: t("user.pl_pw")
+        = f.input :password_confirmation, label: t("user.pw_confirmation"), placeholder: t("user.pl_pw_confirmation")
+        = f.button :submit, t("user.btn_create"), class: "btn btn-primary"

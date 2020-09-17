@@ -1,17 +1,30 @@
 class User < ApplicationRecord
-  VALID_EMAIL_REGEX = Settings.user.email.regex
+  USERS_PARAMS = %i(name email password password_confirmation group_id).freeze
+  VALID_EMAIL_REGEX = Settings.validate.email.regex
 
   belongs_to :group
   has_many :requests, dependent: :destroy
   has_many :incomes, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  validates :name, :email, :password, :role, presence: true
+  enum role: {admin: 1, staff: 2, manager: 3, accountant: 4}
+
+  delegate :name, to: :group, prefix: true
+
+  validates :name, :email, :password, :role, :group_id, presence: true
   validates :name, length: {maximum: Settings.validate.name.length}
   validates :email, length: {maximum: Settings.validate.email.length},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: true}
   validates :password, length: {minimum: Settings.validate.password.length}
   validates :role, inclusion: {in: roles.keys}
 
-  enum role: {admin: 1, staff: 2, manager: 3, accountant: 4}
+  before_save :downcase_email
+
+  has_secure_password
+
+  private
+
+  def downcase_email
+    email.downcase!
+  end
 end

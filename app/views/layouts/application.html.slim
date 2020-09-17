@@ -11,6 +11,9 @@ html
     .wrapper
       = render partial: "layouts/header"
       = render partial: "layouts/sidebar"
-      .content-wrapper.pt-6.pl-2
+      .content-wrapper.pl-2.pt-6
+        - flash.each do |message_type, message| 
+          .alert.mt-2 [class="alert-#{message_type}"]
+            = message
         = yield
       = render partial: "layouts/footer"
