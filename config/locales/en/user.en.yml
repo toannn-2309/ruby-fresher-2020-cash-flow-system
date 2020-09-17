@@ -1,0 +1,20 @@
+en:
+  user:
+# Controller
+    noti:
+      sigup: "Account successfully created!"
+      sigup_fail: "Account creation failed!"
+      show_fail: "User not found"
+# View sigup
+    sigup: "Sign Up"
+    name: "Name"
+    pl_name: "Your name"
+    email: "Email"
+    pl_email: "Your email"
+    pw: "Password"
+    pl_pw: "Your password"
+    pw_confirmation: "Password confirmation"
+    pl_pw_confirmation: "Your password confirmation"
+    btn_create: "Create account"
+    group: "Group"
+    pl_group: "Selection group"

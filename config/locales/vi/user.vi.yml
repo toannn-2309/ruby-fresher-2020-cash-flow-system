@@ -1,0 +1,20 @@
+vi:
+  user:
+# Controller
+    noti:
+      sigup: "Tạo tài khoản thành công!"
+      sigup_fail: "Tạo tài khoản thất bại!"
+      show_fail: "Người dùng không tồn tại"
+# View sigup
+    sigup: "Đăng ký"
+    name: "Tên"
+    pl_name: "Nhập tên của bạn"
+    email: "Thư điện tử"
+    pl_email: "Nhập thư điện tử của bạn"
+    pw: "Mật khẩu"
+    pl_pw: "Nhập mật khẩu của bạn"
+    pw_confirmation: "Xác nhận mật khẩu"
+    pl_pw_confirmation: "Xác nhận mật khẩu của bạn"
+    btn_create: "Tạo tài khoản"
+    group: "Nhóm"
+    pl_group: "Lựa chọn nhóm"

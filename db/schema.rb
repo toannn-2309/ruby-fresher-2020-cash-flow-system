@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_143603) do
   end
 
   create_table "incomes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title", null: false
+    t.string "title", limit: 200, null: false
     t.text "content", null: false
     t.float "amount_income", default: 0.0, null: false
     t.bigint "user_id", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_143603) do
   end
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title", null: false
+    t.string "title", limit: 200, null: false
     t.text "content", null: false
     t.boolean "is_viewed", default: false
     t.bigint "user_id", null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_143603) do
   end
 
   create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title", null: false
+    t.string "title", limit: 200, null: false
     t.text "content", null: false
     t.float "amount_spent", default: 0.0, null: false
     t.string "paider", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_143603) do
 
   create_table "request_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "amount", default: 0.0, null: false
-    t.text "description", null: false
+    t.text "content", null: false
     t.bigint "request_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_143603) do
   end
 
   create_table "requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title", null: false
+    t.string "title", limit: 200, null: false
     t.text "content", null: false
     t.text "reason", null: false
     t.float "total_amount", default: 0.0, null: false
