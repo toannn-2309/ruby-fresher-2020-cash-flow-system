@@ -1,2 +1,15 @@
 link:
   img_sidebar: "http://placehold.it/160x160"
+validate:
+  name:
+    length: 40
+  email:
+    length: 255
+    regex: !ruby/regexp '/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i'
+  password:
+    length: 6
+  number_min: 0
+  title:
+    length: 200
+  content:
+    length: 5000

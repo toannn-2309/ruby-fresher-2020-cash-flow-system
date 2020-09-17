@@ -13,21 +13,21 @@
 ActiveRecord::Schema.define(version: 2020_09_15_143603) do
 
   create_table "budgets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.float "total_budget"
+    t.float "total_budget", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 50, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "incomes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.float "amount_income"
+    t.string "title", null: false
+    t.text "content", null: false
+    t.float "amount_income", default: 0.0, null: false
     t.bigint "user_id", null: false
     t.bigint "budget_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -37,20 +37,20 @@ ActiveRecord::Schema.define(version: 2020_09_15_143603) do
   end
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content", null: false
+    t.boolean "is_viewed", default: false
     t.bigint "user_id", null: false
-    t.string "title"
-    t.text "content"
-    t.boolean "is_viewed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.float "amount_spent"
-    t.string "paider"
+    t.string "title", null: false
+    t.text "content", null: false
+    t.float "amount_spent", default: 0.0, null: false
+    t.string "paider", null: false
     t.bigint "request_id", null: false
     t.bigint "budget_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 2020_09_15_143603) do
   end
 
   create_table "request_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.float "amount"
-    t.text "description"
+    t.float "amount", default: 0.0, null: false
+    t.text "description", null: false
     t.bigint "request_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -69,12 +69,12 @@ ActiveRecord::Schema.define(version: 2020_09_15_143603) do
   end
 
   create_table "requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.text "reason"
-    t.float "total_amount"
+    t.string "title", null: false
+    t.text "content", null: false
+    t.text "reason", null: false
+    t.float "total_amount", default: 0.0, null: false
     t.string "approver"
-    t.integer "status"
+    t.integer "status", default: 1, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -82,10 +82,11 @@ ActiveRecord::Schema.define(version: 2020_09_15_143603) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
+    t.string "name", limit: 50, null: false
+    t.string "email", null: false
     t.string "avatar"
     t.string "password_digest"
+    t.integer "role", default: 2, null: false
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
