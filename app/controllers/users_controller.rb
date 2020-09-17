@@ -12,8 +12,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
+      log_in @user
       flash[:success] = t "user.noti.sigup"
-      redirect_to root_url
+      redirect_to home_url
     else
       flash.now[:danger] = t "user.noti.sigup_fail"
       render :new
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
     return if @user
 
     flash[:danger] = t "user.noti.show_fail"
-    redirect_to root_url
+    redirect_to home_url
   end
 
   def get_group

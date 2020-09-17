@@ -8,5 +8,8 @@ html
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
     = javascript_pack_tag "application", "data-turbolinks-track": "reload"
   body
-    .mt-5
+    .container
+      - flash.each do |message_type, message| 
+        .alert.mt-2 [class="alert-#{message_type}"]
+          = message
       = yield
