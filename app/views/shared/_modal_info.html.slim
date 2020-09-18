@@ -1,0 +1,25 @@
+#exampleModalCenter.modal.fade[tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"]
+  .modal-dialog.modal-dialog-centered[role="document"]
+    .modal-content
+      .modal-body
+        .flip-card
+          .flip-card-inner
+            .flip-card-front
+              = image_tag "img_avatar.png"
+            .flip-card-back
+              h1
+                = current_user.name.capitalize
+              h5
+                i.fas.fa-envelope.mr-2
+                span = current_user.email
+              h5
+                i.fas.fa-user-tie.mr-2
+                span = current_user.role
+              h5
+                i.fas.fa-users.mr-2
+                span = current_user.group_name
+      .modal-footer
+        = link_to edit_user_path(current_user) do
+          button.btn.btn-info = t "request.view.edit"
+        button.btn.btn-secondary[type="button" data-dismiss="modal"]
+          = t "user.close"

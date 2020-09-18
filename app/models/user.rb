@@ -3,6 +3,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = Settings.validate.email.regex
 
   attr_accessor :remember_token
+  attr_readonly :email, :group_id
 
   belongs_to :group
   has_many :requests, dependent: :destroy
@@ -13,11 +14,12 @@ class User < ApplicationRecord
 
   delegate :name, to: :group, prefix: true
 
-  validates :name, :email, :password, :role, :group_id, presence: true
+  validates :name, :email, :role, :group_id, presence: true
   validates :name, length: {maximum: Settings.validate.name.length}
   validates :email, length: {maximum: Settings.validate.email.length},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: true}
-  validates :password, length: {minimum: Settings.validate.password.length}
+  validates :password, presence: true,
+    length: {minimum: Settings.validate.password.length}, allow_nil: true
   validates :role, inclusion: {in: roles.keys}
 
   before_save :downcase_email

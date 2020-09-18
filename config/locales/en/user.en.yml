@@ -9,6 +9,8 @@ en:
       login_fail: "Email or password is incorrect"
       logout: "Successfully logged out"
       need_login: "Please login to continue!"
+      update: "Successfully updated!"
+      update_fail: "Failed to update information!"
 # View sigup
     sigup: "Sign Up"
     name: "Name"
@@ -26,3 +28,5 @@ en:
     login: "Log in"
     sigup_new: "Create new user!"
     remember: "Remember me on this computer"
+# modal info
+    close: "Close"

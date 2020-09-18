@@ -5,12 +5,11 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    find_email
     if @user&.authenticate params[:session][:password]
       log_in @user
       flash[:success] = t "user.noti.login"
       check_remember params[:session][:remember_me], @user
-      redirect_to home_path
+      redirect_back_or home_path
     else
       flash.now[:danger] = t "user.noti.login_fail"
       render :new

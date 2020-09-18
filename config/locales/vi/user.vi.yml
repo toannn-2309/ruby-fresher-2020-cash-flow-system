@@ -9,6 +9,8 @@ vi:
       login_fail: "Thư điện tử hoặc mật khẩu không đúng"
       logout: "Đăng xuất thành công"
       need_login: "Vui lòng đăng nhập để tiếp tục"
+      update: "Cập nhật thông tin thành công"
+      update_fail: "Cập nhật thông tin thất bại"
 # View sigup
     sigup: "Đăng ký"
     name: "Tên"
@@ -26,3 +28,5 @@ vi:
     login: "Đăng nhập"
     sigup_new: "Tạo tài khoản mới"
     remember: "Ghi nhớ tài khoản"
+# modal info
+    close: "Đóng"
