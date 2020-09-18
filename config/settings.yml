@@ -13,3 +13,5 @@ validate:
     length: 200
   content:
     length: 5000
+session:
+  remember: "1"

@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
   def logged_in_user
     return if logged_in?
 
+    store_location
     flash[:danger] = t "user.noti.need_login"
-    redirect_to root_url
+    redirect_to root_path
   end
 end

@@ -7,7 +7,8 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4.position-fixed
         .image
           = image_tag(Settings.link.img_sidebar, class: "img-circle elevation-2")
         .info
-          = link_to current_user.name.capitalize, current_user, class: "d-block"
+          .d-block.text-light[type="button" data-toggle="modal" data-target="#exampleModalCenter"] 
+            = current_user.name.capitalize
       nav.mt-2
         ul.nav.nav-pills.nav-sidebar.flex-column data-accordion="false" data-widget="treeview" role="menu" 
           li.nav-item.has-treeview.menu-open
@@ -27,3 +28,4 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4.position-fixed
                   i.far.fa-copy.nav-icon
                   p
                     = t "side_bar.history_rq"
+= render "shared/modal_info"
