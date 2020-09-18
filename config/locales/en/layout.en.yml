@@ -6,9 +6,8 @@ en:
     home: "Home"
     log_out: "Log out"
   side_bar:
-    activity: "Activity"
     request: "Request"
+    request_new: "Request new"
     history_rq: "Requested history"
-    name: "name"
   footer:
     copyrigh: "Copyright © 2020"

@@ -1,0 +1,36 @@
+tr
+  td = request.title
+  td = request.total_amount
+  td = request.created_at.strftime "%d-%m-%Y"
+  td = request.status
+  td.btn-request
+    button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{request.id}"]
+      i.fas.fa-eye
+    = link_to edit_request_path(request) do
+      button.btn.btn-info.btn-sm
+        i.far.fa-edit
+    = link_to request, data: { confirm: t("request.view.delete?") }, method: :delete do
+      button.btn.btn-danger.btn-sm
+        i.fas.fa-trash-alt
+
+  .modal.fade [id="example-#{request.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+    .modal-dialog[role="document"]
+      .modal-content
+        .modal-header
+          h4#exampleModalLabel.modal-title.text-primary
+            = request.title
+          button.close[type="button" data-dismiss="modal" aria-label="Close"]
+            span[aria-hidden="true"]
+              | ×
+        .modal-body
+          h6.text-info = t "request.view.content"
+          p = request.content
+          h6.text-info = t "request.view.reason"
+          p = request.reason
+          h6.text-info = t "request.view.total_amount"
+          p = request.total_amount
+        .modal-footer
+          = link_to edit_request_path(request) do
+            button.btn.btn-info = t "request.view.edit"
+          = link_to request, data: { confirm: t("request.view.delete?") }, method: :delete do
+            button.btn.btn-danger = t "request.view.delete"

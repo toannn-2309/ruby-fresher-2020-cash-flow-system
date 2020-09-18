@@ -1,0 +1,16 @@
+.row
+  .col-md-8.offset-md-2
+    .bg-form
+      = simple_form_for @request do |f|
+        .row
+          .col-md-12
+            = f.error_notification
+            = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+        .row
+          .col-md-8
+            = f.input :title, label: t("request.view.title")
+          .col-md-4
+            = f.input :total_amount, label: t("request.view.total_amount")
+        = f.input :content, as: :text, label: t("request.view.content")
+        = f.input :reason, as: :text, label: t("request.view.reason")
+        = f.button :submit, class: "btn btn-primary"
