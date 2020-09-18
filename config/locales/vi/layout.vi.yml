@@ -4,6 +4,7 @@ vi:
   title: "Hệ thống quản lý chi tiêu"
   header:
     home: "Trang chủ"
+    log_out: "Đăng xuất"
   side_bar:
     activity: "Hành động"
     request: "Yêu cầu"

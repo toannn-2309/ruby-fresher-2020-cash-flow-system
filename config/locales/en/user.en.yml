@@ -1,10 +1,14 @@
 en:
   user:
-# Controller
+# Controller User, Session
     noti:
       sigup: "Account successfully created!"
       sigup_fail: "Account creation failed!"
       show_fail: "User not found"
+      login: "Logged in successfully"
+      login_fail: "Email or password is incorrect"
+      logout: "Successfully logged out"
+      need_login: "Please login to continue!"
 # View sigup
     sigup: "Sign Up"
     name: "Name"
@@ -18,3 +22,6 @@ en:
     btn_create: "Create account"
     group: "Group"
     pl_group: "Selection group"
+# View login
+    login: "Log in"
+    sigup_new: "Create new user!"

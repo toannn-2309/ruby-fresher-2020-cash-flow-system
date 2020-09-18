@@ -4,6 +4,7 @@ en:
   title: "Cash Flow System"
   header:
     home: "Home"
+    log_out: "Log out"
   side_bar:
     activity: "Activity"
     request: "Request"

@@ -5,6 +5,10 @@ vi:
       sigup: "Tạo tài khoản thành công!"
       sigup_fail: "Tạo tài khoản thất bại!"
       show_fail: "Người dùng không tồn tại"
+      login: "Đăng nhập thành công"
+      login_fail: "Thư điện tử hoặc mật khẩu không đúng"
+      logout: "Đăng xuất thành công"
+      need_login: "Vui lòng đăng nhập để tiếp tục"
 # View sigup
     sigup: "Đăng ký"
     name: "Tên"
@@ -18,3 +22,6 @@ vi:
     btn_create: "Tạo tài khoản"
     group: "Nhóm"
     pl_group: "Lựa chọn nhóm"
+# View login
+    login: "Đăng nhập"
+    sigup_new: "Tạo tài khoản mới"
