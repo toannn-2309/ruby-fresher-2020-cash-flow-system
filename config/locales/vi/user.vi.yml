@@ -25,3 +25,4 @@ vi:
 # View login
     login: "Đăng nhập"
     sigup_new: "Tạo tài khoản mới"
+    remember: "Ghi nhớ tài khoản"

@@ -25,3 +25,4 @@ en:
 # View login
     login: "Log in"
     sigup_new: "Create new user!"
+    remember: "Remember me on this computer"
