@@ -1,0 +1,24 @@
+en:
+  request:
+# Controller
+    noti:
+      created: "Request was successfully created."
+      created_fail: "Request failed."
+      updated: "Request was successfully updated."
+      updated_fail: "Request update failed."
+      destroy: "Request was successfully destroyed."
+      destroy_fail: "Request delete failed."
+      show_fail: "Request was not found"
+# View
+    view:
+      content: "Content"
+      reason: "Reason"
+      total_amount: "Total amount"
+      edit: "Edit"
+      delete: "Delete"
+      edit_rq: "Editing request"
+      title: "Title"
+      status: "Status"
+      created_at: "Created at"
+      action: "Action"
+      delete?: "Are you sure?"

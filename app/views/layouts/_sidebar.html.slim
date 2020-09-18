@@ -12,18 +12,18 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4.position-fixed
         ul.nav.nav-pills.nav-sidebar.flex-column data-accordion="false" data-widget="treeview" role="menu" 
           li.nav-item.has-treeview.menu-open
             = link_to "#", class: "nav-link active" do
-              i.nav-icon.fas.fa-tachometer-alt
+              i.nav-icon.fas.fa-file-alt
               p
-                = t "side_bar.activity"
+                = t "side_bar.request"
                 i.right.fas.fa-angle-left
             ul.nav.nav-treeview
               li.nav-item
-                = link_to "#", class: "nav-link" do
-                  i.far.fa-circle.nav-icon
+                = link_to new_request_path, class: "nav-link" do
+                  i.far.fa-plus-square.nav-icon
                   p
-                    = t "side_bar.request"
+                    = t "side_bar.request_new"
               li.nav-item
-                = link_to "#", class: "nav-link" do
-                  i.far.fa-circle.nav-icon
+                = link_to requests_path, class: "nav-link" do
+                  i.far.fa-copy.nav-icon
                   p
                     = t "side_bar.history_rq"

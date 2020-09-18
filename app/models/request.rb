@@ -1,4 +1,6 @@
 class Request < ApplicationRecord
+  REQUESTS_PARAMS = %i(title content reason total_amount status).freeze
+
   belongs_to :user
   has_many :request_details, dependent: :destroy
   has_one :payment, dependent: :destroy
@@ -11,5 +13,7 @@ class Request < ApplicationRecord
     length: {maximum: Settings.validate.content.length}
   validates :total_amount, presence: true,
     numericality: {greater_than: Settings.validate.number_min}
-  validates :status, presence: true, inclusion: {in: statues.keys}
+  validates :status, inclusion: {in: statuses.keys}
+
+  scope :by_date, ->{order(created_at: :desc)}
 end

@@ -1,0 +1,24 @@
+vi:
+  request:
+# Controller
+    noti:
+      created: "Tạo yêu cầu thành công."
+      created_fail: "Tạo yêu cầu thất bại."
+      updated: "Cập nhật yêu cầu thành công"
+      updated_fail: "Cập nhật yêu cầu thất bại"
+      destroy: "Xóa yêu cầu thành công"
+      destroy_fail: "Xóa yêu cầu thất bại"
+      show_fail: "Yêu cầu không được tìm thấy"
+# View
+    view:
+      content: "Nội dung"
+      reason: "Lý do"
+      total_amount: "Tổng tiền"
+      edit: "Chỉnh sửa"
+      delete: "Xóa"
+      edit_rq: "Chỉnh sửa yêu cầu"
+      title: "Tiêu đề"
+      status: "Trạng thái"
+      created_at: "Thời gian"
+      action: "Hoạt động"
+      delete?: "Bạn có chắc không?"

@@ -1,0 +1,11 @@
+.bg-form  
+  table.table.table-bordered.table-hover
+    thead
+      tr
+        th = t "request.view.title"
+        th = t "request.view.total_amount"
+        th = t "request.view.created_at"
+        th = t "request.view.status"
+        th = t "request.view.action"
+    tbody
+      = render @requests

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_143603) do
+ActiveRecord::Schema.define(version: 2020_09_18_020819) do
 
   create_table "budgets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "total_budget", default: 0.0, null: false
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_143603) do
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "remember_digest"
     t.index ["email"], name: "index_users_on_email"
     t.index ["group_id"], name: "index_users_on_group_id"
   end
