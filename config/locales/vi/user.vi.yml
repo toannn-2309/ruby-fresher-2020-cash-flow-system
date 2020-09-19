@@ -11,6 +11,8 @@ vi:
       need_login: "Vui lòng đăng nhập để tiếp tục"
       update: "Cập nhật thông tin thành công"
       update_fail: "Cập nhật thông tin thất bại"
+      destroy: "Xóa người dùng thành công"
+      destroy_fail: "Xóa người dùng thất bại"
 # View sigup
     sigup: "Đăng ký"
     name: "Tên"
@@ -24,6 +26,8 @@ vi:
     btn_create: "Tạo tài khoản"
     group: "Nhóm"
     pl_group: "Lựa chọn nhóm"
+    role: "Chức vụ"
+    pl_role: "Lựa chọn chức vụ"
 # View login
     login: "Đăng nhập"
     sigup_new: "Tạo tài khoản mới"

@@ -10,5 +10,14 @@ Rails.application.routes.draw do
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+
+    namespace :admin do
+      root "base#index"
+
+      resources :users
+      get "/login", to: "sessions#new"
+      post "/login", to: "sessions#create"
+      delete "/logout", to: "sessions#destroy"
+    end
   end
 end

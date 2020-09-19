@@ -1,0 +1,18 @@
+.row
+  .col-lg-8.offset-lg-2
+    .bg-form
+      = simple_form_for [:admin, @user] do |f|
+        .row
+          .col-lg-12
+            = f.error_notification
+            = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+        .row
+          .col-lg-4.col-4
+            = f.input :name, label: t("user.name"), placeholder: t("user.pl_name")
+          .col-lg-4.col-4
+            = f.input :group_id, label: t("user.group"), collection: @groups_view, prompt: t("user.pl_group")
+          .col-lg-4.col-4
+            = f.input :role, label: t("user.role"), collection: User.roles.keys.to_a
+        = f.input :email, label: t("user.email"), placeholder: t("user.pl_email")
+        = f.input :password, label: t("user.pw"), placeholder: t("user.pl_pw")
+        = f.button :submit, yield(:btn_text), class: "btn btn-primary"

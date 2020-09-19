@@ -44,10 +44,6 @@ class UsersController < ApplicationController
     redirect_to home_path
   end
 
-  def get_group
-    @groups_view = Group.pluck(:name, :id).to_h
-  end
-
   def user_params
     params.require(:user).permit User::USERS_PARAMS
   end
