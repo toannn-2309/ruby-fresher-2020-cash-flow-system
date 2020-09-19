@@ -1,0 +1,36 @@
+@import 'color';
+
+// request
+.tr-request {
+  height: 95px;
+
+  .badge {
+    color: $while;
+    width: 80px;
+  }
+
+  .stt-pending {
+    background: $yelow-ff;
+  }
+
+  .stt-approve {
+    background: $green-28;
+  }
+
+  .stt-rejected {
+    background: $red-bd;
+  }
+
+  .stt-paid {
+    background: $blue-00;
+  }
+}
+.action-request {
+  .btn {
+    width: 85px !important;
+  }
+}
+
+.with-300 {
+  width: 300px;
+}

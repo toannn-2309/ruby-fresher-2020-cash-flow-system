@@ -37,7 +37,7 @@ end
     title: Faker::Lorem.sentence(word_count: 5),
     content: Faker::Lorem.sentence(word_count: 15),
     reason: Faker::Lorem.sentence(word_count: 40),
-    status: rand(1..4),
+    # status: rand(1..4),
     total_amount: rand(1..500)
   )
   request_ids << request.id

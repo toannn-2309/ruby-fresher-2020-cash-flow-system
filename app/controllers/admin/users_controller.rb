@@ -7,13 +7,11 @@ class Admin::UsersController < Admin::BaseController
                  .page(params[:page]).per Settings.user.per_page
   end
 
+  def show; end
+
   def new
     @user = User.new
   end
-
-  def show; end
-
-  def edit; end
 
   def create
     @user = User.new user_params
@@ -25,6 +23,8 @@ class Admin::UsersController < Admin::BaseController
       render :new
     end
   end
+
+  def edit; end
 
   def update
     if @user.update user_params
