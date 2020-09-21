@@ -1,15 +1,8 @@
 .content.pt-4
   .row
-    .col-lg-3.col-3
-      .info-box.mb-3
-        span.info-box-icon.bg-danger.elevation-1
-          i.fas.fa-dollar-sign
-        .info-box-content
-          span.info-box-text
-            = t "admin.sidebar.budget"
-          span.info-box-number
-            = @total_budget
-    .col-lg-3.col-3
+    = render @budgets
+  .row.mt-2
+    .col-lg-4.col-4
       .small-box.bg-info
         .inner
           h3
@@ -19,7 +12,7 @@
         = link_to admin_users_path, class: "small-box-footer" do
           = t "admin.view.more_info"
           i.fas.fa-arrow-circle-right
-    .col-lg-3.col-3
+    .col-lg-4.col-4
       .small-box.bg-success
         .inner
           h3
@@ -29,7 +22,7 @@
         = link_to admin_requests_path, class: "small-box-footer" do
           = t "admin.view.more_info"
           i.fas.fa-arrow-circle-right
-    .col-lg-3.col-3
+    .col-lg-4.col-4
           .small-box.bg-primary
             .inner
               h3

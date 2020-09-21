@@ -6,6 +6,7 @@
           .col-md-12
             = f.error_notification
             = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+        = f.hidden_field :budget_id, value: 1
         .row
           .col-md-8
             = f.input :title, label: t("request.view.title")

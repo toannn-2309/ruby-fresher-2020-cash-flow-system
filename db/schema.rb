@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_100703) do
+ActiveRecord::Schema.define(version: 2020_09_23_030015) do
 
   create_table "budgets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "total_budget", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -32,8 +33,10 @@ ActiveRecord::Schema.define(version: 2020_09_22_100703) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "aasm_state"
-    t.string "rejecter"
-    t.string "confirmer"
+    t.integer "rejecter_id"
+    t.integer "confirmer_id"
+    t.bigint "budget_id", null: false
+    t.index ["budget_id"], name: "index_incomes_on_budget_id"
     t.index ["user_id"], name: "index_incomes_on_user_id"
   end
 
@@ -72,13 +75,15 @@ ActiveRecord::Schema.define(version: 2020_09_22_100703) do
     t.text "content", null: false
     t.text "reason", null: false
     t.float "total_amount", default: 0.0, null: false
-    t.string "approver"
-    t.string "rejecter"
+    t.integer "approver_id"
+    t.integer "rejecter_id"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "aasm_state"
-    t.string "paider"
+    t.integer "paider_id"
+    t.bigint "budget_id", null: false
+    t.index ["budget_id"], name: "index_requests_on_budget_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
@@ -96,10 +101,12 @@ ActiveRecord::Schema.define(version: 2020_09_22_100703) do
     t.index ["group_id"], name: "index_users_on_group_id"
   end
 
+  add_foreign_key "incomes", "budgets"
   add_foreign_key "incomes", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "payments", "requests"
   add_foreign_key "request_details", "requests"
+  add_foreign_key "requests", "budgets"
   add_foreign_key "requests", "users"
   add_foreign_key "users", "groups"
 end

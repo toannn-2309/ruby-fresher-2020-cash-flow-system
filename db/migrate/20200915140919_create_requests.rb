@@ -5,9 +5,8 @@ class CreateRequests < ActiveRecord::Migration[6.0]
       t.text :content, null: false, limit: 5000
       t.text :reason, null: false, limit: 5000
       t.float :total_amount, null: false, default: 0
-      t.string :approver
-      t.string :rejecter
-      # t.integer :status, null: false, default: 1
+      t.integer :approver_id
+      t.integer :rejecter_id
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

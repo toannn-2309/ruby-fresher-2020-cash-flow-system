@@ -8,7 +8,7 @@ module RequestAction
   def review
     if @request.pending?
       @request.review!
-      @request.update approver: current_user.name
+      @request.update approver_id: current_user.id
     else
       flash[:danger] = t "request.noti.show_fail"
     end
@@ -19,8 +19,9 @@ module RequestAction
 
   def confirm
     if @request.approve?
+      @request.update paider_id: current_user.id,
+                      budget_id: params[:request][:budget_id]
       @request.confirm!
-      @request.update paider: current_user.name
     else
       flash[:danger] = t "request.noti.show_fail"
     end
@@ -34,7 +35,7 @@ module RequestAction
       flash[:danger] = t "request.noti.show_fail"
     else
       @request.rejected!
-      @request.update rejecter: current_user.name
+      @request.update rejecter_id: current_user.id
     end
     return redirect_to admin_requests_path if current_user.admin?
 

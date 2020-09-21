@@ -6,14 +6,23 @@ module IncomeAction
   end
 
   def confirm
-    @income.confirm!
-    @income.update confirmer: current_user.name
+    if @income.pending?
+      @income.update confirmer_id: current_user.id,
+                     budget_id: params[:income][:budget_id]
+      @income.confirm!
+    else
+      flash[:danger] = t "income.noti.show_fail"
+    end
     redirect_to admin_incomes_path
   end
 
   def rejected
-    @income.rejected!
-    @income.update rejecter: current_user.name
+    if @income.rejected?
+      flash[:danger] = t "income.noti.show_fail"
+    else
+      @income.rejected!
+      @income.update rejecter_id: current_user.id
+    end
     redirect_to admin_incomes_path
   end
 

@@ -6,7 +6,8 @@
           .col-md-12
             = f.error_notification
             = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-            = f.input :title, label: t("request.view.title")
+        = f.input :title, label: t("request.view.title")
+        = f.hidden_field :budget_id, value: 1
         .row
           .col-md-6
             = f.input :total_amount, label: t("request.view.total_amount"), input_html: {min: Settings.min_value}
