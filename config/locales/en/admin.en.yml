@@ -17,3 +17,17 @@ en:
       action: "Action"
       btn_create: "Create user"
       btn_edit: "Edit user"
+# View request
+    request:
+      view:
+        btn_create: "Create request"
+        btn_edit: "Edit request"
+        status: "Status"
+        requester: "Requester"
+        option: "Option"
+        approve: "Approve"
+        rejected: "Rejected"
+        confirmed: "Confirmed"
+        approver: "Aprover: "
+        rejecter: "Rejecter: "
+        paider: "Paider: "

@@ -15,6 +15,13 @@ Rails.application.routes.draw do
       root "base#index"
 
       resources :users
+      resources :requests do 
+        member do
+          patch :review
+          patch :confirm
+          patch :rejected
+        end
+      end
       get "/login", to: "sessions#new"
       post "/login", to: "sessions#create"
       delete "/logout", to: "sessions#destroy"

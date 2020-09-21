@@ -17,3 +17,17 @@ vi:
       action: "Hành động"
       btn_create: "Tạo mới người dùng"
       btn_edit: "Chỉnh sửa người dùng"
+# View request
+    request:
+      view:
+        btn_create: "Tao yêu cầu"
+        btn_edit: "Chỉnh sửa yêu cầu"
+        status: "Trạng thái"
+        requester: "Người yêu cầu"
+        option: "Tùy chọn"
+        approve: "Chấp nhận"
+        rejected: "Từ chối"
+        confirmed: "Xác nhận"
+        approver: "Người chấp nhận: "
+        rejecter: "Người từ chối: "
+        paider: "Người thanh toán: "

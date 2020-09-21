@@ -1,0 +1,18 @@
+.pt-2
+  = link_to new_admin_request_path, class: "btn btn-success" do
+    i.fas.fa-file-medical
+.bg-form  
+  table.table.table-bordered.table-hover
+    thead
+      tr.text-center
+        th = t "admin.request.view.requester"
+        th = t "request.view.title"
+        th = t "request.view.total_amount"
+        th = t "request.view.created_at"
+        th = t "request.view.status"
+        th = t "request.view.action"
+        th = t "admin.request.view.option"
+    tbody
+      = render @requests
+.pt-4
+  = paginate @requests, theme: "twitter-bootstrap-4"
