@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :get_user, only: :show
-  before_action :get_group, only: %i(new create)
+  before_action :get_user, :correct_user, only: %i(show edit update)
+  before_action :get_group, only: %i(new create edit)
+  before_action :logged_in_user, except: %i(new create)
   layout "root", only: %i(new create)
 
   def new
@@ -8,6 +9,8 @@ class UsersController < ApplicationController
   end
 
   def show; end
+
+  def edit; end
 
   def create
     @user = User.new user_params
@@ -18,6 +21,16 @@ class UsersController < ApplicationController
     else
       flash.now[:danger] = t "user.noti.sigup_fail"
       render :new
+    end
+  end
+
+  def update
+    if @user.update user_params_update
+      flash[:success] = t "user.noti.update"
+      redirect_to home_path
+    else
+      flash[:danger] = t "user.noti.update_fail"
+      render :edit
     end
   end
 
@@ -37,5 +50,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit User::USERS_PARAMS
+  end
+
+  def user_params_update
+    params.require(:user).permit User::USERS_PARAMS_UPDATE
+  end
+
+  def correct_user
+    redirect_to home_path unless current_user? @user
   end
 end

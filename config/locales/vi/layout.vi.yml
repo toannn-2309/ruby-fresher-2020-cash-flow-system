@@ -5,6 +5,8 @@ vi:
   header:
     home: "Trang chủ"
     log_out: "Đăng xuất"
+    profile: "Hồ sơ"
+    setting: "Cài đặt"
   side_bar:
     request: "Yêu cầu"
     request_new: "Tạo yêu cầu"

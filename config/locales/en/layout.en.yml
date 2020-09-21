@@ -5,6 +5,8 @@ en:
   header:
     home: "Home"
     log_out: "Log out"
+    profile: "Profile"
+    setting: "Settings"
   side_bar:
     request: "Request"
     request_new: "Request new"
