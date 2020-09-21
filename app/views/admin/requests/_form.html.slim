@@ -9,7 +9,7 @@
             = f.input :title, label: t("request.view.title")
         .row
           .col-md-6
-            = f.input :total_amount, label: t("request.view.total_amount")
+            = f.input :total_amount, label: t("request.view.total_amount"), input_html: {min: Settings.min_value}
           .col-md-6
             = f.input :aasm_state, label: t("admin.request.view.status"), collection: Request.aasm.states
         = f.input :content, as: :text, label: t("request.view.content")

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_20_023736) do
+ActiveRecord::Schema.define(version: 2020_09_21_101925) do
 
   create_table "budgets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "total_budget", default: 0.0, null: false
@@ -29,10 +29,11 @@ ActiveRecord::Schema.define(version: 2020_09_20_023736) do
     t.text "content", null: false
     t.float "amount_income", default: 0.0, null: false
     t.bigint "user_id", null: false
-    t.bigint "budget_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["budget_id"], name: "index_incomes_on_budget_id"
+    t.string "aasm_state"
+    t.string "rejecter"
+    t.string "confirmer"
     t.index ["user_id"], name: "index_incomes_on_user_id"
   end
 
@@ -52,10 +53,8 @@ ActiveRecord::Schema.define(version: 2020_09_20_023736) do
     t.float "amount_spent", default: 0.0, null: false
     t.string "paider", null: false
     t.bigint "request_id", null: false
-    t.bigint "budget_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["budget_id"], name: "index_payments_on_budget_id"
     t.index ["request_id"], name: "index_payments_on_request_id"
   end
 
@@ -96,10 +95,8 @@ ActiveRecord::Schema.define(version: 2020_09_20_023736) do
     t.index ["group_id"], name: "index_users_on_group_id"
   end
 
-  add_foreign_key "incomes", "budgets"
   add_foreign_key "incomes", "users"
   add_foreign_key "notifications", "users"
-  add_foreign_key "payments", "budgets"
   add_foreign_key "payments", "requests"
   add_foreign_key "request_details", "requests"
   add_foreign_key "requests", "users"

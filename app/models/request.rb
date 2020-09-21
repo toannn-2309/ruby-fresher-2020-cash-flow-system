@@ -17,7 +17,7 @@ class Request < ApplicationRecord
   validates :total_amount, presence: true,
     numericality: {greater_than: Settings.validate.number_min}
 
-  scope :by_date, ->{order(created_at: :desc)}
+  scope :by_date, ->{order created_at: :desc}
 
   aasm do
     state :pending, initial: true

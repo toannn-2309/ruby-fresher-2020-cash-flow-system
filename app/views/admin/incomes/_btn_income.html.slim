@@ -1,0 +1,5 @@
+- if income.pending?
+  = button_to t("admin.request.view.confirmed"), confirm_admin_income_path(income.id), method: :patch, class: "btn btn-success btn-sm mb-2"
+  = button_to t("admin.request.view.rejected"), rejected_admin_income_path(income.id), method: :patch, class: "btn btn-danger btn-sm"
+- else
+  = ""

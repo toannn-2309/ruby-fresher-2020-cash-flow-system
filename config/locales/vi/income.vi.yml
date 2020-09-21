@@ -1,0 +1,22 @@
+vi:
+  income:
+    noti:
+      show_fail: "Thu nhập không tồn tại"
+      created: "Tạo thu nhập thành công."
+      created_fail: "Tạo thu nhập thất bại"
+      updated: "Cập nhật thu nhập thành công"
+      update_fail: "Cập nhật thu nhập thất bại"
+      destroy: "Xóa thu nhập thành công"
+      destroy_fail: "Xóa thu nhập thất bại"
+    view:
+      title: "Tiêu đề"
+      amount_income: "Thu nhập"
+      status: "Trạng thái"
+      content: "Nội dung"
+      btn_create: "Tạo thu nhập"
+      btn_edit: "Chỉnh sửa thu nhập"
+      creater: "Người tạo"
+      create_at: "Thời gian"
+      option: "Tùy chọn"
+      action: "Hành động"
+      confirmer: "Người xác nhận"

@@ -25,12 +25,9 @@
     background: $blue-00;
   }
 }
-.action-request {
+
+.action-request, .action-income {
   .btn {
     width: 85px !important;
   }
-}
-
-.with-300 {
-  width: 300px;
 }

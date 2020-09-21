@@ -1,0 +1,22 @@
+en:
+  income:
+    noti:
+      show_fail: "Income does not exist"
+      created: "Income was successfully created."
+      created_fail: "Failed income generation."
+      updated: "Income was successfully updated"
+      update_fail: "Income update failed."
+      destroy: "Income was successfully destroyed."
+      destroy_fail: "Income delete failed."
+    view:
+      title: "Title"
+      amount_income: "Amount income"
+      status: "Status"
+      content: "Content"
+      btn_create: "Create income"
+      btn_edit: "Edit income"
+      creater: "Creater"
+      create_at: "Created at"
+      option: "Option"
+      action: "Action"
+      confirmer: "Confirmer"
