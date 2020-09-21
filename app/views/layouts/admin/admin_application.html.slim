@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title
+      = t "admin.title"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
+    = javascript_pack_tag "application", "data-turbolinks-track": "reload"
+  body.sidebar-mini
+    .wrapper
+      = render "layouts/admin/admin_header"
+      = render "layouts/admin/admin_sidebar"
+      .content-wrapper.pl-2.pt-6
+        - flash.each do |message_type, message| 
+          .alert.mt-2 [class="alert-#{message_type}"]
+            = message
+        = yield
+      = render "layouts/footer"

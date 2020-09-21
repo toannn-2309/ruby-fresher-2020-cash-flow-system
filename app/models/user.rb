@@ -18,13 +18,15 @@ class User < ApplicationRecord
   validates :name, length: {maximum: Settings.validate.name.length}
   validates :email, length: {maximum: Settings.validate.email.length},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: true}
-  validates :password, presence: true,
-    length: {minimum: Settings.validate.password.length}, allow_nil: true
+  validates :password, presence: true, allow_nil: true,
+    length: {minimum: Settings.validate.password.length}
   validates :role, inclusion: {in: roles.keys}
 
   before_save :downcase_email
 
   has_secure_password
+
+  scope :by_date, ->{order(created_at: :desc)}
 
   class << self
     def digest string

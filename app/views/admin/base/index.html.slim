@@ -1,0 +1,22 @@
+.content.pt-4
+  .row
+    .col-lg-3.col-3
+      .small-box.bg-info
+        .inner
+          h3
+            = @count_user
+          p
+            = t "admin.sidebar.users"
+        = link_to admin_users_path, class: "small-box-footer" do
+          = t "admin.view.more_info"
+          i.fas.fa-arrow-circle-right
+    .col-lg-3.col-3
+      .small-box.bg-success
+        .inner
+          h3
+            = @count_request
+          p
+            = t "admin.sidebar.requests"
+        = link_to "#", class: "small-box-footer" do
+          = t "admin.view.more_info"
+          i.fas.fa-arrow-circle-right

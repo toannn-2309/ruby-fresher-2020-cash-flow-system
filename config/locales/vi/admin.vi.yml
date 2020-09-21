@@ -1,0 +1,19 @@
+vi:
+  admin:
+    title: "Quản trị viên | Bảng điều khiển"
+    sidebar:
+      dashboard: "Bảng điều khiển"
+      users: "Người dùng"
+      requests: "Yêu cầu"
+# Base controller
+    noti:
+      not_admin: "Bạn không phải là người quản trị viên!"
+# Session controller
+      email_not_login: "Tài khoản không phải là quản trị viên"
+# view base
+    view:
+      more_info: "Thêm thông tin "
+      created_at: "Ngày tạo"
+      action: "Hành động"
+      btn_create: "Tạo mới người dùng"
+      btn_edit: "Chỉnh sửa người dùng"

@@ -1,31 +1,29 @@
 aside.main-sidebar.sidebar-dark-primary.elevation-4.position-fixed
-  = link_to home_path, class: "brand-link" do
-    span.brand-text.font-weight-light Standup App
+  = link_to admin_root_path, class: "brand-link" do
+    span.brand-text.font-weight-light AdminLTE
   .slimScrollDiv
     .sidebar
       .user-panel.mt-3.pb-3.mb-3.d-flex
         .image
           = image_tag(Settings.link.img_sidebar, class: "img-circle elevation-2")
         .info
-          .d-block.text-light[type="button" data-toggle="modal" data-target="#exampleModalCenter"] 
-            = current_user.name.capitalize
+          = link_to current_user.name.capitalize, current_user, class: "d-block"
       nav.mt-2
         ul.nav.nav-pills.nav-sidebar.flex-column data-accordion="false" data-widget="treeview" role="menu" 
           li.nav-item.has-treeview.menu-open
             = link_to "#", class: "nav-link active" do
-              i.nav-icon.fas.fa-file-alt
+              i.nav-icon.fas.fa-tachometer-alt
               p
-                = t "side_bar.request"
+                = t "admin.sidebar.dashboard"
                 i.right.fas.fa-angle-left
             ul.nav.nav-treeview
               li.nav-item
-                = link_to new_request_path, class: "nav-link" do
-                  i.far.fa-plus-square.nav-icon
+                = link_to admin_users_path, class: "nav-link" do
+                  i.fas.fa-users.nav-icon
                   p
-                    = t "side_bar.request_new"
+                    = t "admin.sidebar.users"
               li.nav-item
                 = link_to requests_path, class: "nav-link" do
-                  i.far.fa-copy.nav-icon
+                  i.fas.fa-copy.nav-icon
                   p
-                    = t "side_bar.history_rq"
-= render "shared/modal_info"
+                    = t "admin.sidebar.requests"

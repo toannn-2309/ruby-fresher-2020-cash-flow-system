@@ -11,6 +11,8 @@ en:
       need_login: "Please login to continue!"
       update: "Successfully updated!"
       update_fail: "Failed to update information!"
+      destroy: "Successfully deleted the user!"
+      destroy_fail: "User delete failed!"
 # View sigup
     sigup: "Sign Up"
     name: "Name"
@@ -24,6 +26,8 @@ en:
     btn_create: "Create account"
     group: "Group"
     pl_group: "Selection group"
+    role: "Role"
+    pl_role: "Selection role"
 # View login
     login: "Log in"
     sigup_new: "Create new user!"

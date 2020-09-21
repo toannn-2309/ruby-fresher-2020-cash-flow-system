@@ -1,0 +1,19 @@
+en:
+  admin:
+    title: "Admin | Dashboard"
+    sidebar:
+      dashboard: "Dashboard"
+      users: "Users"
+      requests: "Requests"
+# Base controller
+    noti:
+      not_admin: "You are not an admin!"
+# Session controller
+      email_not_login: "The account is not administrator"
+# view base
+    view:
+      more_info: "More info "
+      created_at: "Created at"
+      action: "Action"
+      btn_create: "Create user"
+      btn_edit: "Edit user"
