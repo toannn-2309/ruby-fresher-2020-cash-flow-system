@@ -33,3 +33,19 @@ en:
         approver: "Aprover: "
         rejecter: "Rejecter: "
         paider: "Paider: "
+# Breadcrumbs
+    br:
+      user: "Users"
+      new: "New"
+      edit: "Edit"
+      request: "Requests"
+      income: "Incomes"
+      show: "Show"
+# Button
+    btn:
+      new_user: "New User"
+      new_request: "New Request"
+      new_income: "New Income"
+      show: "Show"
+      edit: "Edit"
+      destroy: "Destroy"

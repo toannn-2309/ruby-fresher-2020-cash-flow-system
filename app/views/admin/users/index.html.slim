@@ -1,6 +1,7 @@
+= content_for :breadcrumbs, [t("admin.br.user")]
 .pt-2
-  = link_to new_admin_user_path, class: "btn btn-success" do
-    i.fas.fa-user-plus
+  = link_to new_admin_user_path, class: "btn btn-success", "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.new_user") do
+    i.fas.fa-plus
 .bg-form  
   table.table.table-bordered.table-hover
     thead

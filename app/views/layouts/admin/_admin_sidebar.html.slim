@@ -18,17 +18,17 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4.position-fixed
                 = t "admin.sidebar.dashboard"
                 i.right.fas.fa-angle-left
             ul.nav.nav-treeview
-              li.nav-item
+              li.nav-item.menu-item
                 = link_to admin_users_path, class: "nav-link" do
                   i.fas.fa-users.nav-icon
                   p
                     = t "admin.sidebar.users"
-              li.nav-item
+              li.nav-item.menu-item
                 = link_to admin_requests_path, class: "nav-link" do
                   i.fas.fa-copy.nav-icon
                   p
                     = t "admin.sidebar.requests"
-              li.nav-item
+              li.nav-item.menu-item
                 = link_to admin_incomes_path, class: "nav-link" do
                   i.fas.fa-money-check-alt.nav-icon
                   p

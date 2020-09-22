@@ -9,12 +9,12 @@ tr.tr-request.text-center
   td.action-request
     = render "btn_request", request: request
   td.btn-request
-    button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{request.id}"]
+    button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{request.id}" data-placement="top" title="#{t 'admin.br.show'}"]
       i.fas.fa-eye
-    = link_to edit_admin_request_path(request) do
+    = link_to edit_admin_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
       button.btn.btn-info.btn-sm
         i.far.fa-edit
-    = link_to admin_request_path(request), data: { confirm: t("request.view.delete?") }, method: :delete do
+    = link_to admin_request_path(request), data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy")  do
       button.btn.btn-danger.btn-sm
         i.fas.fa-trash-alt
 

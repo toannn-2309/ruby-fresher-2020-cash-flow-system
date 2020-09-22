@@ -11,9 +11,11 @@ html
     .wrapper
       = render "layouts/admin/admin_header"
       = render "layouts/admin/admin_sidebar"
-      .content-wrapper.pl-2.pt-6
+      = render "layouts/admin/breadcrumb"
+      .content-wrapper.pl-2
         - flash.each do |message_type, message| 
           .alert.mt-2 [class="alert-#{message_type}"]
             = message
         = yield
       = render "layouts/footer"
+    #preloader

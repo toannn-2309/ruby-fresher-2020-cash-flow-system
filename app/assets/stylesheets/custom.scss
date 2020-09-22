@@ -5,6 +5,7 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/regular';
 @import '@fortawesome/fontawesome-free/scss/brands';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
+@import 'color';
 
 // common
 .pt-6 {
@@ -21,4 +22,14 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 
 .with-80 {
   width: 80px;
+}
+
+// breadcrumbs
+#breadcrumb {
+  padding-top: 55px;
+  background-color: $while-f4;
+
+  .breadcrumb {
+    background-color: $while-f4;
+  }
 }

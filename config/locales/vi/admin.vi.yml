@@ -33,3 +33,19 @@ vi:
         approver: "Người chấp nhận: "
         rejecter: "Người từ chối: "
         paider: "Người thanh toán: "
+# Breadcrumbs
+    br:
+      user: "Người dùng"
+      new: "Mới"
+      edit: "Chỉnh sửa"
+      request: "Yêu cầu"
+      income: "Thu nhập"
+      show: "Xem"
+# Button
+    btn:
+      new_user: "Người dùng mới"
+      new_request: "Yêu cầu mới"
+      new_income: "Thu nhập mới"
+      show: "Xem"
+      edit: "Chỉnh sửa"
+      destroy: "Xóa"
