@@ -32,5 +32,23 @@ Rails.application.routes.draw do
       post "/login", to: "sessions#create"
       delete "/logout", to: "sessions#destroy"
     end
+
+    namespace :manager do
+      resources :requests do 
+        member do
+          patch :review
+          patch :rejected
+        end
+      end
+    end
+
+    namespace :accountant do
+      resources :requests do 
+        member do
+          patch :confirm
+          patch :rejected
+        end
+      end
+    end
   end
 end

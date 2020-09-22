@@ -1,0 +1,17 @@
+#breadcrumb
+  .row
+    .col-12
+      nav[aria-label="breadcrumb"]
+        ol.breadcrumb.float-sm-right
+          li.breadcrumb-item = link_to t("header.home"), home_path
+          - breadcrumbs = JSON.parse(sanitize yield(:breadcrumbs)) if content_for?(:breadcrumbs)
+          - if breadcrumbs.present?
+            - breadcrumbs.each do |breadcrumb|
+              - case breadcrumb.class.to_s
+              - when "Array"
+                - string, link = breadcrumb
+                li.breadcrumb-item.active[aria-current="page"]
+                  = link_to string, link
+              - when "String"
+                li.breadcrumb-item.active[aria-current="page"]
+                  = content_tag :span, breadcrumb

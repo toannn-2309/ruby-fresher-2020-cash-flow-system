@@ -11,5 +11,6 @@ en:
     request: "Request"
     request_new: "Request new"
     history_rq: "Requested history"
+    requests_group: "Group requirements"
   footer:
     copyrigh: "Copyright © 2020"

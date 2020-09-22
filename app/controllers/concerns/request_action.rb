@@ -6,20 +6,41 @@ module RequestAction
   end
 
   def review
-    @request.review!
-    @request.update approver: current_user.name
-    redirect_to admin_requests_path
+    if @request.pending?
+      @request.review!
+      @request.update approver: current_user.name
+    else
+      flash[:danger] = t "request.noti.show_fail"
+    end
+    return redirect_to admin_requests_path if current_user.admin?
+
+    redirect_to manager_requests_path
   end
 
   def confirm
-    @request.confirm!
-    redirect_to admin_requests_path
+    if @request.approve?
+      @request.confirm!
+      @request.update paider: current_user.name
+    else
+      flash[:danger] = t "request.noti.show_fail"
+    end
+    return redirect_to admin_requests_path if current_user.admin?
+
+    redirect_to accountant_requests_path
   end
 
   def rejected
-    @request.rejected!
-    @request.update rejecter: current_user.name
-    redirect_to admin_requests_path
+    if @request.rejected?
+      flash[:danger] = t "request.noti.show_fail"
+    else
+      @request.rejected!
+      @request.update rejecter: current_user.name
+    end
+    return redirect_to admin_requests_path if current_user.admin?
+
+    return redirect_to manager_requests_path if current_user.manager?
+
+    redirect_to accountant_requests_path
   end
 
   private

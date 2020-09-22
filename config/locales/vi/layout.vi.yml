@@ -11,5 +11,6 @@ vi:
     request: "Yêu cầu"
     request_new: "Tạo yêu cầu"
     history_rq: "Lịch sử yêu cầu"
+    requests_group: "Yêu cầu của nhóm"
   footer:
     copyrigh: "Bản quyền © 2020"

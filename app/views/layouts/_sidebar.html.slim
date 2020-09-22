@@ -18,7 +18,7 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4.position-fixed
                 = t "side_bar.request"
                 i.right.fas.fa-angle-left
             ul.nav.nav-treeview
-              li.nav-item
+              li.nav-item.
                 = link_to new_request_path, class: "nav-link" do
                   i.far.fa-plus-square.nav-icon
                   p
@@ -28,4 +28,16 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4.position-fixed
                   i.far.fa-copy.nav-icon
                   p
                     = t "side_bar.history_rq"
+              - if current_user.manager?
+                li.nav-item
+                  = link_to manager_requests_path, class: "nav-link" do
+                    i.fas.fa-users.nav-icon
+                    p
+                      = t "side_bar.requests_group"
+              - if current_user.accountant?
+                li.nav-item
+                  = link_to accountant_requests_path, class: "nav-link" do
+                    i.fas.fa-users.nav-icon
+                    p
+                      = t "side_bar.requests_group"
 = render "shared/modal_info"

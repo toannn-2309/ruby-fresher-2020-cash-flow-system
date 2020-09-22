@@ -47,13 +47,13 @@ User.create!(
     email: "accountant_#{n+1}@gmail.com",
     password: "password",
     password_confirmation: "password",
-    role: 3,
+    role: 4,
     group_id: rand(1..4)
   )
   user_ids << user.id
 end
 
-40.times do |n|
+80.times do |n|
   request = Request.create!(
     user_id: rand(2..61),
     title: Faker::Lorem.sentence(word_count: 5),
