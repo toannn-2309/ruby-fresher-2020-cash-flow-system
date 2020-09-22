@@ -28,4 +28,9 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4.position-fixed
                   i.fas.fa-copy.nav-icon
                   p
                     = t "admin.sidebar.requests"
+              li.nav-item
+                = link_to admin_incomes_path, class: "nav-link" do
+                  i.fas.fa-money-check-alt.nav-icon
+                  p
+                    = t "admin.sidebar.incomes"
 = render "shared/modal_info"

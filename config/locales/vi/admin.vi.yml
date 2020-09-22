@@ -5,6 +5,8 @@ vi:
       dashboard: "Bảng điều khiển"
       users: "Người dùng"
       requests: "Yêu cầu"
+      incomes: "Thu nhập"
+      budget: "Ngân sách"
 # Base controller
     noti:
       not_admin: "Bạn không phải là người quản trị viên!"

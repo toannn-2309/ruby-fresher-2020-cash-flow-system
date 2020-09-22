@@ -5,6 +5,8 @@ en:
       dashboard: "Dashboard"
       users: "Users"
       requests: "Requests"
+      incomes: "Incomes"
+      budget: "Budget"
 # Base controller
     noti:
       not_admin: "You are not an admin!"

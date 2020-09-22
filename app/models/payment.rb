@@ -1,6 +1,5 @@
 class Payment < ApplicationRecord
   belongs_to :request
-  belongs_to :budget
 
   validates :paider, presence: true
   validates :amount_spent, presence: true,

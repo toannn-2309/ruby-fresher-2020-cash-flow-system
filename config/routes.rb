@@ -22,6 +22,12 @@ Rails.application.routes.draw do
           patch :rejected
         end
       end
+      resources :incomes do
+        member do
+          patch :confirm
+          patch :rejected
+        end
+      end
       get "/login", to: "sessions#new"
       post "/login", to: "sessions#create"
       delete "/logout", to: "sessions#destroy"

@@ -1,0 +1,51 @@
+tr.text-center.tr-request
+  td = income.user_name
+  td.with-300.webkit-box-2 = income.title
+  td.with-80  = income.amount_income
+  td = income.created_at.strftime Settings.format_date
+  td
+    h1.badge.badge-pill [class="stt-#{income.aasm_state}"]
+      = income.aasm_state.capitalize
+  td.action-income
+    = render "btn_income", income: income
+  td.btn-request
+    button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{income.id}"]
+      i.fas.fa-eye
+    = link_to edit_admin_income_path(income) do
+      button.btn.btn-info.btn-sm
+        i.far.fa-edit
+    = link_to admin_income_path(income), data: { confirm: t("request.view.delete?") }, method: :delete do
+      button.btn.btn-danger.btn-sm
+        i.fas.fa-trash-alt
+
+  .modal.fade [id="example-#{income.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+      .modal-dialog[role="document"]
+        .modal-content
+          .modal-header
+            h4#exampleModalLabel.modal-title.text-primary
+              = income.title
+            button.close[type="button" data-dismiss="modal" aria-label="Close"]
+              span[aria-hidden="true"]
+                | ×
+          .modal-body
+            .row
+              .col-6
+                h6.text-info 
+                  = t "income.view.creater"
+                p = income.user_name
+              .col-6
+                h6.text-info 
+                  = t "user.role"
+                p = income.user_role
+            h6.text-info = t "income.view.content"
+            p = income.content
+            h6.text-info = t "request.view.total_amount"
+            p = income.amount_income
+            - if income.approve?
+              h6.text-success = t "income.view.confirmer" 
+              p.text-success = income.confirmer
+            - if income.rejected?
+              h6.text-danger = t "admin.request.view.rejecter"  
+              p.text-danger = income.rejecter
+          .modal-footer
+            = render "btn_income", income: income
