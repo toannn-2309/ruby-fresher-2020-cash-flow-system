@@ -1,2 +1,3 @@
+= content_for :breadcrumbs, [[t("admin.br.user"), admin_users_path], [@user.name, admin_user_path(@user)], t("admin.br.edit")]
 - provide :btn_text, t("admin.view.btn_edit")
 = render "form"

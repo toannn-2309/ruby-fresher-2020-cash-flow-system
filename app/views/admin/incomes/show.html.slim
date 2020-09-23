@@ -1,13 +1,2 @@
-p#notice = notice
-
-p
-  strong Title:
-  = @income.title
-p
-  strong Content:
-  = @income.content
-p
-  strong Amount income:
-  = @income.amount_income
-
+= content_for :breadcrumbs, [[t("admin.br.income"), admin_incomes_path], @income.user_name]
 // TODO: View temporary

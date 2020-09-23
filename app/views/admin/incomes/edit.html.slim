@@ -1,2 +1,3 @@
+= content_for :breadcrumbs, [[t("admin.br.income"), admin_incomes_path], [@income.user_name, admin_income_path(@income)], t("admin.br.edit")]
 - provide :btn_text, t("income.view.btn_edit")
 = render "form"

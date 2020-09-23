@@ -9,12 +9,12 @@ tr.text-center.tr-request
   td.action-income
     = render "btn_income", income: income
   td.btn-request
-    button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{income.id}"]
+    button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{income.id}" data-placement="top" title="#{t 'admin.br.show'}"]
       i.fas.fa-eye
-    = link_to edit_admin_income_path(income) do
+    = link_to edit_admin_income_path(income), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
       button.btn.btn-info.btn-sm
         i.far.fa-edit
-    = link_to admin_income_path(income), data: { confirm: t("request.view.delete?") }, method: :delete do
+    = link_to admin_income_path(income), data: { confirm: t("request.view.delete?") }, method: :delete, "data-placement": "top", "title": t("admin.btn.destroy") do
       button.btn.btn-danger.btn-sm
         i.fas.fa-trash-alt
 
