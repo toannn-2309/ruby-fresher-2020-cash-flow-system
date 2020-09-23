@@ -1,0 +1,3 @@
+- if request.approve?
+  = button_to t("admin.request.view.confirmed"), confirm_accountant_request_path(request.id), method: :patch, class: "btn btn-primary btn-sm mb-2"
+  = button_to t("admin.request.view.rejected"), rejected_accountant_request_path(request.id), method: :patch, class: "btn btn-danger btn-sm"

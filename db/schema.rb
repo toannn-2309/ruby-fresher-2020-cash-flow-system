@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_101925) do
+ActiveRecord::Schema.define(version: 2020_09_22_100703) do
 
   create_table "budgets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "total_budget", default: 0.0, null: false
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_101925) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "aasm_state"
+    t.string "paider"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 

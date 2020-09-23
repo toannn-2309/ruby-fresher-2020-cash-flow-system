@@ -4,6 +4,7 @@ class RequestsController < ApplicationController
 
   def index
     @requests = current_user.requests.by_date
+                            .page(params[:page]).per Settings.request.per_page
   end
 
   def show; end
@@ -41,6 +42,9 @@ class RequestsController < ApplicationController
     else
       flash[:danger] = t "request.noti.destroy_fail"
     end
+
+    return redirect_to manager_requests_path if current_user.manager?
+
     redirect_to requests_path
   end
 

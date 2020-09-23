@@ -1,13 +1,15 @@
-= content_for :breadcrumbs, [t("side_bar.history_rq")]
-.bg-form
+= content_for :breadcrumbs, [t("side_bar.requests_group")]
+.bg-form  
   table.table.table-bordered.table-hover
     thead
       tr.text-center
+        th = t "admin.request.view.requester"
         th = t "request.view.title"
         th = t "request.view.total_amount"
         th = t "request.view.created_at"
         th = t "request.view.status"
         th = t "request.view.action"
+        th = t "admin.request.view.option"
     tbody
       = render @requests
 .pt-4

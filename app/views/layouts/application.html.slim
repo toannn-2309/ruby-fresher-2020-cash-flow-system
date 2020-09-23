@@ -9,9 +9,10 @@ html
     = javascript_pack_tag "application", "data-turbolinks-track": "reload"
   body.sidebar-mini
     .wrapper
-      = render partial: "layouts/header"
-      = render partial: "layouts/sidebar"
-      .content-wrapper.pl-2.pt-6
+      = render "layouts/header"
+      = render "layouts/sidebar"
+      = render "layouts/breadcrumb"
+      .content-wrapper.pl-2
         - flash.each do |message_type, message| 
           .alert.mt-2 [class="alert-#{message_type}"]
             = message
