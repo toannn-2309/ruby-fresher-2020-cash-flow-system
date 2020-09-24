@@ -1,12 +1,12 @@
 tr.tr-request.text-center
   td = request.user_name
-  td.with-300 = request.title
-  td = request.total_amount
+  td.with-200 = request.title
+  td.with-80 = request.total_amount
   td = request.created_at.strftime Settings.format_date
   td 
     h1.badge.badge-pill [class="stt-#{request.aasm_state}"]
       = request.aasm_state.capitalize
-  td.action-request
+  td.with-200.action-request
     = render "btn_request", request: request
   td.btn-request
     button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{request.id}" data-placement="top" title="#{t 'admin.br.show'}"]
@@ -43,11 +43,30 @@ tr.tr-request.text-center
           p = request.reason
           h6.text-info = t "request.view.total_amount"
           p = request.total_amount
-          - if request.approver?
+          - if request.paid?
+            .row
+              .col-4
+                h6.text-success = t "admin.request.view.approver" 
+                = request.approver_name
+              .col-4
+                h6.text-success = t "admin.request.view.paider" 
+                = request.paider_name
+              .col-4
+                h6.text-success = t "admin.sidebar.budget"
+                = request.budget_name
+          - elsif request.approve?
             h6.text-success = t "admin.request.view.approver" 
-            = request.approver
-          - if request.rejected?
-            h6.text-success = t "admin.request.view.rejecter"  
-            = request.rejecter
+            = request.approver_name
+          - elsif request.rejected?
+            .row
+              .col-6
+                -if request.approver_id.present?
+                  h6.text-success = t "admin.request.view.approver" 
+                  = request.approver_name
+              .col-6
+                h6.text-danger = t "admin.request.view.rejecter"  
+                = request.rejecter_name
+          - else
+            |
         .modal-footer
           = render "btn_request", request: request

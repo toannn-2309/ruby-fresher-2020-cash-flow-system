@@ -33,6 +33,7 @@ en:
         approver: "Aprover: "
         rejecter: "Rejecter: "
         paider: "Paider: "
+        select_budget: "Select budget"
 # Breadcrumbs
     br:
       user: "Users"

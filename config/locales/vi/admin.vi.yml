@@ -33,6 +33,7 @@ vi:
         approver: "Người chấp nhận: "
         rejecter: "Người từ chối: "
         paider: "Người thanh toán: "
+        select_budget: "Lựa chọn ngân sách"
 # Breadcrumbs
     br:
       user: "Người dùng"

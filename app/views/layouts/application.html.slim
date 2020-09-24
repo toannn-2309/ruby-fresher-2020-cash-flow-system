@@ -14,7 +14,7 @@ html
       = render "layouts/breadcrumb"
       .content-wrapper.pl-2
         - flash.each do |message_type, message| 
-          .alert.mt-2 [class="alert-#{message_type}"]
+          .alert [class="alert-#{message_type}"]
             = message
         = yield
       = render partial: "layouts/footer"

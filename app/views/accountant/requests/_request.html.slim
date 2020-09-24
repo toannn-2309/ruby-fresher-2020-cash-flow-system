@@ -1,17 +1,17 @@
 tr.tr-request.text-center
   td = request.user_name
-  td.with-300 = request.title
+  td.with-200 = request.title
   td = request.total_amount
   td = request.created_at.strftime Settings.format_date
   td 
     h1.badge.badge-pill [class="stt-#{request.aasm_state}"]
       = request.aasm_state.capitalize
-  td.action-request
+  td.with-200.action-request
     = render "btn_request", request: request
   td.btn-request
     button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{request.id}" data-placement="top" title="#{t 'admin.br.show'}"]
       i.fas.fa-eye
-    - if request.user_id == current_user.id
+    - if request.user_id == current_user.id && request.pending?
       = link_to edit_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
         button.btn.btn-info.btn-sm
           i.far.fa-edit
@@ -44,17 +44,30 @@ tr.tr-request.text-center
           p = request.reason
           h6.text-info = t "request.view.total_amount"
           p = request.total_amount
+
           - if request.paid?
-            h6.text-success = t "admin.request.view.approver" 
-            = request.approver
-            h6.text-success = t "admin.request.view.paider"
-            = request.paider
+            .row
+              .col-4
+                h6.text-success = t "admin.request.view.approver" 
+                = request.approver_name
+              .col-4
+                h6.text-success = t "admin.request.view.paider" 
+                = request.paider_name
+              .col-4
+                h6.text-success = t "admin.sidebar.budget"
+                = request.budget_name
           - elsif request.approve?
             h6.text-success = t "admin.request.view.approver" 
-            = request.approver
+            = request.approver_name
           - elsif request.rejected?
-            h6.text-danger = t "admin.request.view.rejecter"  
-            = request.rejecter
+            .row
+              .col-6
+                -if request.approver_id.present?
+                  h6.text-success = t "admin.request.view.approver" 
+                  = request.approver_name
+              .col-6
+                h6.text-danger = t "admin.request.view.rejecter"  
+                = request.rejecter_name
           - else
             |
         .modal-footer

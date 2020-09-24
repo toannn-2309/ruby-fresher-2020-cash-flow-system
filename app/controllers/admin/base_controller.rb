@@ -7,7 +7,7 @@ class Admin::BaseController < ApplicationController
     @count_user = User.all.size
     @count_request = Request.all.size
     @count_income = Income.all.size
-    @total_budget = Budget.first.total_budget
+    @budgets = Budget.all
   end
 
   private

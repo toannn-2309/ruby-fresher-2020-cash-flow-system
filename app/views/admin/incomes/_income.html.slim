@@ -1,12 +1,12 @@
 tr.text-center.tr-request
   td = income.user_name
-  td.with-300.webkit-box-2 = income.title
-  td.with-80  = income.amount_income
+  td.with-200.webkit-box-2 = income.title
+  td.with-80 = income.amount_income
   td = income.created_at.strftime Settings.format_date
   td
     h1.badge.badge-pill [class="stt-#{income.aasm_state}"]
       = income.aasm_state.capitalize
-  td.action-income
+  td.with-200.action-income
     = render "btn_income", income: income
   td.btn-request
     button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{income.id}" data-placement="top" title="#{t 'admin.br.show'}"]
@@ -42,10 +42,15 @@ tr.text-center.tr-request
             h6.text-info = t "request.view.total_amount"
             p = income.amount_income
             - if income.approve?
-              h6.text-success = t "income.view.confirmer" 
-              p.text-success = income.confirmer
+              .row
+                .col-6
+                  h6.text-success = t "income.view.confirmer" 
+                  p = income.confirmer_name
+                .col-6
+                  h6.text-success = t "admin.sidebar.budget"
+                  = income.budget_name
             - if income.rejected?
               h6.text-danger = t "admin.request.view.rejecter"  
-              p.text-danger = income.rejecter
+              p = income.rejecter_name
           .modal-footer
             = render "btn_income", income: income

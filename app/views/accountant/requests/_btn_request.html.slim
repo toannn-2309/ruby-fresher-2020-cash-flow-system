@@ -1,3 +1,7 @@
 - if request.approve?
-  = button_to t("admin.request.view.confirmed"), confirm_accountant_request_path(request.id), method: :patch, class: "btn btn-primary btn-sm mb-2"
+  = simple_form_for request, url: confirm_accountant_request_path(request.id), method: :patch  do |f|
+    = f.input :budget_id, label: t("admin.request.view.select_budget"),
+                          collection: @budget_view,
+                          prompt: t("admin.request.view.select_budget")
+    = f.button :submit, t("admin.request.view.confirmed"), class: "btn btn-primary btn-sm mb-2"
   = button_to t("admin.request.view.rejected"), rejected_accountant_request_path(request.id), method: :patch, class: "btn btn-danger btn-sm"

@@ -1,4 +1,5 @@
 group_name = ["Group 1", "Group 2", "Group 3", "Group 4"]
+budget_name = ["Budget 1", "Budget 2", "Budget 3"]
 
 4.times do |n|
   Group.create!(
@@ -6,9 +7,12 @@ group_name = ["Group 1", "Group 2", "Group 3", "Group 4"]
   )
 end
 
-Budget.create!(
-  total_budget: 5000
-)
+3.times do |n|
+  Budget.create!(
+    name: budget_name[n],
+    total_budget: 5000
+  )
+end
 
 user_ids = []
 request_ids = []
@@ -59,17 +63,19 @@ end
     title: Faker::Lorem.sentence(word_count: 5),
     content: Faker::Lorem.sentence(word_count: 15),
     reason: Faker::Lorem.sentence(word_count: 40),
-    total_amount: rand(1..500)
+    total_amount: rand(1..500),
+    budget_id: 1
   )
   request_ids << request.id
 end
 
 40.times do |n|
   income = Income.create!(
-    user_id: rand(21..41),
+    user_id: rand(22..41),
     title: Faker::Lorem.sentence(word_count: 5),
     content: Faker::Lorem.sentence(word_count: 15),
     amount_income: rand(1..500),
+    budget_id: 1
   )
   income_ids << income.id
 end

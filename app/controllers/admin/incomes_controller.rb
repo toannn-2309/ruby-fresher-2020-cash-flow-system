@@ -2,6 +2,7 @@ class Admin::IncomesController < Admin::BaseController
   include IncomeAction
 
   before_action :get_income, except: %i(index new create)
+  before_action :get_budget, only: %i(index)
 
   def index
     @incomes = Income.by_date

@@ -8,12 +8,13 @@ tr.tr-request.text-center
   td.btn-request
     button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{request.id}" data-placement="top" title="#{t 'admin.br.show'}"]
       i.fas.fa-eye
-    = link_to edit_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
-      button.btn.btn-info.btn-sm
-        i.far.fa-edit
-    = link_to request, data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy") do
-      button.btn.btn-danger.btn-sm
-        i.fas.fa-trash-alt
+    - if request.pending?
+      = link_to edit_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
+        button.btn.btn-info.btn-sm
+          i.far.fa-edit
+      = link_to request, data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy") do
+        button.btn.btn-danger.btn-sm
+          i.fas.fa-trash-alt
 
   .modal.fade [id="example-#{request.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"]
     .modal-dialog[role="document"]
@@ -31,6 +32,31 @@ tr.tr-request.text-center
           p = request.reason
           h6.text-info = t "request.view.total_amount"
           p = request.total_amount
+          - if request.paid?
+            .row
+              .col-4
+                h6.text-success = t "admin.request.view.approver" 
+                = request.approver_name
+              .col-4
+                h6.text-success = t "admin.request.view.paider" 
+                = request.paider_name
+              .col-4
+                h6.text-success = t "admin.sidebar.budget"
+                = request.budget_name
+          - elsif request.approve?
+            h6.text-success = t "admin.request.view.approver" 
+            = request.approver_name
+          - elsif request.rejected?
+            .row
+              .col-6
+                -if request.approver_id.present?
+                  h6.text-success = t "admin.request.view.approver" 
+                  = request.approver_name
+              .col-6
+                h6.text-danger = t "admin.request.view.rejecter"  
+                = request.rejecter_name
+          - else
+            |
         .modal-footer
           = link_to edit_request_path(request) do
             button.btn.btn-info = t "request.view.edit"

@@ -9,6 +9,7 @@ en:
       destroy: "Request was successfully destroyed."
       destroy_fail: "Request delete failed."
       show_fail: "Request was not found"
+      no_edit: "You cannot edit this request"
 # View
     view:
       content: "Content"

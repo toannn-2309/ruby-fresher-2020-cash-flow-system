@@ -9,6 +9,7 @@ vi:
       destroy: "Xóa yêu cầu thành công"
       destroy_fail: "Xóa yêu cầu thất bại"
       show_fail: "Yêu cầu không được tìm thấy"
+      no_edit: "Bạn không thể chỉnh sửa yêu cầu này"
 # View
     view:
       content: "Nội dung"
