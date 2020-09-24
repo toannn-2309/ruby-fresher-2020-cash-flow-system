@@ -29,7 +29,7 @@ class Admin::IncomesController < Admin::BaseController
   def edit; end
 
   def update
-    if @income.update income_params
+    if @income.update income_params_edit
       flash[:success] = t "income.noti.updated"
       redirect_to admin_incomes_path
     else
@@ -51,5 +51,9 @@ class Admin::IncomesController < Admin::BaseController
 
   def income_params
     params.require(:income).permit Income::INCOME_PARAMS
+  end
+
+  def income_params_edit
+    params.require(:income).permit Income::INCOME_PARAMS_ADMIN_EDIT
   end
 end

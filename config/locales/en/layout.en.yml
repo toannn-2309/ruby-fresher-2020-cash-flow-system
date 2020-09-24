@@ -12,5 +12,8 @@ en:
     request_new: "Request new"
     history_rq: "Requested history"
     requests_group: "Group requirements"
+    income_new: "Income new"
+    history_ic: "Income history"
+    incomes_group: "Group incomeup"
   footer:
     copyrigh: "Copyright © 2020"

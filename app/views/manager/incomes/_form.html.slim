@@ -1,0 +1,16 @@
+.row
+  .col-md-8.offset-md-2
+    .bg-form
+      = simple_form_for [:manager, @income] do |f|
+        .row
+          .col-md-12
+            = f.error_notification
+            = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+        = f.hidden_field :budget_id, value: 1
+        .row
+          .col-6
+            = f.input :title, label: t("income.view.title")
+          .col-6
+            = f.input :amount_income, input_html: {min: Settings.min_value}, label: t("income.view.amount_income")
+        = f.input :content, label: t("income.view.content")
+        = f.button :submit, yield(:btn_text), class: "btn btn-primary"

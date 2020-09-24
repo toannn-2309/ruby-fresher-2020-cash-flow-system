@@ -16,6 +16,6 @@ class Admin::BaseController < ApplicationController
     return if current_user.admin?
 
     redirect_to home_path
-    flash[:alert] = t "admin.noti.not_admin"
+    flash[:danger] = t "admin.noti.not_admin"
   end
 end

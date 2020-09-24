@@ -1,6 +1,7 @@
 tr.tr-request.text-center
   td = request.user_name
-  td.with-200 = request.title
+  td.with-200.text-primary.cursor-p [data-toggle="modal" data-target="#example-#{request.id}"]
+    = request.title
   td = request.total_amount
   td = request.created_at.strftime Settings.format_date
   td 
@@ -61,8 +62,8 @@ tr.tr-request.text-center
             = request.approver_name
           - elsif request.rejected?
             .row
-              .col-6
-                -if request.approver_id.present?
+              -if request.approver_id.present?
+                .col-6
                   h6.text-success = t "admin.request.view.approver" 
                   = request.approver_name
               .col-6
@@ -72,3 +73,14 @@ tr.tr-request.text-center
             |
         .modal-footer
           = render "btn_request", request: request
+          - if request.user_id == current_user.id && request.pending?
+            = link_to edit_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
+              button.btn.btn-info.btn-sm
+                i.far.fa-edit
+            = link_to request, data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy") do
+              button.btn.btn-danger.btn-sm
+                i.fas.fa-trash-alt
+          - if request.rejected?
+            = link_to request, data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy") do
+              button.btn.btn-danger.btn-sm
+                i.fas.fa-trash-alt

@@ -1,0 +1,15 @@
+= content_for :breadcrumbs, [t("side_bar.incomes_group")]
+.bg-form  
+  table.table.table-bordered.table-hover
+    thead
+      tr.text-center
+        th = t "income.view.creater"
+        th = t "income.view.title"
+        th = t "income.view.amount_income"
+        th = t "income.view.create_at"
+        th = t "income.view.status"
+        th = t "income.view.option"
+    tbody
+      = render @incomes
+.pt-4
+  = paginate @incomes, theme: "twitter-bootstrap-4"

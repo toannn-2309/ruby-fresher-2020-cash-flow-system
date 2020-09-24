@@ -8,6 +8,8 @@ vi:
       update_fail: "Cập nhật thu nhập thất bại"
       destroy: "Xóa thu nhập thành công"
       destroy_fail: "Xóa thu nhập thất bại"
+      no_edit: "Bạn không thể chỉnh sửa thu nhập"
+      no_manager: "Bạn không phải là quản lý"
     view:
       title: "Tiêu đề"
       amount_income: "Thu nhập"

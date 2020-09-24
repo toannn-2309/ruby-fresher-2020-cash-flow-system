@@ -12,12 +12,6 @@ tr.text-center.tr-request
   td.btn-request
     button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{income.id}" data-placement="top" title="#{t 'admin.br.show'}"]
       i.fas.fa-eye
-    = link_to edit_admin_income_path(income), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
-      button.btn.btn-info.btn-sm
-        i.far.fa-edit
-    = link_to admin_income_path(income), data: { confirm: t("request.view.delete?") }, method: :delete, "data-placement": "top", "title": t("admin.btn.destroy") do
-      button.btn.btn-danger.btn-sm
-        i.fas.fa-trash-alt
 
   .modal.fade [id="example-#{income.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"]
       .modal-dialog[role="document"]
@@ -55,9 +49,3 @@ tr.text-center.tr-request
               p = income.rejecter_name
           .modal-footer
             = render "btn_income", income: income
-            = link_to edit_admin_income_path(income), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
-              button.btn.btn-info.btn-sm
-                i.far.fa-edit
-            = link_to admin_income_path(income), data: { confirm: t("request.view.delete?") }, method: :delete, "data-placement": "top", "title": t("admin.btn.destroy") do
-              button.btn.btn-danger.btn-sm
-                i.fas.fa-trash-alt

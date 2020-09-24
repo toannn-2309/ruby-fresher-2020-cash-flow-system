@@ -40,10 +40,18 @@ Rails.application.routes.draw do
           patch :rejected
         end
       end
+      resources :incomes
+      get "/my_income", to: "my_incomes#index"
     end
 
     namespace :accountant do
       resources :requests do 
+        member do
+          patch :confirm
+          patch :rejected
+        end
+      end
+      resources :incomes do
         member do
           patch :confirm
           patch :rejected

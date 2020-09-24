@@ -40,4 +40,40 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4.position-fixed
                     i.fas.fa-users.nav-icon
                     p
                       = t "side_bar.requests_group"
+          - if current_user.manager?
+            li.nav-item.has-treeview.menu-open
+              = link_to "#", class: "nav-link active" do
+                i.nav-icon.fas.fa-money-check-alt
+                p
+                  = t "admin.sidebar.incomes"
+                  i.right.fas.fa-angle-left
+              ul.nav.nav-treeview
+                li.nav-item.
+                  = link_to new_manager_income_path, class: "nav-link" do
+                    i.far.fa-plus-square.nav-icon
+                    p
+                      = t "side_bar.income_new"
+                li.nav-item
+                  = link_to manager_my_income_path, class: "nav-link" do
+                    i.far.fa-copy.nav-icon
+                    p
+                      = t "side_bar.history_ic"
+                li.nav-item
+                  = link_to manager_incomes_path, class: "nav-link" do
+                    i.fas.fa-users.nav-icon
+                    p
+                      = t "side_bar.incomes_group"
+          - if current_user.accountant?
+            li.nav-item.has-treeview.menu-open
+              = link_to "#", class: "nav-link active" do
+                i.nav-icon.fas.fa-money-check-alt
+                p
+                  = t "admin.sidebar.incomes"
+                  i.right.fas.fa-angle-left
+              ul.nav.nav-treeview
+                li.nav-item.
+                  = link_to accountant_incomes_path, class: "nav-link" do
+                    i.fas.fa-users.nav-icon
+                    p
+                      = t "side_bar.incomes_group"
 = render "shared/modal_info"
