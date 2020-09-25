@@ -31,7 +31,7 @@ class Request < ApplicationRecord
 
   scope :by_date, ->{order created_at: :desc}
   scope :by_date_and_state_asc, ->{order aasm_state: :asc, created_at: :desc}
-  scope :requests_by_group, ->(group_id){where "users.group_id = ?", group_id}
+  scope :requests_by_group, ->(group_id){where(users: {group_id: group_id})}
   scope :status_not_pending, ->{where aasm_state: %w(approve paid rejected)}
 
   aasm do

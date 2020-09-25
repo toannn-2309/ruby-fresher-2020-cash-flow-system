@@ -1,7 +1,8 @@
 class Income < ApplicationRecord
   include AASM
 
-  INCOME_PARAMS = %i(title content amount_income aasm_state).freeze
+  INCOME_PARAMS = %i(title content amount_income aasm_state budget_id).freeze
+  INCOME_PARAMS_ADMIN_EDIT = %i(title content aasm_state budget_id).freeze
 
   belongs_to :user
   belongs_to :budget
@@ -23,6 +24,7 @@ class Income < ApplicationRecord
     length: {maximum: Settings.validate.content.length}
 
   scope :by_date, ->{order created_at: :desc}
+  scope :incomes_by_group, ->(group_id){where(users: {group_id: group_id})}
 
   aasm do
     state :pending, initial: true

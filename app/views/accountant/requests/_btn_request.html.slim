@@ -3,5 +3,5 @@
     = f.input :budget_id, label: t("admin.request.view.select_budget"),
                           collection: @budget_view,
                           prompt: t("admin.request.view.select_budget")
-    = f.button :submit, t("admin.request.view.confirmed"), class: "btn btn-primary btn-sm mb-2"
-  = button_to t("admin.request.view.rejected"), rejected_accountant_request_path(request.id), method: :patch, class: "btn btn-danger btn-sm"
+    = f.button :submit, t("admin.request.view.confirmed"), class: "btn btn-primary btn-sm mb-1"
+  = button_to t("admin.request.view.rejected"), rejected_accountant_request_path(request.id), method: :patch, class: "btn btn-danger btn-sm mb-1"

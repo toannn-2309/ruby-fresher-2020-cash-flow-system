@@ -12,5 +12,8 @@ vi:
     request_new: "Tạo yêu cầu"
     history_rq: "Lịch sử yêu cầu"
     requests_group: "Yêu cầu của nhóm"
+    income_new: "Tạo thu nhập"
+    history_ic: "Lịch sử thu nhập"
+    incomes_group: "Thu nhập của nhóm"
   footer:
     copyrigh: "Bản quyền © 2020"

@@ -13,7 +13,9 @@ module IncomeAction
     else
       flash[:danger] = t "income.noti.show_fail"
     end
-    redirect_to admin_incomes_path
+    return redirect_to admin_incomes_path if current_user.admin?
+
+    redirect_to accountant_incomes_path
   end
 
   def rejected
@@ -23,7 +25,9 @@ module IncomeAction
       @income.rejected!
       @income.update rejecter_id: current_user.id
     end
-    redirect_to admin_incomes_path
+    return redirect_to admin_incomes_path if current_user.admin?
+
+    redirect_to accountant_incomes_path
   end
 
   private

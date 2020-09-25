@@ -1,24 +1,25 @@
 tr.text-center.tr-request
   td = income.user_name
-  td.with-300.text-primary.cursor-p [data-toggle="modal" data-target="#example-#{income.id}"]
-    = income.title
+  td.with-300.webkit-box-2 = income.title
   td.with-80 = income.amount_income
   td = income.created_at.strftime Settings.format_date
   td
     h1.badge.badge-pill [class="stt-#{income.aasm_state}"]
       = income.aasm_state.capitalize
-  td.with-200.action-income
-    = render "btn_income", income: income
   td.btn-request
     button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{income.id}" data-placement="top" title="#{t 'admin.br.show'}"]
       i.fas.fa-eye
-    = link_to edit_admin_income_path(income), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
-      button.btn.btn-info.btn-sm
-        i.far.fa-edit
-    = link_to admin_income_path(income), data: { confirm: t("request.view.delete?") }, method: :delete, "data-placement": "top", "title": t("admin.btn.destroy") do
-      button.btn.btn-danger.btn-sm
-        i.fas.fa-trash-alt
-
+    - if income.user_id == current_user.id && income.pending?
+      = link_to edit_manager_income_path(income), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
+        button.btn.btn-info.btn-sm
+          i.far.fa-edit
+      = link_to manager_income_path(income), data: { confirm: t("request.view.delete?") }, method: :delete, "data-placement": "top", "title": t("admin.btn.destroy") do
+        button.btn.btn-danger.btn-sm
+          i.fas.fa-trash-alt
+    - if income.rejected?
+      = link_to manager_income_path(income), data: { confirm: t("request.view.delete?") }, method: :delete, "data-placement": "top", "title": t("admin.btn.destroy") do
+        button.btn.btn-danger.btn-sm
+          i.fas.fa-trash-alt
   .modal.fade [id="example-#{income.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"]
       .modal-dialog[role="document"]
         .modal-content
@@ -54,10 +55,3 @@ tr.text-center.tr-request
               h6.text-danger = t "admin.request.view.rejecter"  
               p = income.rejecter_name
           .modal-footer
-            = render "btn_income", income: income
-            = link_to edit_admin_income_path(income), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
-              button.btn.btn-info.btn-sm
-                i.far.fa-edit
-            = link_to admin_income_path(income), data: { confirm: t("request.view.delete?") }, method: :delete, "data-placement": "top", "title": t("admin.btn.destroy") do
-              button.btn.btn-danger.btn-sm
-                i.fas.fa-trash-alt

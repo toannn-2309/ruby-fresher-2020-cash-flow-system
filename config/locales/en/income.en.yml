@@ -8,6 +8,8 @@ en:
       update_fail: "Income update failed."
       destroy: "Income was successfully destroyed."
       destroy_fail: "Income delete failed."
+      no_edit: "You cannot edit this income"
+      no_manager: "You are not a manager"
     view:
       title: "Title"
       amount_income: "Amount income"
