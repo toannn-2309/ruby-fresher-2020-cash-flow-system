@@ -3,6 +3,7 @@ class Admin::RequestsController < Admin::BaseController
 
   before_action :get_request, except: %i(index new create)
   before_action :get_budget, only: :index
+  before_action :request_not_pending, only: :edit
 
   def index
     @requests = Request.includes(:user).by_date
@@ -13,6 +14,7 @@ class Admin::RequestsController < Admin::BaseController
 
   def new
     @request = Request.new
+    @request_details = @request.request_details.build
   end
 
   def create
@@ -29,7 +31,7 @@ class Admin::RequestsController < Admin::BaseController
   def edit; end
 
   def update
-    if @request.update request_params_edit
+    if @request.update request_params
       flash[:success] = t "request.noti.updated"
       redirect_to admin_requests_path
     else
@@ -51,9 +53,5 @@ class Admin::RequestsController < Admin::BaseController
 
   def request_params
     params.require(:request).permit Request::REQUESTS_PARAMS
-  end
-
-  def request_params_edit
-    params.require(:request).permit Request::REQUESTS_PARAMS_ADMIN_EDIT
   end
 end

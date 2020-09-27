@@ -7,6 +7,7 @@ gem "aasm"
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "bootstrap4-kaminari-views"
+gem "cocoon"
 gem "config"
 gem "faker"
 gem "figaro"

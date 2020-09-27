@@ -34,6 +34,9 @@ en:
         rejecter: "Rejecter: "
         paider: "Paider: "
         select_budget: "Select budget"
+        details: "Details"
+        add_details: "Add details"
+        amount: "Amount"
 # Breadcrumbs
     br:
       user: "Users"

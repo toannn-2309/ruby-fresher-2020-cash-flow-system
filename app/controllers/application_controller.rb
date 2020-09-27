@@ -34,6 +34,8 @@ class ApplicationController < ActionController::Base
     return if @request.pending?
 
     flash[:danger] = t "request.noti.no_edit"
+    return redirect_to admin_requests_path if current_user.admin?
+
     redirect_to requests_path
   end
 end

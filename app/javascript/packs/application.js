@@ -15,3 +15,5 @@ import '@fortawesome/fontawesome-free/js/all'
 
 require('packs/preloader')
 require('packs/menu_sidebar')
+require('jquery')
+require('@nathanvda/cocoon')

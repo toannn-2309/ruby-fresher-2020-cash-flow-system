@@ -10,8 +10,9 @@ tr.tr-request.text-center
   td.with-200.action-request
     = render "btn_request", request: request
   td.btn-request
-    button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{request.id}" data-placement="top" title="#{t 'admin.br.show'}"]
-      i.fas.fa-eye
+    = link_to admin_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.show") do
+      button.btn.btn-info.btn-sm
+        i.fas.fa-eye
     = link_to edit_admin_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
       button.btn.btn-info.btn-sm
         i.far.fa-edit
@@ -70,7 +71,6 @@ tr.tr-request.text-center
           - else
             |
         .modal-footer
-          = render "btn_request", request: request
           = link_to edit_admin_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
             button.btn.btn-info.btn-sm
               i.far.fa-edit
