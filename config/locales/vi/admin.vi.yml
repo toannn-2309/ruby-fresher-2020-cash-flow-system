@@ -53,3 +53,8 @@ vi:
       show: "Xem"
       edit: "Chỉnh sửa"
       destroy: "Xóa"
+# Search
+    search:
+      name: "Tên hoặc email"
+      role: "Chọn vai trò"
+      group: "Chọn group"
