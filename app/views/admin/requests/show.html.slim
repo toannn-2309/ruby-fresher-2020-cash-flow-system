@@ -1,2 +1,61 @@
 = content_for :breadcrumbs, [[t("admin.br.request"), admin_requests_path], @request.title]
-// TODO: View temporary
+.modal-content
+  .modal-header
+    = link_to edit_admin_request_path(@request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
+      button.btn.btn-info.btn-sm
+        i.far.fa-edit
+    = link_to admin_request_path(@request), data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy")  do
+      button.btn.btn-danger.btn-sm
+        i.fas.fa-trash-alt
+  .modal-body
+    .row
+      .col-4
+        h6.text-info 
+          = t "admin.request.view.requester"
+        p = @request.user_name
+      .col-4
+        h6.text-info 
+          = t "user.role"
+        p = @request.user_role
+      .col-4
+        h6.text-info 
+          = t "request.view.total_amount"
+        p = @request.total_amount
+    h6.text-info = t "request.view.content"
+    p = @request.content
+    h6.text-info = t "request.view.reason"
+    p = @request.reason
+    - if @request.request_details.present?
+      table.table.table-bordered
+        thead
+          tr
+            th
+              = t "request.view.content"
+            th
+              = t "admin.request.view.amount"
+        tbody
+          = render @request.request_details
+    - if @request.paid?
+      .row
+        .col-4
+          h6.text-success = t "admin.request.view.approver" 
+          = @request.approver_name
+        .col-4
+          h6.text-success = t "admin.request.view.paider" 
+          = @request.paider_name
+        .col-4
+          h6.text-success = t "admin.sidebar.budget"
+          = @request.budget_name
+    - elsif @request.approve?
+      h6.text-success = t "admin.request.view.approver" 
+      = @request.approver_name
+    - elsif @request.rejected?
+      .row
+        -if @request.approver_id.present?
+          .col-6
+            h6.text-success = t "admin.request.view.approver" 
+            = @request.approver_name
+        .col-6
+          h6.text-danger = t "admin.request.view.rejecter"  
+          = @request.rejecter_name
+    - else

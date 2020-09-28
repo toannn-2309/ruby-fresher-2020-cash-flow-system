@@ -34,6 +34,9 @@ vi:
         rejecter: "Người từ chối: "
         paider: "Người thanh toán: "
         select_budget: "Lựa chọn ngân sách"
+        details: "Chi tiết"
+        add_details: "Thêm chi tiết"
+        amount: "Số tiền"
 # Breadcrumbs
     br:
       user: "Người dùng"

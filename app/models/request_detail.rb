@@ -4,5 +4,5 @@ class RequestDetail < ApplicationRecord
   validates :amount, presence: true,
     numericality: {greater_than: Settings.validate.number_min}
   validates :content, presence: true,
-    length: {maximum: Settings.validate.content.length}
+    length: {maximum: Settings.validate.title.length}
 end

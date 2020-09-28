@@ -1,10 +1,12 @@
 class Request < ApplicationRecord
   include AASM
 
-  REQUESTS_PARAMS = %i(title content reason total_amount
-    aasm_state budget_id).freeze
-  REQUESTS_PARAMS_ADMIN_EDIT = %i(title content reason
-    aasm_state budget_id).freeze
+  REQUESTS_PARAMS = [
+    :title, :content, :reason, :total_amount,
+    :aasm_state, :budget_id,
+    request_details_attributes: [:id, :amount, :content, :_destroy].freeze
+  ].freeze
+
   belongs_to :user
   has_many :request_details, dependent: :destroy
   has_one :payment, dependent: :destroy
@@ -15,6 +17,8 @@ class Request < ApplicationRecord
                       optional: true, class_name: User.name
   belongs_to :rejecter, foreign_key: :rejecter_id,
                       optional: true, class_name: User.name
+  accepts_nested_attributes_for :request_details, allow_destroy: true,
+    reject_if: :all_blank
 
   delegate :name, :role, to: :user, prefix: true
   delegate :name, to: :budget, prefix: true

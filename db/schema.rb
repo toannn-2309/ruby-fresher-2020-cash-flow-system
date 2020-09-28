@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_030015) do
 
   create_table "request_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "amount", default: 0.0, null: false
-    t.text "content", null: false
+    t.string "content", limit: 200, null: false
     t.bigint "request_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

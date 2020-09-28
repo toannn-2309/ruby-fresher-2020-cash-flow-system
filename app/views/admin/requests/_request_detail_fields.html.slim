@@ -1,0 +1,10 @@
+.nested-fields
+  .row
+    .col-8
+      = f.input :content, label: t("request.view.content")
+    .col-3
+      = f.input :amount, label: t("admin.request.view.amount"), input_html: {min: Settings.min_value}
+    .col-1
+      = link_to_remove_association f do
+        button.btn.btn-danger.btn-sm.btn-delete-nested
+          i.fas.fa-trash-alt

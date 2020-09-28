@@ -15,4 +15,12 @@
             = f.input :aasm_state, label: t("admin.request.view.status"), collection: Request.aasm.states
         = f.input :content, as: :text, label: t("request.view.content")
         = f.input :reason, as: :text, label: t("request.view.reason")
-        = f.button :submit, yield(:btn_text), class: "btn btn-primary"
+        h5.text-success = t "admin.request.view.details"
+        #tasks
+          = f.simple_fields_for :request_details do |details|
+            = render "request_detail_fields", f: details
+        .links
+          = link_to_add_association t("admin.request.view.add_details"), f, :request_details, class: "btn btn-sm btn-success mb-2"
+        .row
+          .col-4.offset-md-4
+            = f.button :submit, yield(:btn_text), class: "btn btn-primary btn-block"
