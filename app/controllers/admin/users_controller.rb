@@ -4,6 +4,9 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     @users = User.not_admin.by_date
+                 .by_role(params[:role])
+                 .filter_by_name_or_email(params[:name])
+                 .by_group(params[:group_id])
                  .page(params[:page]).per Settings.user.per_page
   end
 

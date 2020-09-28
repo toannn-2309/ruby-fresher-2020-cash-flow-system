@@ -53,3 +53,8 @@ en:
       show: "Show"
       edit: "Edit"
       destroy: "Destroy"
+# Search
+    search:
+      name: "Name or email"
+      role: "Select role"
+      group: "Select group"
