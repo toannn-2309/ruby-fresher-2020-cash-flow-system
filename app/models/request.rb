@@ -9,7 +9,6 @@ class Request < ApplicationRecord
 
   belongs_to :user
   has_many :request_details, dependent: :destroy
-  has_one :payment, dependent: :destroy
   belongs_to :budget
   belongs_to :approver, foreign_key: :approver_id,
                       optional: true, class_name: User.name
@@ -58,10 +57,10 @@ class Request < ApplicationRecord
   end
 
   def subtract_the_budget
-    @total_amount = Request.find_by(id: id).total_amount
-    @budget = Budget.find_by id: budget_id
-    @total_budget = @budget.total_budget
-    @result = @total_budget - @total_amount
-    @budget.update total_budget: @result
+    total_amount = Request.find_by(id: id).total_amount
+    budget = Budget.find_by id: budget_id
+    total_budget = budget.total_budget
+    result = total_budget - total_amount
+    budget.update total_budget: result
   end
 end
