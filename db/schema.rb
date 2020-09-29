@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_030015) do
+ActiveRecord::Schema.define(version: 2020_09_29_061824) do
 
   create_table "budgets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "total_budget", default: 0.0, null: false
@@ -48,17 +48,6 @@ ActiveRecord::Schema.define(version: 2020_09_23_030015) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
-  end
-
-  create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title", limit: 200, null: false
-    t.text "content", null: false
-    t.float "amount_spent", default: 0.0, null: false
-    t.string "paider", null: false
-    t.bigint "request_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["request_id"], name: "index_payments_on_request_id"
   end
 
   create_table "request_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -104,7 +93,6 @@ ActiveRecord::Schema.define(version: 2020_09_23_030015) do
   add_foreign_key "incomes", "budgets"
   add_foreign_key "incomes", "users"
   add_foreign_key "notifications", "users"
-  add_foreign_key "payments", "requests"
   add_foreign_key "request_details", "requests"
   add_foreign_key "requests", "budgets"
   add_foreign_key "requests", "users"

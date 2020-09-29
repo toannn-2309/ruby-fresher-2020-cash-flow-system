@@ -41,10 +41,10 @@ class Income < ApplicationRecord
   end
 
   def add_the_budget
-    @amount_income = Income.find_by(id: id).amount_income
-    @budget = Budget.find_by id: budget_id
-    @total_budget = @budget.total_budget
-    @result = @total_budget + @amount_income
-    @budget.update total_budget: @result
+    amount_income = Income.find_by(id: id).amount_income
+    budget = Budget.find_by id: budget_id
+    total_budget = budget.total_budget
+    result = total_budget + amount_income
+    budget.update total_budget: result
   end
 end
