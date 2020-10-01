@@ -7,9 +7,12 @@ module IncomeAction
 
   def confirm
     if @income.pending?
-      @income.update confirmer_id: current_user.id,
-                     budget_id: params[:income][:budget_id]
-      @income.confirm!
+      if @income.update confirmer_id: current_user.id,
+                        budget_id: params[:income][:budget_id]
+        @income.confirm!
+      else
+        flash[:danger] = t "income.noti.updated_fail"
+      end
     else
       flash[:danger] = t "income.noti.show_fail"
     end

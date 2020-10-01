@@ -19,9 +19,12 @@ module RequestAction
 
   def confirm
     if @request.approve?
-      @request.update paider_id: current_user.id,
+      if @request.update paider_id: current_user.id,
                       budget_id: params[:request][:budget_id]
-      @request.confirm!
+        @request.confirm!
+      else
+        flash[:danger] = t "request.noti.updated_fail"
+      end
     else
       flash[:danger] = t "request.noti.show_fail"
     end
