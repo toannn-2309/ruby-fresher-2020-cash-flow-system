@@ -13,7 +13,7 @@
         th = t "request.view.status"
         th = t "request.view.action"
         th = t "admin.request.view.option"
-    tbody
+    tbody#show-requests
       = render @requests
-.pt-4
-  = paginate @requests, theme: "twitter-bootstrap-4"
+#paginate.pt-4
+  = paginate @requests,remote: true, theme: "twitter-bootstrap-4"

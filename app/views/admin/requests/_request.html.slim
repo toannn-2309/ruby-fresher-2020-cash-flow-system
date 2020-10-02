@@ -1,79 +1,21 @@
-tr.tr-request.text-center
+tr.tr-request.text-center [id="show-request-#{request.id}"]
   td = request.user_name
-  td.with-200.text-primary.cursor-p [data-toggle="modal" data-target="#example-#{request.id}"]
-    = request.title
+  td = link_to request.title, admin_request_path(request)
   td.with-80 = request.total_amount
   td = request.created_at.strftime Settings.format_date
   td 
-    h1.badge.badge-pill [class="stt-#{request.aasm_state}"]
-      = request.aasm_state.capitalize
-  td.with-200.action-request
+    h1.badge.badge-pill [class="stt-#{request.aasm_state}" id="show-badge-#{request.id}"]
+      = render "badge_request", request: request
+  td.with-200.action-request[id="show-btn-#{request.id}"]
     = render "btn_request", request: request
   td.btn-request
     = link_to admin_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.show") do
       button.btn.btn-info.btn-sm
         i.fas.fa-eye
-    = link_to edit_admin_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
-      button.btn.btn-info.btn-sm
-        i.far.fa-edit
-    = link_to admin_request_path(request), data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy")  do
+    - if request.pending?
+      = link_to edit_admin_request_path(request), class: "btn-edit-request-#{request.id}", "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
+        button.btn.btn-info.btn-sm
+          i.far.fa-edit
+    = link_to admin_request_path(request), data: { confirm: t("request.view.delete?") }, method: :delete, remote: true, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy")  do
       button.btn.btn-danger.btn-sm
         i.fas.fa-trash-alt
-
-  .modal.fade [id="example-#{request.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"]
-    .modal-dialog[role="document"]
-      .modal-content
-        .modal-header
-          h4#exampleModalLabel.modal-title.text-primary
-            = request.title
-          button.close[type="button" data-dismiss="modal" aria-label="Close"]
-            span[aria-hidden="true"]
-              | ×
-        .modal-body
-          .row
-            .col-6
-              h6.text-info 
-                = t "admin.request.view.requester"
-              p = request.user_name
-            .col-6
-              h6.text-info 
-                = t "user.role"
-              p = request.user_role
-          h6.text-info = t "request.view.content"
-          p = request.content
-          h6.text-info = t "request.view.reason"
-          p = request.reason
-          h6.text-info = t "request.view.total_amount"
-          p = request.total_amount
-          - if request.paid?
-            .row
-              .col-4
-                h6.text-success = t "admin.request.view.approver" 
-                = request.approver_name
-              .col-4
-                h6.text-success = t "admin.request.view.paider" 
-                = request.paider_name
-              .col-4
-                h6.text-success = t "admin.sidebar.budget"
-                = request.budget_name
-          - elsif request.approve?
-            h6.text-success = t "admin.request.view.approver" 
-            = request.approver_name
-          - elsif request.rejected?
-            .row
-              -if request.approver_id.present?
-                .col-6
-                  h6.text-success = t "admin.request.view.approver" 
-                  = request.approver_name
-              .col-6
-                h6.text-danger = t "admin.request.view.rejecter"  
-                = request.rejecter_name
-          - else
-            |
-        .modal-footer
-          = link_to edit_admin_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
-            button.btn.btn-info.btn-sm
-              i.far.fa-edit
-          = link_to admin_request_path(request), data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy")  do
-            button.btn.btn-danger.btn-sm
-              i.fas.fa-trash-alt

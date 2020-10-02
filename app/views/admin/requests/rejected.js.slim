@@ -1,0 +1,17 @@
+- if @messages.present?
+  | $("#show-btn-#{@request.id}").html("
+  = j render "btn_request", request: @request
+  | ");
+  | $("#show-badge-#{@request.id}").html("
+  = j render "badge_request", request: @request
+  | ").toggleClass("stt-#{@request.aasm_state}");
+  | toastr.success("
+  = @messages
+  | ");
+  | $("#show-requester").html("
+  = j render "requester"
+  | ");
+- else
+  | toastr.error("
+  = t "request.noti.updated_fail"
+  | ");

@@ -17,3 +17,6 @@ require('packs/preloader')
 require('packs/menu_sidebar')
 require('jquery')
 require('@nathanvda/cocoon')
+
+import toastr from 'toastr'
+window.toastr = toastr

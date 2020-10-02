@@ -1,9 +1,8 @@
 @import 'color';
 
 // request
-.tr-request {
-  height: 95px;
 
+.stt-badge {
   .badge {
     color: $while;
     width: 80px;
@@ -26,8 +25,54 @@
   }
 }
 
+.tr-request {
+  height: 95px;
+
+  @extend .stt-badge;
+}
+
 .action-request, .action-income {
   .btn {
     width: 85px !important;
   }
+}
+
+// modal-user
+.modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.body.modal-open {
+  overflow-y: hidden;
+}
+
+.new-modal-title {
+  font-size: 27px;
+  margin: 0;
+}
+
+.modal-dialog {
+  .confirm-change-status {
+    width: 80%;
+  }
+
+  .edit-attachment-request {
+    margin: auto;
+    width: 80%;
+  }
+
+  .modal-content {
+    .modal-body-request-history.modal-body {
+      padding-top: 0;
+    }
+
+    .modal-body-supplier.modal-body {
+      padding-top: 0;
+    }
+  }
+}
+
+.new-supplier-modal-title {
+  margin-bottom: 0;
 }

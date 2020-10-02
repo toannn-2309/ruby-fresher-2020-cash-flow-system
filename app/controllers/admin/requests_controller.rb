@@ -41,12 +41,11 @@ class Admin::RequestsController < Admin::BaseController
   end
 
   def destroy
-    if @request.destroy
-      flash[:success] = t "request.noti.destroy"
-    else
-      flash[:danger] = t "request.noti.destroy_fail"
+    @messages = t "request.noti.destroy" if @request.destroy
+    respond_to do |format|
+      format.html{redirect_to admin_requests_path}
+      format.js
     end
-    redirect_to admin_requests_path
   end
 
   private

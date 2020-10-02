@@ -1,2 +1,28 @@
 = content_for :breadcrumbs, [[t("admin.br.user"), admin_users_path], @user.name]
-// TODO
+.modal-content
+  .modal-header
+    h4#exampleModalLabel.modal-title.text-primary
+      = @user.name
+  .modal-body
+    .row
+      .col-6
+        .admin-img
+          = image_tag "img_avatar.png"
+      .col-6
+        h6
+          i.fas.fa-envelope.mr-2.text-info
+          span = @user.email
+        h6
+          i.fas.fa-user-tie.mr-2.text-info
+          span = @user.role
+        h6
+          i.fas.fa-users.mr-2.text-info
+          span = @user.group_name
+        h6
+        i.far.fa-calendar.mr-2.text-info
+        span = @user.created_at
+  .modal-footer
+    = link_to edit_admin_user_path(@user) do
+      button.btn.btn-info = t "request.view.edit"
+    = link_to admin_user_path(@user), data: { confirm: t("request.view.delete?") }, method: :delete do
+      button.btn.btn-danger = t "request.view.delete"

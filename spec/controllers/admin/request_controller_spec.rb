@@ -155,19 +155,19 @@ RSpec.describe Admin::RequestsController, type: :controller do
 
   describe "DELETE #destroy" do
     context "when valid params" do
-      before { delete :destroy, params: {id: request_obj.id} }
+      before {delete :destroy, xhr: true, params: {id: request_obj.id}}
 
       it "destroy request" do
         expect(assigns(:request).destroyed?).to eq true
       end
 
-      it "should redirect to admin_requests_path" do
-        expect(response).to redirect_to admin_requests_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
       end
     end
 
     context "when invalid params" do
-      before {delete :destroy, params: {id: "test"}}
+      before {delete :destroy, xhr: true, params: {id: "test"}}
 
       it "should a invalid request" do
         expect{subject}.to change(Request, :count).by 0
@@ -176,45 +176,38 @@ RSpec.describe Admin::RequestsController, type: :controller do
       it "should redirect to admin_requests_path" do
         expect(response).to redirect_to admin_requests_path
       end
-    end
 
-    context "when a failure request destroy" do
-      before do
-        allow_any_instance_of(Request).to receive(:destroy).and_return false
-        delete :destroy, params: {id: request_obj.id}
-      end
-
-      it "flash error message" do
-        expect(flash[:danger]).to eq I18n.t("request.noti.destroy_fail")
-      end
-
-      it "should redirect to admin_requests_path" do
-        expect(response).to redirect_to admin_requests_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
       end
     end
   end
 
   describe "PATCH #review" do
     context "when valid params" do
-      before {patch :review, params: {id: request_obj.id, request: {aasm_state: "approve"}}}
+      before {patch :review, xhr: true, params: {id: request_obj.id, request: {aasm_state: "approve"}}}
       it "should correct aasm_state" do
         expect(assigns(:request).aasm_state).to eq "approve"
       end
 
-      it "should redirect admin_requests_path" do
-        expect(response).to redirect_to admin_requests_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
       end
     end
 
     context "when invalid params" do
       let(:r3) {FactoryBot.create :request, user_id: user.id, aasm_state: "approve"}
-      before {patch :review, params: {id: r3.id, request: {aasm_state: "approve"}}}
+      before {patch :review, xhr: true, params: {id: r3.id, request: {aasm_state: "approve"}}}
       it "should a invalid request" do
         expect(assigns(:request).pending?).to eq false
       end
 
-      it "should render edit template" do
-        expect(response).to redirect_to admin_requests_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
+      end
+
+      it "show flash messeage" do
+        expect(flash[:danger]).to match(I18n.t("request.noti.show_fail"))
       end
     end
   end
@@ -222,62 +215,62 @@ RSpec.describe Admin::RequestsController, type: :controller do
   describe "PATCH #confirm" do
     let(:r4) {FactoryBot.create :request, user_id: admin.id, aasm_state: "approve", budget_id: budget.id, paider_id: admin.id}
     context "when valid params" do
-      before {patch :confirm, params: {id: r4.id, request: {aasm_state: "paid", budget_id: budget.id, paider_id: admin.id}}}
+      before {patch :confirm, xhr: true, params: {id: r4.id, request: {aasm_state: "paid", budget_id: budget.id, paider_id: admin.id}}}
       it "should correct aasm_state" do
         expect(assigns(:request).aasm_state).to eq "paid"
       end
 
-      it "should redirect admin_requests_path" do
-        expect(response).to redirect_to admin_requests_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
       end
     end
 
-    context "when valid params and update fail" do
-      before {patch :confirm, params: {id: r4.id, request: {aasm_state: "paid"}}}
+    context "when invalid params and update fail" do
+      before {patch :confirm, xhr: true, params: {id: r4.id, request: {aasm_state: "paid"}}}
       it "should correct aasm_state" do
         expect(assigns(:request).paid?).to eq false
       end
 
-      it "should redirect admin_requests_path" do
-        expect(response).to redirect_to admin_requests_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
       end
     end
 
     context "when invalid params" do
-      before {patch :confirm, params: {id: request_obj.id, request: {aasm_state: "paid"}}}
-      it "should a invalid request" do
+      let(:r6) {FactoryBot.create :request, user_id: admin.id, aasm_state: "rejected", budget_id: budget.id, paider_id: admin.id}
+      before {patch :confirm, xhr: true, params: {id: r6.id, request: {aasm_state: "paid"}}}
+      it "should correct aasm_state" do
         expect(assigns(:request).paid?).to eq false
       end
 
-      it "should render edit template" do
-        expect(response).to redirect_to admin_requests_path
+      it "show flash messeage" do
+        expect(flash[:danger]).to match(I18n.t("request.noti.show_fail"))
       end
     end
   end
 
   describe "PATCH #rejected" do
     context "when valid params" do
-      before {patch :rejected, params: {id: request_obj.id, request: {aasm_state: "rejected"}}}
+      before {patch :rejected, xhr: true, params: {id: request_obj.id, request: {aasm_state: "rejected"}}}
       it "should correct aasm_state" do
         expect(assigns(:request).aasm_state).to eq "rejected"
       end
 
-      it "should redirect admin_requests_path" do
-        expect(response).to redirect_to admin_requests_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
       end
     end
 
     context "when invalid params" do
       let(:r5) {FactoryBot.create :request, user_id: user.id, aasm_state: "rejected"}
-      before {patch :rejected, params: {id: r5.id, request: {aasm_state: "rejected"}}}
+      before {patch :rejected, xhr: true, params: {id: r5.id, request: {aasm_state: "rejected"}}}
       it "should a invalid request" do
         expect(assigns(:request).rejected?).to eq true
       end
 
-      it "should render edit template" do
-        expect(response).to redirect_to admin_requests_path
+      it "show flash messeage" do
+        expect(flash[:danger]).to match(I18n.t("request.noti.show_fail"))
       end
     end
   end
-
 end
