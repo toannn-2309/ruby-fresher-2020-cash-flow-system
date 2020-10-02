@@ -1,7 +1,7 @@
 module ApplicationHelper
   SWITCH_LANGS = {en: :vi, vi: :en}.freeze
-  MESSAGE = {success: "success", danger: "error",
-             info: "info", warning: "warning"}.freeze
+  MESSAGE = {success: "success", danger: "error", info: "info",
+             warning: "warning", notice: "success", alert: "error"}.freeze
 
   def locale_image
     lang = SWITCH_LANGS[I18n.locale.to_sym]

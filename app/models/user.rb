@@ -2,8 +2,7 @@ class User < ApplicationRecord
   USERS_PARAMS = %i(name email password password_confirmation group_id).freeze
   USERS_PARAMS_UPDATE = %i(name password password_confirmation).freeze
   VALID_EMAIL_REGEX = Settings.validate.email.regex
-
-  attr_accessor :remember_token
+  VALID_PASSWORD_REGEX = Settings.validate.password.regex
 
   belongs_to :group
   has_many :requests, dependent: :destroy
@@ -19,12 +18,12 @@ class User < ApplicationRecord
   validates :email, length: {maximum: Settings.validate.email.length},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: true}
   validates :password, presence: true, allow_nil: true,
-    length: {minimum: Settings.validate.password.length}
+    length: {minimum: Settings.validate.password.length_min,
+             maximum: Settings.validate.password.length_max}
   validates :role, inclusion: {in: roles.keys}
+  validate :password_regex
 
-  before_save :downcase_email
-
-  has_secure_password
+  devise :database_authenticatable, :registerable, :rememberable, :validatable
 
   scope :by_date, ->{order(created_at: :desc)}
   scope :filter_by_name_or_email, (lambda do |obj|
@@ -33,39 +32,9 @@ class User < ApplicationRecord
   scope :by_role, ->(role){where role: role if role.present?}
   scope :by_group, ->(group_id){where group_id: group_id if group_id.present?}
 
-  class << self
-    def digest string
-      cost = if ActiveModel::SecurePassword.min_cost
-               BCrypt::Engine::MIN_COST
-             else
-               BCrypt::Engine.cost
-             end
-      BCrypt::Password.create string, cost: cost
-    end
+  def password_regex
+    return unless password.present? && !password.match(VALID_PASSWORD_REGEX)
 
-    def new_token
-      SecureRandom.urlsafe_base64
-    end
-  end
-
-  def remember
-    self.remember_token = User.new_token
-    update_attribute :remember_digest, User.digest(remember_token)
-  end
-
-  def authenticated? remember_token
-    return false unless remember_digest
-
-    BCrypt::Password.new(remember_digest).is_password? remember_token
-  end
-
-  def forget
-    update_attribute :remember_digest, nil
-  end
-
-  private
-
-  def downcase_email
-    email.downcase!
+    errors.add :password, I18n.t("user.er_regex")
   end
 end

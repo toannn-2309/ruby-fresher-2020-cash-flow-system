@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
-  before_action :get_user, :correct_user, only: %i(show edit update)
+  before_action :get_user, only: %i(show edit update)
   before_action :get_group, only: %i(new create edit)
-  before_action :logged_in_user, except: %i(new create)
-  layout "root", only: %i(new create)
 
   def new
     @user = User.new
@@ -50,9 +48,5 @@ class UsersController < ApplicationController
 
   def user_params_update
     params.require(:user).permit User::USERS_PARAMS_UPDATE
-  end
-
-  def correct_user
-    redirect_to home_path unless current_user? @user
   end
 end

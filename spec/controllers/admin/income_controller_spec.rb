@@ -14,8 +14,7 @@ RSpec.describe Admin::IncomesController, type: :controller do
 
 
   before do
-    log_in admin
-    admin?
+    login admin
   end
 
   describe "GET #index" do

@@ -9,6 +9,7 @@ en:
       budget: "Budget"
 # Base controller
     noti:
+      login: "Successful login"
       not_admin: "You are not an admin!"
 # Session controller
       email_not_login: "The account is not administrator"

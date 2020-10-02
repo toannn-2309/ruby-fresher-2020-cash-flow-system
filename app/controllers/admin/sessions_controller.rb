@@ -1,34 +1,19 @@
-class Admin::SessionsController < SessionsController
-  before_action :find_email, only: :create
-  layout "root", only: %i(new create)
-
-  def new; end
-
+class Admin::SessionsController < Devise::SessionsController
   def create
+    @user = User.find_by(email: params[:user][:email])
     if @user&.admin?
-      if @user.authenticate params[:session][:password]
-        log_in @user
-        flash[:success] = t "user.noti.login"
-        redirect_to admin_root_path
-      else
-        flash.now[:danger] = "user.noti.login_fail"
-        render :new
-      end
+      super
     else
-      flash.now[:danger] = t "admin.noti.email_not_login"
-      render :new
+      flash[:danger] = t "admin.noti.email_not_login"
+      redirect_to admin_login_path
     end
   end
 
-  def destroy
-    flash[:success] = t "user.noti.logout"
-    log_out
-    redirect_to admin_login_path
+  def after_sign_in_path_for _resource
+    admin_root_path
   end
 
-  private
-
-  def find_email
-    @user = User.find_by email: params[:session][:email].downcase
+  def after_sign_out_path_for _resource
+    admin_login_path
   end
 end

@@ -10,4 +10,8 @@ html
   body
     .container
       = custom_flash
-      = yield
+      .row
+        .col-md-6.offset-md-3
+          .bg-form.mt-5
+            = yield
+    #preloader

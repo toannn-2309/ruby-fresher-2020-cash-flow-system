@@ -1,7 +1,7 @@
-.row
-  .col-md-6.offset-md-3
-    .bg-form
-      = simple_form_for :session, url: admin_login_path do |f|
-        = f.input :email, label: t("user.email"), placeholder: t("user.pl_email")
-        = f.input :password, label: t("user.pw"), placeholder: t("user.pl_pw")
-        = f.button :submit, t("user.login"), class: "btn btn-primary"
+h2
+  = t "user.login"
+= simple_form_for resource, url: { controller: :sessions, action: :create} do |f|
+  = f.error_notification
+  = f.input :email, label: t("user.email"), placeholder: t("user.pl_email")
+  = f.input :password, label: t("user.pw"), placeholder: t("user.pl_pw")
+  = f.button :submit, t("user.login"), class: "btn btn-primary"

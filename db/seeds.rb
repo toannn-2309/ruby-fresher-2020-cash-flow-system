@@ -21,8 +21,8 @@ income_ids = []
 User.create!(
   name: "admin",
   email: "admin@gmail.com",
-  password: "password",
-  password_confirmation: "password",
+  password: "Password123",
+  password_confirmation: "Password123",
   role: 1,
   group_id: 1
 )
@@ -31,8 +31,8 @@ User.create!(
   user = User.create!(
     name: Faker::Name.middle_name,
     email: "user_#{n+1}@gmail.com",
-    password: "password",
-    password_confirmation: "password",
+    password: "Password123",
+    password_confirmation: "Password123",
     role: 2,
     group_id: rand(1..4)
   )
@@ -40,8 +40,8 @@ User.create!(
   user = User.create!(
     name: Faker::Name.middle_name,
     email: "manager_#{n+1}@gmail.com",
-    password: "password",
-    password_confirmation: "password",
+    password: "Password123",
+    password_confirmation: "Password123",
     role: 3,
     group_id: rand(1..4)
   )
@@ -49,8 +49,8 @@ User.create!(
   user = User.create!(
     name: Faker::Name.middle_name,
     email: "accountant_#{n+1}@gmail.com",
-    password: "password",
-    password_confirmation: "password",
+    password: "Password123",
+    password_confirmation: "Password123",
     role: 4,
     group_id: rand(1..4)
   )
