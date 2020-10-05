@@ -9,7 +9,5 @@ html
     = javascript_pack_tag "application", "data-turbolinks-track": "reload"
   body
     .container
-      - flash.each do |message_type, message| 
-        .alert.mt-2 [class="alert-#{message_type}"]
-          = message
+      = custom_flash
       = yield

@@ -13,9 +13,7 @@ html
       = render "layouts/admin/admin_sidebar"
       = render "layouts/admin/breadcrumb"
       .content-wrapper.pl-2
-        - flash.each do |message_type, message| 
-          .alert [class="alert-#{message_type}"]
-            = message
+        = custom_flash
         = yield
       = render "layouts/footer"
     #preloader

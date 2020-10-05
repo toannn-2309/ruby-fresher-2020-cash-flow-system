@@ -1,0 +1,9 @@
+- if @messages.present?
+  | $("#show-request-#{@request.id}").remove();
+  | toastr.success("
+  = @messages
+  | ");
+- else
+  | toastr.error("
+  = t "request.noti.destroy_fail"
+  | ");

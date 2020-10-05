@@ -14,7 +14,7 @@
         th = t "user.group"
         th = t "admin.view.created_at"
         th = t "admin.view.action"
-    tbody
+    tbody#show-users
       = render @users
-.pt-4
-  = paginate @users, theme: "twitter-bootstrap-4"
+#paginate.pt-4
+  = paginate @users, remote: true, theme: "twitter-bootstrap-4"

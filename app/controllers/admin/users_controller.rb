@@ -10,7 +10,12 @@ class Admin::UsersController < Admin::BaseController
                  .page(params[:page]).per Settings.user.per_page
   end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   def new
     @user = User.new

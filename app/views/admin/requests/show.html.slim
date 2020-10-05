@@ -1,12 +1,25 @@
 = content_for :breadcrumbs, [[t("admin.br.request"), admin_requests_path], @request.title]
 .modal-content
-  .modal-header
-    = link_to edit_admin_request_path(@request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
-      button.btn.btn-info.btn-sm
-        i.far.fa-edit
-    = link_to admin_request_path(@request), data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy")  do
-      button.btn.btn-danger.btn-sm
-        i.fas.fa-trash-alt
+  .row.pt-2
+    .col-2.stt-request.text-left.stt-badge
+      h1.badge.badge-pill.ml-2 [class="stt-#{@request.aasm_state}" id="show-badge-#{@request.id}"]
+        = render "badge_request", request: @request
+    .col-2.text-nowrap
+      .action-request[id="show-btn-#{@request.id}"]
+        = render "btn_request", request: @request
+    .col-8.text-right
+      - if @request.pending?
+        = link_to edit_admin_request_path(@request), class: "btn-edit-request-#{@request.id}", "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
+          button.btn.btn-info.btn-sm.mr-1
+            i.far.fa-edit
+      = link_to admin_request_path(@request), data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy")  do
+        button.btn.btn-danger.btn-sm.mr-2
+          i.fas.fa-trash-alt
+  .modal-body
+    .row
+      .col-12.border-bottom.pb-3
+        #show-requester
+          = render "requester" 
   .modal-body
     .row
       .col-4
@@ -35,27 +48,3 @@
               = t "admin.request.view.amount"
         tbody
           = render @request.request_details
-    - if @request.paid?
-      .row
-        .col-4
-          h6.text-success = t "admin.request.view.approver" 
-          = @request.approver_name
-        .col-4
-          h6.text-success = t "admin.request.view.paider" 
-          = @request.paider_name
-        .col-4
-          h6.text-success = t "admin.sidebar.budget"
-          = @request.budget_name
-    - elsif @request.approve?
-      h6.text-success = t "admin.request.view.approver" 
-      = @request.approver_name
-    - elsif @request.rejected?
-      .row
-        -if @request.approver_id.present?
-          .col-6
-            h6.text-success = t "admin.request.view.approver" 
-            = @request.approver_name
-        .col-6
-          h6.text-danger = t "admin.request.view.rejecter"  
-          = @request.rejecter_name
-    - else

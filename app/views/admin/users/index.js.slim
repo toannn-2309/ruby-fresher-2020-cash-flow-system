@@ -1,0 +1,5 @@
+| $("#show-users").html("
+= j render @users
+| "); $("#paginate").html("
+= j paginate(@users, remote: true, theme: "twitter-bootstrap-4")
+| ");

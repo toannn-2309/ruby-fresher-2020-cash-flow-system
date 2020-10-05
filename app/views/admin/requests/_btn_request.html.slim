@@ -1,12 +1,12 @@
 - if request.pending?
-  = button_to t("admin.request.view.approve"), review_admin_request_path(request.id), method: :patch, class: "btn btn-success btn-sm mb-2"
-  = button_to t("admin.request.view.rejected"), rejected_admin_request_path(request.id), method: :patch, class: "btn btn-danger btn-sm"
+  = button_to t("admin.request.view.approve"), review_admin_request_path(request.id), method: :patch, remote: true, class: "btn btn-success btn-sm mb-2"
+  = button_to t("admin.request.view.rejected"), rejected_admin_request_path(request.id), method: :patch , remote: true, class: "btn btn-danger btn-sm"
 - elsif request.approve?
-  = simple_form_for request, url: confirm_admin_request_path(request.id), method: :patch  do |f|
+  = simple_form_for request, url: confirm_admin_request_path(request.id), method: :patch, remote: true do |f|
     = f.input :budget_id, label: t("admin.request.view.select_budget"),
-                          collection: @budget_view,
+                          collection: Budget.pluck(:name, :id).to_h,
                           prompt: t("admin.request.view.select_budget")
     = f.button :submit, t("admin.request.view.confirmed"), class: "btn btn-primary btn-sm mb-1"
-  = button_to t("admin.request.view.rejected"), rejected_admin_request_path(request.id), method: :patch, class: "btn btn-danger btn-sm mb-1"
+  = button_to t("admin.request.view.rejected"), rejected_admin_request_path(request.id), method: :patch, remote: true, class: "btn btn-danger btn-sm mb-1"
 - else
   = ""
