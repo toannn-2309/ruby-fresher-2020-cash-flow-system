@@ -1,7 +1,21 @@
 class ApplicationController < ActionController::Base
-  include SessionsHelper
+  before_action :set_locale, :authenticate_user!
 
-  before_action :set_locale
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def configure_permitted_parameters
+    added_attrs = [:name, :group_id]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  end
+
+  def after_sign_in_path_for _resource
+    home_path
+  end
+
+  def after_sign_out_path_for _resource
+    new_user_session_path
+  end
 
   private
 
@@ -11,14 +25,6 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     {locale: I18n.locale}
-  end
-
-  def logged_in_user
-    return if logged_in?
-
-    store_location
-    flash[:danger] = t "user.noti.need_login"
-    redirect_to root_path
   end
 
   def get_group

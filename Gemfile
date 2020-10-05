@@ -9,6 +9,8 @@ gem "bootsnap", ">= 1.4.2", require: false
 gem "bootstrap4-kaminari-views"
 gem "cocoon"
 gem "config"
+gem "devise"
+gem "devise-i18n"
 gem "faker"
 gem "figaro"
 gem "html2slim", "~> 0.2.0"

@@ -7,7 +7,9 @@ validate:
     length: 255
     regex: !ruby/regexp '/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i'
   password:
-    length: 6
+    length_min: 8
+    length_max: 30
+    regex: !ruby/regexp '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/i'
   number_min: 0
   title:
     length: 200

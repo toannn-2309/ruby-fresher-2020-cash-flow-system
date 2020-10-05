@@ -13,6 +13,8 @@ vi:
       update_fail: "Cập nhật thông tin thất bại"
       destroy: "Xóa người dùng thành công"
       destroy_fail: "Xóa người dùng thất bại"
+      pw_update_fail: "không được trùng với mật khẩu cũ"
+      check_pw: "chúng tôi cần kiểm tra mật khẩu cũ của bạn để xác nhận thay đổi"
 # View sigup
     sigup: "Đăng ký"
     name: "Tên"
@@ -28,9 +30,11 @@ vi:
     pl_group: "Lựa chọn nhóm"
     role: "Chức vụ"
     pl_role: "Lựa chọn chức vụ"
+    er_regex: "phaỉ có ít nhất một chữ hoa, một chữ thường và một số"
 # View login
     login: "Đăng nhập"
     sigup_new: "Tạo tài khoản mới"
     remember: "Ghi nhớ tài khoản"
 # modal info
     close: "Đóng"
+  we_need_your_current_password_to_confirm_your_changes: ""

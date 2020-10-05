@@ -9,6 +9,7 @@ vi:
       budget: "Ngân sách"
 # Base controller
     noti:
+      login: "Đăng nhập thành công"
       not_admin: "Bạn không phải là người quản trị viên!"
 # Session controller
       email_not_login: "Tài khoản không phải là quản trị viên"

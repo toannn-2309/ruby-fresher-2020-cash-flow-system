@@ -19,7 +19,7 @@
                 i.fas.fa-users.mr-2
                 span = current_user.group_name
       .modal-footer
-        = link_to edit_user_path(current_user) do
+        = link_to edit_user_registration_path do
           button.btn.btn-info = t "request.view.edit"
         button.btn.btn-secondary[type="button" data-dismiss="modal"]
           = t "user.close"

@@ -13,6 +13,8 @@ en:
       update_fail: "Failed to update information!"
       destroy: "Successfully deleted the user!"
       destroy_fail: "User delete failed!"
+      pw_update_fail: "cannot be the same as the old one"
+      check_pw: "we need your current password to confirm your changes"
 # View sigup
     sigup: "Sign Up"
     name: "Name"
@@ -28,6 +30,7 @@ en:
     pl_group: "Selection group"
     role: "Role"
     pl_role: "Selection role"
+    er_regex: "at least one uppercase letter, one lowercase letter and one number"
 # View login
     login: "Log in"
     sigup_new: "Create new user!"

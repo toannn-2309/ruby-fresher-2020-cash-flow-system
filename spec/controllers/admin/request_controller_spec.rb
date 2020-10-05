@@ -17,8 +17,7 @@ RSpec.describe Admin::RequestsController, type: :controller do
   let!(:r2) {FactoryBot.create :request, user_id: admin.id, created_at: "2020-10-02 17:00:00"}
 
   before do
-    log_in admin
-    admin?
+    login admin
   end
 
   describe "GET #index" do

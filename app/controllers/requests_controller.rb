@@ -1,5 +1,4 @@
 class RequestsController < ApplicationController
-  before_action :logged_in_user
   before_action :get_request, except: %i(index new create)
   before_action :get_budget, only: :index
   before_action :request_not_pending, only: :edit

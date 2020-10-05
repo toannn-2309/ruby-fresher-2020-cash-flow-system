@@ -2,8 +2,8 @@ FactoryBot.define do
   factory :user do
     name {Faker::Name.middle_name}
     email {Faker::Internet.email}
-    password {"password"}
-    password_confirmation {"password"}
+    password {"Password123"}
+    password_confirmation {"Password123"}
     role {rand(1..4)}
     association :group
   end

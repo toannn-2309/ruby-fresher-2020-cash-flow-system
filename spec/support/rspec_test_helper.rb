@@ -1,13 +1,6 @@
 module RSpecTestHelper
-  def log_in user
-    request.session[:user_id] = user.id
-  end
-
-  def current_user
-    User.find_by id: request.session[:user_id]
-  end
-
-  def admin?
-    current_user.admin?
+  def login user
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in user
   end
 end
