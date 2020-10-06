@@ -24,7 +24,8 @@ User.create!(
   password: "Password123",
   password_confirmation: "Password123",
   role: 1,
-  group_id: 1
+  group_id: 1,
+  confirmed_at: Time.zone.now
 )
 
 20.times do |n|
@@ -34,7 +35,8 @@ User.create!(
     password: "Password123",
     password_confirmation: "Password123",
     role: 2,
-    group_id: rand(1..4)
+    group_id: rand(1..4),
+    confirmed_at: Time.zone.now
   )
 
   user = User.create!(
@@ -43,7 +45,8 @@ User.create!(
     password: "Password123",
     password_confirmation: "Password123",
     role: 3,
-    group_id: rand(1..4)
+    group_id: rand(1..4),
+    confirmed_at: Time.zone.now
   )
 
   user = User.create!(
@@ -52,7 +55,8 @@ User.create!(
     password: "Password123",
     password_confirmation: "Password123",
     role: 4,
-    group_id: rand(1..4)
+    group_id: rand(1..4),
+    confirmed_at: Time.zone.now
   )
   user_ids << user.id
 end

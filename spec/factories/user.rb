@@ -5,6 +5,7 @@ FactoryBot.define do
     password {"Password123"}
     password_confirmation {"Password123"}
     role {rand(1..4)}
+    confirmed_at {Time.zone.now}
     association :group
   end
 end
