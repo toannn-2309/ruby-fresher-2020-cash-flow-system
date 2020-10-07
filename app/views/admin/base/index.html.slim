@@ -1,8 +1,6 @@
-.content.pt-4
-  .row
-    = render @budgets
+.content.pt-2
   .row.mt-2
-    .col-lg-4.col-4
+    .col-4
       .small-box.bg-info
         .inner
           h3
@@ -12,6 +10,10 @@
         = link_to admin_users_path, class: "small-box-footer" do
           = t "admin.view.more_info"
           i.fas.fa-arrow-circle-right
+    .col-8
+      .row
+        = render @budgets
+  .row
     .col-lg-4.col-4
       .small-box.bg-success
         .inner
@@ -22,8 +24,28 @@
         = link_to admin_requests_path, class: "small-box-footer" do
           = t "admin.view.more_info"
           i.fas.fa-arrow-circle-right
+    .col-8
+      .card.card-success
+        .card-header
+          h3.card-title
+            = t "admin.request.view.paid_request"
+          .card-tools
+            button.btn.btn-tool[type="button" data-card-widget="collapse"]
+              i.fas.fa-minus
+        .card-body
+          table.table.table-hover
+            thead
+              tr
+                th = t "admin.request.view.paider"
+                th = t "admin.request.view.requester"
+                th = t "admin.request.view.amount"
+                th = t "admin.request.view.budget"
+                th = t "admin.request.view.updated_at"
+            tbody
+              = render partial: "admin/base/paid_request", collection: @paid_requests
+  .row
     .col-lg-4.col-4
-          .small-box.bg-primary
+          .small-box.bg-warning
             .inner
               h3
                 =  @count_income
@@ -32,3 +54,22 @@
             = link_to admin_incomes_path, class: "small-box-footer" do
               = t "admin.view.more_info"
               i.fas.fa-arrow-circle-right
+    .col-8
+      .card.card-warning
+        .card-header
+          h3.card-title
+            = t "admin.income.view.income_confirmed"
+          .card-tools
+            button.btn.btn-tool[type="button" data-card-widget="collapse"]
+              i.fas.fa-minus
+        .card-body
+          table.table.table-hover
+            thead
+              tr
+                th = t "admin.request.view.approver"
+                th = t "admin.request.view.requester"
+                th = t "admin.request.view.amount"
+                th = t "admin.request.view.budget"
+                th = t "admin.request.view.updated_at"
+            tbody
+              = render partial: "admin/base/confirm_income", collection: @confirm_incomes

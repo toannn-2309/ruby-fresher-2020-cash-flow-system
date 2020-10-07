@@ -2,6 +2,9 @@
   | $("#show-btn-#{@request.id}").html("
   = j render "btn_request", request: @request
   | ");
+  | $("#show-requester-index-#{@request.id}").html("
+  = j render "requester_index", request: @request
+  | ");
   | $("#show-badge-#{@request.id}").html("
   = j render "badge_request", request: @request
   | ").toggleClass("stt-#{@request.aasm_state}");

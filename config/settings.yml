@@ -25,3 +25,4 @@ income:
   per_page: 6
 format_date: "%d-%m-%Y"
 min_value: 0
+limit_request: 3

@@ -5,7 +5,8 @@ class Admin::IncomesController < Admin::BaseController
   before_action :get_budget, only: %i(index)
 
   def index
-    @incomes = Income.by_date
+    @incomes = Income.eager_load(:budget, :user, :confirmer, :rejecter)
+                     .by_date
                      .page(params[:page]).per Settings.income.per_page
   end
 

@@ -6,7 +6,8 @@ class Admin::RequestsController < Admin::BaseController
   before_action :request_not_pending, only: :edit
 
   def index
-    @requests = Request.includes(:user).by_date
+    @requests = Request.eager_load(:budget, :user, :paider, :approver,
+                                   :rejecter).by_date
                        .page(params[:page]).per Settings.request.per_page
   end
 

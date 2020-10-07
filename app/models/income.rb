@@ -25,6 +25,8 @@ class Income < ApplicationRecord
 
   scope :by_date, ->{order created_at: :desc}
   scope :incomes_by_group, ->(group_id){where(users: {group_id: group_id})}
+  scope :by_updated, ->{order updated_at: :desc}
+  scope :by_request_confirm, ->{where.not confirmer_id: nil}
 
   aasm do
     state :pending, initial: true

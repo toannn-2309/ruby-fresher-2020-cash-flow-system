@@ -1,14 +1,17 @@
 - if @request.paid?
   .row
-    .col-4
+    .col-3
       h6.text-success = t "admin.request.view.approver" 
       = @request.approver_name
-    .col-4
+    .col-3
       h6.text-success = t "admin.request.view.paider" 
       = @request.paider_name
-    .col-4
+    .col-3
       h6.text-success = t "admin.sidebar.budget"
       = @request.budget_name
+    .col-3
+      h6.text-success = t "admin.request.view.updated_at"
+      = @request.updated_at.strftime Settings.format_date
 - elsif @request.approve?
   h6.text-success = t "admin.request.view.approver" 
   = @request.approver_name

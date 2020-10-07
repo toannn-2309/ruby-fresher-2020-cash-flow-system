@@ -61,8 +61,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Config devise
-  # config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
-
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = {host: ENV["host"]}
   # SMTP settings for gmail
@@ -74,4 +72,13 @@ Rails.application.configure do
     authentication: :cram_md5,
     enable_starttls_auto: true,
   }
+
+  # Config bullet
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+  end
 end
