@@ -7,16 +7,14 @@ module IncomeAction
 
   def confirm
     if @income.pending?
-      if @income.update confirmer_id: current_user.id,
+      @income.update confirmer_id: current_user.id,
                         budget_id: params[:income][:budget_id]
-        @income.confirm!
-      else
-        flash[:danger] = t "income.noti.updated_fail"
-      end
+      @income.confirm!
+      @messages = t "income.noti.updated"
     else
       flash[:danger] = t "income.noti.show_fail"
     end
-    return redirect_to admin_incomes_path if current_user.admin?
+    return respond_to :js if current_user.admin?
 
     redirect_to accountant_incomes_path
   end
@@ -27,8 +25,9 @@ module IncomeAction
     else
       @income.rejected!
       @income.update rejecter_id: current_user.id
+      @messages = t "income.noti.updated"
     end
-    return redirect_to admin_incomes_path if current_user.admin?
+    return respond_to :js if current_user.admin?
 
     redirect_to accountant_incomes_path
   end

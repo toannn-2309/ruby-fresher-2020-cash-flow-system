@@ -147,19 +147,19 @@ RSpec.describe Admin::IncomesController, type: :controller do
 
   describe "DELETE #destroy" do
     context "when valid params" do
-      before { delete :destroy, params: {id: income.id} }
+      before { delete :destroy, xhr: true, params: {id: income.id} }
 
       it "destroy income" do
         expect(assigns(:income).destroyed?).to eq true
       end
 
-      it "should redirect to admin_incomes_path" do
-        expect(response).to redirect_to admin_incomes_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
       end
     end
 
     context "when invalid params" do
-      before {delete :destroy, params: {id: "test"}}
+      before {delete :destroy, xhr: true, params: {id: "test"}}
 
       it "should a invalid income" do
         expect{subject}.to change(Income, :count).by 0
@@ -169,81 +169,66 @@ RSpec.describe Admin::IncomesController, type: :controller do
         expect(response).to redirect_to admin_incomes_path
       end
     end
-
-    context "when a failure income destroy" do
-      before do
-        allow_any_instance_of(Income).to receive(:destroy).and_return false
-        delete :destroy, params: {id: income.id}
-      end
-
-      it "flash error message" do
-        expect(flash[:danger]).to eq I18n.t("income.noti.destroy_fail")
-      end
-
-      it "should redirect to admin_incomes_path" do
-        expect(response).to redirect_to admin_incomes_path
-      end
-    end
   end
 
   describe "PATCH #confirm" do
     let(:i3) {FactoryBot.create :income, user_id: admin.id, aasm_state: "pending", budget_id: budget.id, confirmer_id: admin.id}
     context "when valid params" do
-      before {patch :confirm, params: {id: i3.id, income: {aasm_state: "approve", budget_id: budget.id, confirmer_id: admin.id}}}
+      before {patch :confirm, xhr: true, params: {id: i3.id, income: {aasm_state: "approve", budget_id: budget.id, confirmer_id: admin.id}}}
       it "should correct aasm_state" do
         expect(assigns(:income).aasm_state).to eq "approve"
       end
 
-      it "should redirect admin_incomes_path" do
-        expect(response).to redirect_to admin_incomes_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
       end
     end
 
     context "when valid params and update fail" do
-      before {patch :confirm, params: {id: i3.id, income: {aasm_state: "approve"}}}
+      before {patch :confirm, xhr: true, params: {id: i3.id, income: {aasm_state: "approve"}}}
       it "should correct aasm_state" do
         expect(assigns(:income).approve?).to eq false
       end
 
-      it "should redirect admin_incomes_path" do
-        expect(response).to redirect_to admin_incomes_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
       end
     end
 
     let(:i4) {FactoryBot.create :income, user_id: admin.id, aasm_state: "rejected"}
     context "when invalid params" do
-      before {patch :confirm, params: {id: i4.id, income: {aasm_state: "approve"}}}
+      before {patch :confirm, xhr: true, params: {id: i4.id, income: {aasm_state: "approve"}}}
       it "should a invalid income" do
         expect(assigns(:income).approve?).to eq false
       end
 
-      it "should redirect admin_incomes_path" do
-        expect(response).to redirect_to admin_incomes_path
+      it "show flash messeage" do
+        expect(flash[:danger]).to match(I18n.t("income.noti.show_fail"))
       end
     end
   end
 
   describe "PATCH #rejected" do
     context "when valid params" do
-      before {patch :rejected, params: {id: income.id, income: {aasm_state: "rejected"}}}
+      before {patch :rejected, xhr: true, params: {id: income.id, income: {aasm_state: "rejected"}}}
       it "should correct aasm_state" do
         expect(assigns(:income).aasm_state).to eq "rejected"
       end
 
-      it "should redirect admin_incomes_path" do
-        expect(response).to redirect_to admin_incomes_path
+      it "show status 200" do
+        expect(response).to have_http_status(200)
       end
     end
 
     let(:i5) {FactoryBot.create :income, user_id: user.id, aasm_state: "rejected"}
     context "when invalid params" do
-      before {patch :rejected, params: {id: i5.id, income: {aasm_state: "rejected"}}}
+      before {patch :rejected, xhr: true, params: {id: i5.id, income: {aasm_state: "rejected"}}}
       it "should a invalid income" do
         expect(assigns(:income).rejected?).to eq true
       end
 
-      it "should redirect_to admin_incomes_path" do
-        expect(response).to redirect_to admin_incomes_path
+      it "show flash messeage" do
+        expect(flash[:danger]).to match(I18n.t("income.noti.show_fail"))
       end
     end
   end

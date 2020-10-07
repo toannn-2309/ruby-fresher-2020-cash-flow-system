@@ -44,4 +44,14 @@ class ApplicationController < ActionController::Base
 
     redirect_to requests_path
   end
+
+  # Check income not pending
+  def income_not_pending
+    return if @income.pending?
+
+    flash[:danger] = t "income.noti.no_edit"
+    return redirect_to admin_incomes_path if current_user.admin?
+
+    redirect_to incomes_path
+  end
 end

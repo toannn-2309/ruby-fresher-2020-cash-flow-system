@@ -2,7 +2,8 @@ class Admin::IncomesController < Admin::BaseController
   include IncomeAction
 
   before_action :get_income, except: %i(index new create)
-  before_action :get_budget, only: %i(index)
+  before_action :get_budget, only: :index
+  before_action :income_not_pending, only: :edit
 
   def index
     @incomes = Income.eager_load(:budget, :user, :confirmer, :rejecter)
@@ -40,12 +41,11 @@ class Admin::IncomesController < Admin::BaseController
   end
 
   def destroy
-    if @income.destroy
-      flash[:success] = t "income.noti.destroy"
-    else
-      flash[:danger] = t "income.noti.destroy_fail"
+    @messages = t "request.noti.destroy" if @income.destroy
+    respond_to do |format|
+      format.html{redirect_to admin_incomes_path}
+      format.js
     end
-    redirect_to admin_incomes_path
   end
 
   private

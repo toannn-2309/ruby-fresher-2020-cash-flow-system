@@ -1,2 +1,39 @@
 = content_for :breadcrumbs, [[t("admin.br.income"), admin_incomes_path], @income.user_name]
-// TODO: View temporary
+.modal-content
+  .row.pt-2
+    .col-2.stt-income.text-left.stt-badge
+      h1.badge.badge-pill.ml-2 [class="stt-#{@income.aasm_state}" id="show-badge-#{@income.id}"]
+        = render "badge_income", income: @income
+    .col-2.text-nowrap
+      .action-income[id="show-btn-#{@income.id}"]
+        = render "btn_income", income: @income
+    .col-8.text-right
+      - if @income.pending?
+        = link_to edit_admin_income_path(@income), class: "btn-edit-income-#{@income.id}", "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
+          button.btn.btn-info.btn-sm.mr-1
+            i.far.fa-edit
+      = link_to admin_income_path(@income), data: { confirm: t("income.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy")  do
+        button.btn.btn-danger.btn-sm.mr-2
+          i.fas.fa-trash-alt
+  .modal-body
+    .row
+      .col-12.border-bottom.pb-3
+        #show-incomeer
+          = render "incomeer" 
+  .modal-body
+    .row
+      .col-4
+        h6.text-info 
+          = t "admin.income.view.incomeer"
+        p = @income.user_name
+      .col-4
+        h6.text-info 
+          = t "user.role"
+        p = @income.user_role
+      .col-4
+        h6.text-info 
+          = t "income.view.total_amount"
+        p = @income.amount_income
+    h6.text-info = t "income.view.content"
+    p = @income.content
+
