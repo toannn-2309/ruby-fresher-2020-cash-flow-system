@@ -23,7 +23,8 @@ class User < ApplicationRecord
   validates :role, inclusion: {in: roles.keys}
   validate :password_regex
 
-  devise :database_authenticatable, :registerable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :rememberable, :validatable,
+         :confirmable, :recoverable, :lockable
 
   scope :by_date, ->{order(created_at: :desc)}
   scope :filter_by_name_or_email, (lambda do |obj|
@@ -31,6 +32,8 @@ class User < ApplicationRecord
   end)
   scope :by_role, ->(role){where role: role if role.present?}
   scope :by_group, ->(group_id){where group_id: group_id if group_id.present?}
+
+  private
 
   def password_regex
     return unless password.present? && !password.match(VALID_PASSWORD_REGEX)
