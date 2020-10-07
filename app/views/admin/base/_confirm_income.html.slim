@@ -1,0 +1,11 @@
+tr
+  td 
+    = link_to confirm_income.user_name, admin_user_path(confirm_income.user_id)
+  td
+    = link_to confirm_income.confirmer_name, admin_user_path(confirm_income.confirmer_id)
+  td
+    = link_to confirm_income.amount_income, admin_income_path(confirm_income)
+  td
+    = confirm_income.budget_name
+  td
+    = confirm_income.updated_at.strftime Settings.format_date

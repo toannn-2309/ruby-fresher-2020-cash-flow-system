@@ -1,0 +1,11 @@
+tr
+  td 
+    = link_to paid_request.user_name, admin_user_path(paid_request.user_id)
+  td
+    = link_to paid_request.paider_name, admin_user_path(paid_request.paider_id)
+  td
+    = link_to paid_request.total_amount, admin_request_path(paid_request)
+  td
+    = paid_request.budget_name
+  td
+    = paid_request.updated_at.strftime Settings.format_date

@@ -7,6 +7,12 @@ class Admin::BaseController < ApplicationController
     @count_request = Request.all.size
     @count_income = Income.all.size
     @budgets = Budget.all
+    @paid_requests = Request.includes(:budget, :user, :paider)
+                            .by_updated.by_request_paid
+                            .limit(Settings.limit_request)
+    @confirm_incomes = Income.includes(:budget, :user, :confirmer)
+                             .by_updated.by_request_confirm
+                             .limit(Settings.limit_request)
   end
 
   private

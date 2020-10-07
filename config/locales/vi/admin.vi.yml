@@ -31,13 +31,20 @@ vi:
         approve: "Chấp nhận"
         rejected: "Từ chối"
         confirmed: "Xác nhận"
-        approver: "Người chấp nhận: "
-        rejecter: "Người từ chối: "
-        paider: "Người thanh toán: "
+        approver: "Người chấp nhận"
+        rejecter: "Người từ chối"
+        paider: "Người thanh toán"
         select_budget: "Lựa chọn ngân sách"
         details: "Chi tiết"
         add_details: "Thêm chi tiết"
         amount: "Số tiền"
+        paid_request: "Yêu cầu đã được thanh toán gần đây"
+        budget: "Ngân sách"
+        updated_at: "Thời gian"
+# View income
+    income:
+      view:
+        income_confirmed: "Thu nhập đã được xác nhận gần đây"
 # Breadcrumbs
     br:
       user: "Người dùng"

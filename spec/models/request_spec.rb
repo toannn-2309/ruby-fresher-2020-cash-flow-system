@@ -70,20 +70,28 @@ RSpec.describe Request, type: :model do
 
 # Test scope
   describe "scope" do
-    let!(:r1) {FactoryBot.create :request, user_id: user.id, created_at: "2020-09-26 17:00:00", budget_id: budget.id, aasm_state: "pending"}
     let!(:r2) {FactoryBot.create :request, user_id: user.id, created_at: "2020-09-30 17:00:00", budget_id: budget.id, aasm_state: "pending"}
     let!(:r3) {FactoryBot.create :request, user_id: user.id, created_at: "2020-09-28 17:00:00", budget_id: budget.id, aasm_state: "rejected"}
+    let!(:r6) {FactoryBot.create :request, user_id: user.id, budget_id: budget.id, created_at: "2020-09-26 17:00:00", aasm_state: "paid", paider_id: user.id}
 
     it "order by date" do
       expect(Request.by_date.first.id).to eq r2.id
     end
 
     it "order by date and state" do
-      expect(Request.by_date_and_state_asc.first.id).to eq r2.id
+      expect(Request.by_date_and_state_asc.first.id).to eq r6.id
     end
 
     it "request not pending" do
       expect(Request.status_not_pending.first.id).to eq r3.id
+    end
+
+    it "request by update" do
+      expect(Request.by_updated.first.id).to eq r6.id
+    end
+
+    it "request by request paid" do
+      expect(Request.by_request_paid.first.id).to eq r6.id
     end
   end
 
@@ -101,8 +109,8 @@ RSpec.describe Request, type: :model do
 
 # Test instance method
   describe "#subtract_the_budget" do
-    let!(:b1) {FactoryBot.create :budget, name: "Budget 1", total_budget: 5000.0} 
-    let!(:r5) {FactoryBot.create :request, user_id: user.id, total_amount: "200", budget_id: b1.id, aasm_state: "paid"}
+    let(:b1) {FactoryBot.create :budget, name: "Budget 1", total_budget: 5000.0} 
+    let(:r5) {FactoryBot.create :request, user_id: user.id, total_amount: "200", budget_id: b1.id, aasm_state: "paid"}
     before {r5.subtract_the_budget}
     it "test subtract the budget" do
       b1.reload

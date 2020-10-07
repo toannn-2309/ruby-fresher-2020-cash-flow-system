@@ -3,7 +3,8 @@ class Admin::UsersController < Admin::BaseController
   before_action :get_user, except: %i(index new create)
 
   def index
-    @users = User.not_admin.by_date
+    @users = User.includes(:group)
+                 .not_admin.by_date
                  .by_role(params[:role])
                  .filter_by_name_or_email(params[:name])
                  .by_group(params[:group_id])

@@ -31,13 +31,20 @@ en:
         approve: "Approve"
         rejected: "Rejected"
         confirmed: "Confirmed"
-        approver: "Aprover: "
-        rejecter: "Rejecter: "
-        paider: "Paider: "
+        approver: "Aprover"
+        rejecter: "Rejecter"
+        paider: "Paider"
         select_budget: "Select budget"
         details: "Details"
         add_details: "Add details"
         amount: "Amount"
+        paid_request: "Requests have been paid recently"
+        budget: "Budget"
+        updated_at: "Time"
+# View income
+    income:
+      view:
+        income_confirmed: "Incomes have been confirmed recently"
 # Breadcrumbs
     br:
       user: "Users"
