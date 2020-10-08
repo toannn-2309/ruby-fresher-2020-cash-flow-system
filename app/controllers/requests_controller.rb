@@ -4,7 +4,9 @@ class RequestsController < ApplicationController
   before_action :request_not_pending, only: :edit
 
   def index
-    @requests = current_user.requests.by_date
+    @requests = current_user.requests
+                            .eager_load(:budget, :user, :paider, :approver,
+                                        :rejecter).by_date
                             .page(params[:page]).per Settings.request.per_page
   end
 

@@ -63,6 +63,8 @@ class Request < ApplicationRecord
     budget = Budget.find_by id: budget_id
     total_budget = budget.total_budget
     result = total_budget - total_amount
+    raise ActiveRecord::Rollback unless result.positive?
+
     budget.update total_budget: result
   end
 end

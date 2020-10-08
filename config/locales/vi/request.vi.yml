@@ -10,6 +10,7 @@ vi:
       destroy_fail: "Xóa yêu cầu thất bại"
       show_fail: "Yêu cầu không được tìm thấy"
       no_edit: "Bạn không thể chỉnh sửa yêu cầu này"
+      budget_fail: "Ngân sách không đủ để thực hiện giao dịch"
 # View
     view:
       content: "Nội dung"
