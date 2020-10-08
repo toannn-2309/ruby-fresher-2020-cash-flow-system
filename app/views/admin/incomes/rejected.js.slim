@@ -3,7 +3,7 @@
   = j render "btn_income", income: @income
   | ");
   | $("#show-incomer-index-#{@income.id}").html("
-  = j render "incomer_index", income: @income
+  = j render "incomeer_index", income: @income
   | ");
   | $("#show-badge-#{@income.id}").html("
   = j render "badge_income", income: @income
@@ -12,8 +12,8 @@
   = @messages
   | ");
   | $(".btn-edit-income-#{@income.id}").remove();
-  | $("#show-incomer").html("
-  = j render "incomer"
+  | $("#show-incomeer").html("
+  = j render "incomeer"
   | ");
 - else
   | toastr.error("
