@@ -15,7 +15,7 @@ vi:
     view:
       content: "Nội dung"
       reason: "Lý do"
-      total_amount: "Tổng tiền"
+      total_amount: "Số Tiền"
       edit: "Chỉnh sửa"
       delete: "Xóa"
       edit_rq: "Chỉnh sửa yêu cầu"

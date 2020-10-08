@@ -6,6 +6,7 @@ class Request < ApplicationRecord
     :aasm_state, :budget_id,
     request_details_attributes: [:id, :amount, :content, :_destroy].freeze
   ].freeze
+  REQUEST_LOAD = %i(budget user paider approver rejecter).freeze
 
   belongs_to :user
   has_many :request_details, dependent: :destroy
@@ -63,8 +64,16 @@ class Request < ApplicationRecord
     budget = Budget.find_by id: budget_id
     total_budget = budget.total_budget
     result = total_budget - total_amount
-    raise ActiveRecord::Rollback unless result.positive?
-
     budget.update total_budget: result
+  end
+
+  ransack_alias :name_title, :user_name_or_title
+
+  def self.ransackable_attributes _auth_object = nil
+    %w(name_title aasm_state created_at total_amount)
+  end
+
+  ransacker :created_at, type: :date do
+    Arel.sql "date(requests.created_at)"
   end
 end

@@ -6,9 +6,11 @@ class Admin::RequestsController < Admin::BaseController
   before_action :request_not_pending, only: :edit
 
   def index
-    @requests = Request.eager_load(:budget, :user, :paider, :approver,
-                                   :rejecter).by_date
-                       .page(params[:page]).per Settings.request.per_page
+    @q = Request.ransack params[:q]
+    @requests = @q.result(distinct: true)
+                  .eager_load(Request::REQUEST_LOAD)
+                  .by_date.page(params[:page]).per Settings.request.per_page
+    respond_to :js, :html
   end
 
   def show; end

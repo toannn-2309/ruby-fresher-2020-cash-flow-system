@@ -6,7 +6,7 @@ class Admin::IncomesController < Admin::BaseController
   before_action :income_not_pending, only: :edit
 
   def index
-    @incomes = Income.eager_load(:budget, :user, :confirmer, :rejecter)
+    @incomes = Income.eager_load(Income::INCOME_LOAD)
                      .by_date
                      .page(params[:page]).per Settings.income.per_page
   end

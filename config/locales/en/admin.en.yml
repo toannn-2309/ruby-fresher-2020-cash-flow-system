@@ -41,6 +41,9 @@ en:
         paid_request: "Requests have been paid recently"
         budget: "Budget"
         updated_at: "Time"
+        pl_name_title: "Name or title requests..."
+        pl_amount: "Amount"
+        to: "to"
 # View income
     income:
       view:

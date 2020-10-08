@@ -15,7 +15,7 @@ en:
     view:
       content: "Content"
       reason: "Reason"
-      total_amount: "Total amount"
+      total_amount: "Amount"
       edit: "Edit"
       delete: "Delete"
       edit_rq: "Editing request"

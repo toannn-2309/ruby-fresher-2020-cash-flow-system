@@ -13,22 +13,22 @@ RSpec.describe Admin::RequestsController, type: :controller do
     )
   end
   let(:invalid_params) {FactoryBot.attributes_for :request, title: nil}
-  let!(:r1) {FactoryBot.create :request, user_id: admin.id, created_at: "2020-10-01 17:00:00"}
-  let!(:r2) {FactoryBot.create :request, user_id: admin.id, created_at: "2020-10-02 17:00:00"}
+  let(:r1) {FactoryBot.create :request, user_id: admin.id, created_at: "2020-10-01 17:00:00"}
+  let(:r2) {FactoryBot.create :request, user_id: admin.id, created_at: "2020-10-02 17:00:00"}
 
   before do
     login admin
   end
 
   describe "GET #index" do
-    before {get :index, params: {page: 1}}
+    before {get :index, xhr: true, params: {page: 1}}
 
     it "renders the index template" do
       expect(response).to render_template :index
     end
 
-    it "assigns @requests" do
-      expect(assigns(:requests).pluck(:id)).to eq [r2.id, r1.id]
+    it "show status 200" do
+      expect(response).to have_http_status(200)
     end
   end
 
