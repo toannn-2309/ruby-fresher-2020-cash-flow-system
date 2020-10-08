@@ -13,7 +13,9 @@ module RequestAction
     else
       flash[:danger] = t "request.noti.show_fail"
     end
-    respond_to :js
+    return respond_to :js if current_user.admin?
+
+    redirect_to manager_requests_path
   end
 
   def confirm
@@ -25,7 +27,9 @@ module RequestAction
     else
       flash[:danger] = t "request.noti.show_fail"
     end
-    respond_to :js
+    return respond_to :js if current_user.admin?
+
+    redirect_to accountant_requests_path
   end
 
   def rejected
@@ -36,7 +40,11 @@ module RequestAction
       @request.update rejecter_id: current_user.id
       @messages = t "request.noti.updated"
     end
-    respond_to :js
+    return respond_to :js if current_user.admin?
+
+    return redirect_to manager_requests_path if current_user.manager?
+
+    redirect_to accountant_requests_path
   end
 
   private

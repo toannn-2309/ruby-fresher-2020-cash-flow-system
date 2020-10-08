@@ -1,8 +1,8 @@
 - if income.pending?
-  = simple_form_for income, url: confirm_admin_income_path(income.id), method: :patch  do |f|
+  = simple_form_for income, url: confirm_admin_income_path(income.id), method: :patch, remote: true  do |f|
     = f.input :budget_id, label: t("admin.request.view.select_budget"),
-                          collection: @budget_view,
+                          collection: Budget.pluck(:name, :id).to_h,
                           prompt: t("admin.request.view.select_budget")
     = f.button :submit, t("admin.request.view.confirmed"), class: "btn btn-primary btn-sm mb-1"
 
-  = button_to t("admin.request.view.rejected"), rejected_admin_income_path(income.id), method: :patch, class: "btn btn-danger btn-sm mb-1"
+  = button_to t("admin.request.view.rejected"), rejected_admin_income_path(income.id), method: :patch, remote: true, class: "btn btn-danger btn-sm mb-1"

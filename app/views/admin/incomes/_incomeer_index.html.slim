@@ -1,0 +1,11 @@
+- if income.approve?
+  .row
+    .col-6
+      h6.text-success = t "income.view.confirmer" 
+      p = income.confirmer_name
+    .col-6
+      h6.text-success = t "admin.sidebar.budget"
+      = income.budget_name
+- if income.rejected?
+  h6.text-danger = t "admin.request.view.rejecter"  
+  p = income.rejecter_name

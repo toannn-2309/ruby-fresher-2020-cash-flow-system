@@ -49,9 +49,10 @@ tr.tr-request.text-center [id="show-request-#{request.id}"]
           div.border-top.pt-2 [id="show-requester-index-#{request.id}"]
             = render "requester_index", request: request
         .modal-footer
-          = link_to edit_admin_request_path(request), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do	
-            button.btn.btn-info.btn-sm
-              i.far.fa-edit
+          - if request.pending?
+            = link_to edit_admin_request_path(request), class: "btn-edit-request-#{request.id}", "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do	
+              button.btn.btn-info.btn-sm
+                i.far.fa-edit
           = link_to admin_request_path(request), data: { confirm: t("request.view.delete?") }, method: :delete, "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.destroy")  do
             button.btn.btn-danger.btn-sm
               i.fas.fa-trash-alt
