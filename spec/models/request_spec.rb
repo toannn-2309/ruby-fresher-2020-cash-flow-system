@@ -117,4 +117,21 @@ RSpec.describe Request, type: :model do
       expect(b1.total_budget).to eq 4800
     end
   end
+
+# Test ransackable_attributes
+  describe "#ransackable_attributes" do
+    context "when auth_object is nil" do
+      subject {Request.ransackable_attributes}
+
+      it {should include "name_title"}
+      it {should include "aasm_state"}
+      it {should include "created_at"}
+      it {should include "total_amount"}
+      it {should_not include "updated_at"}
+
+      if Ransack::SUPPORTS_ATTRIBUTE_ALIAS
+        it {should include "name_title"}
+      end
+    end
+  end
 end

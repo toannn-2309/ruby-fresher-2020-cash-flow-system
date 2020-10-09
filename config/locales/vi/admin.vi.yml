@@ -41,6 +41,9 @@ vi:
         paid_request: "Yêu cầu đã được thanh toán gần đây"
         budget: "Ngân sách"
         updated_at: "Thời gian"
+        pl_name_title: "Tên hoặc tiêu đề yêu cầu..."
+        pl_amount: "Số tiền"
+        to: "đến"
 # View income
     income:
       view:

@@ -1,0 +1,22 @@
+.bg-form
+    table.table.table-bordered.table-hover.min-width
+      thead
+        tr.text-center
+          th.with-15
+            = sort_link @q, :user_name, t("admin.request.view.requester"), {}, remote: true
+          th.with-25
+            = t "request.view.title"
+          th.with-10
+            = sort_link @q, :total_amount, t("request.view.total_amount"), {}, remote: true
+          th.with-10
+            = sort_link @q, :created_at, t("request.view.created_at"), {}, remote: true
+          th.with-10
+            = sort_link @q, :aasm_state, t("request.view.status"), {}, remote: true
+          th.with-15
+            = t "request.view.action"
+          th.with-15
+            = t "admin.request.view.option"
+      tbody#show-requests
+        = render @requests
+#paginate.pt-4
+  = paginate @requests, theme: "twitter-bootstrap-4"

@@ -2,17 +2,17 @@
 .pt-2
   = link_to new_admin_income_path, class: "btn btn-success", "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.new_income") do
     i.fas.fa-plus
-.bg-form  
-  table.table.table-bordered.table-hover
+.bg-form
+  table.table.table-bordered.table-hover.min-width
     thead
       tr.text-center
-        th = t "income.view.creater"
-        th = t "income.view.title"
-        th = t "income.view.amount_income"
-        th = t "income.view.create_at"
-        th = t "income.view.status"
-        th = t "income.view.action"
-        th = t "income.view.option"
+        th.with-15 = t "income.view.creater"
+        th.with-25 = t "income.view.title"
+        th.with-10 = t "income.view.amount_income"
+        th.with-10 = t "income.view.create_at"
+        th.with-10 = t "income.view.status"
+        th.with-15 = t "income.view.action"
+        th.with-15 = t "income.view.option"
     tbody
       = render @incomes
 .pt-4

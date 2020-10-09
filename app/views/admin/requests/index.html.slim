@@ -1,19 +1,10 @@
 = content_for :breadcrumbs, [t("admin.br.request")]
-.pt-2
-  = link_to new_admin_request_path, class: "btn btn-success", "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.new_request") do
-    i.fas.fa-plus
-.bg-form  
-  table.table.table-bordered.table-hover
-    thead
-      tr.text-center
-        th = t "admin.request.view.requester"
-        th = t "request.view.title"
-        th = t "request.view.total_amount"
-        th = t "request.view.created_at"
-        th = t "request.view.status"
-        th = t "request.view.action"
-        th = t "admin.request.view.option"
-    tbody#show-requests
-      = render @requests
-#paginate.pt-4
-  = paginate @requests, theme: "twitter-bootstrap-4"
+.row.mb-4
+  .col-1
+    = link_to new_admin_request_path, class: "btn btn-success", "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.new_request") do
+      i.fas.fa-plus
+  .col-8
+    #show-search-requests
+      = render "filter"
+#show-all-requests
+  = render "requests_all"
