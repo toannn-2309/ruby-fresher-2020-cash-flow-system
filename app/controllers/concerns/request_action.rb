@@ -3,6 +3,7 @@ module RequestAction
 
   included do
     before_action :get_request, only: %i(review confirm rejected)
+    skip_load_and_authorize_resource only: %i(review confirm rejected)
   end
 
   def review

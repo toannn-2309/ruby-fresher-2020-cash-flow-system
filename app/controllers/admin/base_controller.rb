@@ -1,6 +1,6 @@
 class Admin::BaseController < ApplicationController
-  before_action :check_admin
   layout "admin/admin_application"
+  authorize_resource
 
   def index
     @count_user = User.all.size
@@ -17,10 +17,12 @@ class Admin::BaseController < ApplicationController
 
   private
 
-  def check_admin
-    return if current_user.admin?
-
+  rescue_from CanCan::AccessDenied do
+    flash[:warning] = t "noti.no_access"
     redirect_to home_path
-    flash[:danger] = t "admin.noti.not_admin"
+  end
+
+  def current_ability
+    @current_ability ||= AdminAbility.new current_user
   end
 end

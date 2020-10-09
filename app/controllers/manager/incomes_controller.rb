@@ -1,8 +1,8 @@
 class Manager::IncomesController < ApplicationController
-  before_action :check_manager, only: %i(new edit update create destroy)
   before_action :get_income, except: %i(index new create)
-  before_action :get_budget, only: %i(index)
+  before_action :get_budget, only: :index
   before_action :income_not_pending, only: :edit
+  load_and_authorize_resource
 
   def index
     @incomes = Income.eager_load(:budget, :user, :confirmer, :rejecter)
@@ -51,6 +51,11 @@ class Manager::IncomesController < ApplicationController
 
   private
 
+  rescue_from CanCan::AccessDenied do
+    flash[:warning] = t "noti.no_access"
+    redirect_to home_path
+  end
+
   def income_params
     params.require(:income).permit Income::INCOME_PARAMS
   end
@@ -70,10 +75,7 @@ class Manager::IncomesController < ApplicationController
     redirect_to manager_incomes_path
   end
 
-  def check_manager
-    return if current_user.manager?
-
-    flash[:danger] = t "income.noti.no_manager"
-    redirect_to home_path
+  def current_ability
+    @current_ability ||= ManagerAbility.new current_user
   end
 end
