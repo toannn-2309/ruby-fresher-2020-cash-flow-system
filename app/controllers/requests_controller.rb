@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
   before_action :get_request, except: %i(index new create)
   before_action :get_budget, only: :index
   before_action :request_not_pending, only: :edit
+  load_and_authorize_resource
 
   def index
     @requests = current_user.requests
@@ -52,6 +53,11 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  rescue_from CanCan::AccessDenied do
+    flash[:warning] = t "noti.no_access"
+    redirect_to requests_path
+  end
 
   def get_request
     @request = current_user.requests.find_by id: params[:id]

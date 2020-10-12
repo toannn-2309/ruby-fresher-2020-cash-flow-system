@@ -1,4 +1,5 @@
 require "rails_helper"
+require "cancan/matchers"
 include RSpecTestHelper
 
 RSpec.describe Admin::RequestsController, type: :controller do
@@ -270,6 +271,14 @@ RSpec.describe Admin::RequestsController, type: :controller do
       it "show flash messeage" do
         expect(flash[:danger]).to match(I18n.t("request.noti.show_fail"))
       end
+    end
+  end
+
+# Check for Abilities
+  describe "check for abilities" do
+    context "Admin can do" do
+      it {should be_able_to :create, Request.new}
+      it {should be_able_to :update, Request.new}
     end
   end
 end

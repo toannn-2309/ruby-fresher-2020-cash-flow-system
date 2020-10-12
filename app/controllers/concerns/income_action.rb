@@ -3,6 +3,7 @@ module IncomeAction
 
   included do
     before_action :get_income, only: %i(confirm rejected)
+    skip_load_and_authorize_resource only: %i(confirm rejected)
   end
 
   def confirm

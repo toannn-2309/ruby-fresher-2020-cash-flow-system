@@ -7,6 +7,7 @@ gem "aasm"
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "bootstrap4-kaminari-views"
+gem "cancancan"
 gem "cocoon"
 gem "config"
 gem "devise"
@@ -53,6 +54,7 @@ group :test do
   gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "simplecov", require: false
+  gem "simplecov-rcov"
   gem "webdrivers"
 end
 

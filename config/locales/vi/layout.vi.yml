@@ -17,3 +17,5 @@ vi:
     incomes_group: "Thu nhập của nhóm"
   footer:
     copyrigh: "Bản quyền © 2020"
+  noti:
+    no_access: "Bạn không có quyền truy cập trang này"
