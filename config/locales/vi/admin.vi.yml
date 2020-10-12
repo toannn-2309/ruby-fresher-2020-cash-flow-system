@@ -48,6 +48,7 @@ vi:
     income:
       view:
         income_confirmed: "Thu nhập đã được xác nhận gần đây"
+        pl_title: "Tiêu đề thu nhập"
 # Breadcrumbs
     br:
       user: "Người dùng"

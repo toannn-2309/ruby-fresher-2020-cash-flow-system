@@ -48,6 +48,7 @@ en:
     income:
       view:
         income_confirmed: "Incomes have been confirmed recently"
+        pl_title: "Title income"
 # Breadcrumbs
     br:
       user: "Users"
