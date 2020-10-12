@@ -54,3 +54,9 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
     background-color: $while-f4;
   }
 }
+
+//mark hightlight income
+mark, .mark {
+  padding: 0.2em;
+  background-color: $yelow-ff !important;
+}

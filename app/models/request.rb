@@ -70,7 +70,7 @@ class Request < ApplicationRecord
   ransack_alias :name_title, :user_name_or_title
 
   def self.ransackable_attributes _auth_object = nil
-    %w(name_title aasm_state created_at total_amount)
+    %w(name_title aasm_state created_at total_amount title)
   end
 
   ransacker :created_at, type: :date do

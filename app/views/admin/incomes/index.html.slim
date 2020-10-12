@@ -1,7 +1,21 @@
 = content_for :breadcrumbs, [t("admin.br.income")]
-.pt-2
-  = link_to new_admin_income_path, class: "btn btn-success", "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.new_income") do
-    i.fas.fa-plus
+.row
+  .col-1
+    = link_to new_admin_income_path, class: "btn btn-success", "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.new_income") do
+      i.fas.fa-plus
+  .col-6
+    = form_tag "/admin/incomes", method: "get", class: "forms-group" do
+      .form-group
+        .row
+          .col-6
+            = text_field_tag :query, params[:query], placeholder: t("admin.income.view.pl_title"), class: "form-control"
+          .col-1
+            input-group-append
+              button.btn.btn-outline-success[type="submit"]
+                i.fas.fa-search
+          .col-1.mt-2
+            = link_to admin_incomes_path, class: "nav-link active d-inline" do
+              i.fas.fa-redo.nav-icon.text-success
 .bg-form
   table.table.table-bordered.table-hover.min-width
     thead
@@ -14,6 +28,11 @@
         th.with-15 = t "income.view.action"
         th.with-15 = t "income.view.option"
     tbody
-      = render @incomes
-.pt-4
-  = paginate @incomes, theme: "twitter-bootstrap-4"
+      - if @incomes_search.present?
+        = render "incomes_search"
+        .pt-4
+          = paginate @incomes_search, theme: "twitter-bootstrap-4"
+      - else
+        = render @incomes
+        .pt-4
+          = paginate @incomes, theme: "twitter-bootstrap-4"
