@@ -70,3 +70,11 @@ vi:
       name: "Tên hoặc email"
       role: "Chọn vai trò"
       group: "Chọn group"
+#Mailer
+    sbj_paid: "Thanh toán yêu cầu"
+    sbj_rejected: "Từ chối yêu cầu"
+    mail:
+      hello: "Xin chào "
+      request: "Yêu cầu: "
+      rq_paid: "Được thanh toán bởi: "
+      rq_rejected: "Bị từ chối bởi: "

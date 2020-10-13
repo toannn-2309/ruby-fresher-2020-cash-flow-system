@@ -23,7 +23,10 @@ module RequestAction
     if @request.approve?
       @request.update paider_id: current_user.id,
                         budget_id: params[:request][:budget_id]
-      @messages = t "request.noti.updated" if @request.confirm!
+      if @request.confirm!
+        @messages = t "request.noti.updated_mail"
+        SendMailWorker.perform_async @request.id, Request::TYPE_PAID
+      end
     else
       flash[:danger] = t "request.noti.show_fail"
     end
@@ -38,7 +41,8 @@ module RequestAction
     else
       @request.rejected!
       @request.update rejecter_id: current_user.id
-      @messages = t "request.noti.updated"
+      @messages = t "request.noti.updated_mail"
+      SendMailWorker.perform_async @request.id, Request::TYPE_REJECTED
     end
     return respond_to :js if current_user.admin?
 

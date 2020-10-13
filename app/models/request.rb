@@ -7,6 +7,8 @@ class Request < ApplicationRecord
     request_details_attributes: [:id, :amount, :content, :_destroy].freeze
   ].freeze
   REQUEST_LOAD = %i(budget user paider approver rejecter).freeze
+  TYPE_PAID = Settings.request.type_paid
+  TYPE_REJECTED = Settings.request.type_rejected
 
   belongs_to :user
   has_many :request_details, dependent: :destroy
@@ -64,6 +66,8 @@ class Request < ApplicationRecord
     budget = Budget.find_by id: budget_id
     total_budget = budget.total_budget
     result = total_budget - total_amount
+    raise ActiveRecord::Rollback unless result.positive?
+
     budget.update total_budget: result
   end
 

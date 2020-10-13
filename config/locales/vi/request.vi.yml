@@ -11,6 +11,7 @@ vi:
       show_fail: "Yêu cầu không được tìm thấy"
       no_edit: "Bạn không thể chỉnh sửa yêu cầu này"
       budget_fail: "Ngân sách không đủ để thực hiện giao dịch"
+      updated_mail: "Cập nhật yêu cầu và gửi mail thành công"
 # View
     view:
       content: "Nội dung"

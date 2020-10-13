@@ -10,7 +10,7 @@ tr.text-center.tr-request
   td.btn-request
     button.btn.btn-primary.btn-sm[type="button" data-toggle="modal" data-target="#example-#{income.id}" data-placement="top" title="#{t 'admin.br.show'}"]
       i.fas.fa-eye
-    - if income.user_id == current_user.id && income.pending?
+    - if can? :manage, income, income.user_id && income.pending?
       = link_to edit_manager_income_path(income), "data-toggle": "tooltip", "data-placement": "top", "title": t("admin.btn.edit") do
         button.btn.btn-info.btn-sm
           i.far.fa-edit

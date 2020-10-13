@@ -24,6 +24,7 @@ gem "rails-i18n"
 gem "ransack"
 gem "sass-rails", ">= 6"
 gem "searchkick"
+gem "sidekiq"
 gem "simple_form"
 gem "slim-rails"
 gem "turbolinks", "~> 5"
@@ -52,6 +53,7 @@ end
 group :test do
   gem "capybara", ">= 2.15"
   gem "database_cleaner-active_record"
+  gem "rspec-sidekiq"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "simplecov", require: false

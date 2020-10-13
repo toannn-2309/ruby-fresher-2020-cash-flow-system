@@ -223,6 +223,10 @@ RSpec.describe Admin::RequestsController, type: :controller do
       it "show status 200" do
         expect(response).to have_http_status(200)
       end
+
+      it "send mail true" do
+        expect(SendMailWorker.jobs.size).to eq(1)
+      end
     end
 
     context "when invalid params and update fail" do
@@ -233,6 +237,10 @@ RSpec.describe Admin::RequestsController, type: :controller do
 
       it "show status 200" do
         expect(response).to have_http_status(200)
+      end
+
+      it "send mail fail" do
+        expect(SendMailWorker.jobs.size).to eq(0)
       end
     end
 
@@ -259,6 +267,10 @@ RSpec.describe Admin::RequestsController, type: :controller do
       it "show status 200" do
         expect(response).to have_http_status(200)
       end
+
+      it "send mail true" do
+        expect(SendMailWorker.jobs.size).to eq(1)
+      end
     end
 
     context "when invalid params" do
@@ -270,6 +282,10 @@ RSpec.describe Admin::RequestsController, type: :controller do
 
       it "show flash messeage" do
         expect(flash[:danger]).to match(I18n.t("request.noti.show_fail"))
+      end
+
+      it "send mail fail" do
+        expect(SendMailWorker.jobs.size).to eq(0)
       end
     end
   end
