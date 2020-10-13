@@ -17,9 +17,7 @@ RSpec.describe Admin::RequestsController, type: :controller do
   let(:r1) {FactoryBot.create :request, user_id: admin.id, created_at: "2020-10-01 17:00:00"}
   let(:r2) {FactoryBot.create :request, user_id: admin.id, created_at: "2020-10-02 17:00:00"}
 
-  before do
-    login admin
-  end
+  before {login admin}
 
   describe "GET #index" do
     before {get :index, xhr: true, params: {page: 1}}

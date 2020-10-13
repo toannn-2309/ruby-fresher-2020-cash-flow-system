@@ -52,6 +52,6 @@ class ApplicationController < ActionController::Base
     flash[:danger] = t "income.noti.no_edit"
     return redirect_to admin_incomes_path if current_user.admin?
 
-    redirect_to incomes_path
+    redirect_to manager_incomes_path
   end
 end

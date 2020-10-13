@@ -4,6 +4,7 @@ class Income < ApplicationRecord
   INCOME_PARAMS = %i(title content amount_income aasm_state budget_id).freeze
   INCOME_PARAMS_ADMIN_EDIT = %i(title content aasm_state budget_id).freeze
   INCOME_LOAD = %i(budget user confirmer rejecter).freeze
+  MY_INCOME_LOAD = %i(budget confirmer rejecter).freeze
 
   belongs_to :user
   belongs_to :budget

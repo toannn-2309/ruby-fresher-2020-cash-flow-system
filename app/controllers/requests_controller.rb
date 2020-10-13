@@ -6,8 +6,7 @@ class RequestsController < ApplicationController
 
   def index
     @requests = current_user.requests
-                            .eager_load(:budget, :user, :paider, :approver,
-                                        :rejecter).by_date
+                            .eager_load(Request::REQUEST_LOAD).by_date
                             .page(params[:page]).per Settings.request.per_page
   end
 

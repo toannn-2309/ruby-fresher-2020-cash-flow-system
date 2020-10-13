@@ -1,23 +1,21 @@
 require "rails_helper"
+require "cancan/matchers"
 include RSpecTestHelper
 
-RSpec.describe Admin::IncomesController, type: :controller do
+RSpec.describe Manager::IncomesController, type: :controller do
   let(:group) {FactoryBot.create :group}
-  let(:admin) {FactoryBot.create :user, role: "admin"}
-  let(:user) {FactoryBot.create :user, group_id: group.id}
+  let(:user) {FactoryBot.create :user, group_id: group.id, role: "manager"}
   let(:budget) {FactoryBot.create :budget}
   let(:income) {FactoryBot.create :income, user_id: user.id, budget_id: budget.id}
   let(:valid_params) {FactoryBot.attributes_for :income, user_id: user.id, budget_id: budget.id}
   let(:invalid_params) {FactoryBot.attributes_for :income, title: nil}
-  let!(:i1) {FactoryBot.create :income, user_id: admin.id, created_at: "2020-10-01 17:00:00"}
-  let!(:i2) {FactoryBot.create :income, user_id: admin.id, created_at: "2020-10-02 17:00:00"}
+  let!(:i1) {FactoryBot.create :income, user_id: user.id, created_at: "2020-10-01 17:00:00"}
+  let!(:i2) {FactoryBot.create :income, user_id: user.id, created_at: "2020-10-02 17:00:00"}
 
-
-  before {login admin}
+  before {login user}
 
   describe "GET #index" do
     before {get :index, params: {page: 1}}
-
     it "renders the index template" do
       expect(response).to render_template :index
     end
@@ -48,7 +46,7 @@ RSpec.describe Admin::IncomesController, type: :controller do
       end
 
       it "render show template" do
-        expect(response).to redirect_to admin_incomes_path
+        expect(response).to redirect_to manager_incomes_path
       end
     end
   end
@@ -59,7 +57,7 @@ RSpec.describe Admin::IncomesController, type: :controller do
     it "assigns a new income to @income" do
       expect(assigns(:income)).to be_a_new Income  
     end
-    
+
     it "render the new view" do
       expect(response).to render_template :new
     end
@@ -74,13 +72,13 @@ RSpec.describe Admin::IncomesController, type: :controller do
       end
 
       it "should redirect to trainers_subjects_path" do
-        expect(response).to redirect_to admin_incomes_path
+        expect(response).to redirect_to manager_incomes_path
       end
     end
 
     context "with invalid attributes" do
       before {post :create, params: {income: invalid_params}}
-        
+
       it "create a new subject fail" do
         expect{post :create, params: {income: invalid_params}}.to change(Income, :count).by(0)
       end
@@ -111,12 +109,12 @@ RSpec.describe Admin::IncomesController, type: :controller do
         expect(assigns(:income)).to eq nil
       end
 
-      it "should redirect to admin_posts_path" do
-        expect(response).to redirect_to admin_incomes_path
+      it "should redirect to manager_incomes_path" do
+        expect(response).to redirect_to manager_incomes_path
       end
     end
   end
-  
+
   describe "PATCH #update" do
     context "when valid params" do
       before {patch :update, params: {id: income.id, income: {title: "title update"}}}
@@ -125,8 +123,8 @@ RSpec.describe Admin::IncomesController, type: :controller do
         expect(assigns(:income).title).to eq "title update"
       end
 
-      it "should redirect admin_incomes_path" do
-        expect(response).to redirect_to admin_incomes_path
+      it "should redirect manager_incomes_path" do
+        expect(response).to redirect_to manager_incomes_path
       end
     end
 
@@ -145,88 +143,41 @@ RSpec.describe Admin::IncomesController, type: :controller do
 
   describe "DELETE #destroy" do
     context "when valid params" do
-      before { delete :destroy, xhr: true, params: {id: income.id} }
+      before { delete :destroy, params: {id: income.id} }
 
       it "destroy income" do
         expect(assigns(:income).destroyed?).to eq true
       end
 
-      it "show status 200" do
-        expect(response).to have_http_status(200)
+      it "should redirect to admin_incomes_path" do
+        expect(response).to redirect_to manager_incomes_path
       end
     end
 
     context "when invalid params" do
-      before {delete :destroy, xhr: true, params: {id: "test"}}
+      before {delete :destroy, params: {id: "test"}}
 
       it "should a invalid income" do
         expect{subject}.to change(Income, :count).by 0
       end
 
-      it "should redirect to admin_income_path" do
-        expect(response).to redirect_to admin_incomes_path
-      end
-    end
-  end
-
-  describe "PATCH #confirm" do
-    let(:i3) {FactoryBot.create :income, user_id: admin.id, aasm_state: "pending", budget_id: budget.id, confirmer_id: admin.id}
-    context "when valid params" do
-      before {patch :confirm, xhr: true, params: {id: i3.id, income: {aasm_state: "approve", budget_id: budget.id, confirmer_id: admin.id}}}
-      it "should correct aasm_state" do
-        expect(assigns(:income).aasm_state).to eq "approve"
-      end
-
-      it "show status 200" do
-        expect(response).to have_http_status(200)
+      it "should redirect to manager_income_path" do
+        expect(response).to redirect_to manager_incomes_path
       end
     end
 
-    context "when valid params and update fail" do
-      before {patch :confirm, xhr: true, params: {id: i3.id, income: {aasm_state: "approve"}}}
-      it "should correct aasm_state" do
-        expect(assigns(:income).approve?).to eq false
+    context "when a failure income destroy" do
+      before do
+        allow_any_instance_of(Income).to receive(:destroy).and_return false
+        delete :destroy, params: {id: income.id}
       end
 
-      it "show status 200" do
-        expect(response).to have_http_status(200)
-      end
-    end
-
-    let(:i4) {FactoryBot.create :income, user_id: admin.id, aasm_state: "rejected"}
-    context "when invalid params" do
-      before {patch :confirm, xhr: true, params: {id: i4.id, income: {aasm_state: "approve"}}}
-      it "should a invalid income" do
-        expect(assigns(:income).approve?).to eq false
+      it "flash error message" do
+        expect(flash[:danger]).to eq I18n.t("income.noti.destroy_fail")
       end
 
-      it "show flash messeage" do
-        expect(flash[:danger]).to match(I18n.t("income.noti.show_fail"))
-      end
-    end
-  end
-
-  describe "PATCH #rejected" do
-    context "when valid params" do
-      before {patch :rejected, xhr: true, params: {id: income.id, income: {aasm_state: "rejected"}}}
-      it "should correct aasm_state" do
-        expect(assigns(:income).aasm_state).to eq "rejected"
-      end
-
-      it "show status 200" do
-        expect(response).to have_http_status(200)
-      end
-    end
-
-    let(:i5) {FactoryBot.create :income, user_id: user.id, aasm_state: "rejected"}
-    context "when invalid params" do
-      before {patch :rejected, xhr: true, params: {id: i5.id, income: {aasm_state: "rejected"}}}
-      it "should a invalid income" do
-        expect(assigns(:income).rejected?).to eq true
-      end
-
-      it "show flash messeage" do
-        expect(flash[:danger]).to match(I18n.t("income.noti.show_fail"))
+      it "should redirect to manager_incomes_path" do
+        expect(response).to redirect_to manager_incomes_path
       end
     end
   end

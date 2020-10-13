@@ -5,8 +5,7 @@ class Manager::IncomesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @incomes = Income.eager_load(:budget, :user, :confirmer, :rejecter)
-                     .by_date
+    @incomes = Income.eager_load(Income::INCOME_LOAD).by_date
                      .incomes_by_group(current_user.group_id)
                      .page(params[:page]).per Settings.income.per_page
   end
@@ -65,13 +64,6 @@ class Manager::IncomesController < ApplicationController
     return if @income
 
     flash[:danger] = t "income.noti.show_fail"
-    redirect_to manager_incomes_path
-  end
-
-  def income_not_pending
-    return if @income.pending?
-
-    flash[:danger] = t "income.noti.no_edit"
     redirect_to manager_incomes_path
   end
 
