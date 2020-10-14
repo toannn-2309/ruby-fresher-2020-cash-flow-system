@@ -70,7 +70,7 @@ vi:
       name: "Tên hoặc email"
       role: "Chọn vai trò"
       group: "Chọn group"
-#Mailer
+# Mailer
     sbj_paid: "Thanh toán yêu cầu"
     sbj_rejected: "Từ chối yêu cầu"
     mail:
@@ -78,3 +78,14 @@ vi:
       request: "Yêu cầu: "
       rq_paid: "Được thanh toán bởi: "
       rq_rejected: "Bị từ chối bởi: "
+# Chart
+    chart:
+      title: "Biểu đồ"
+      title_pie: "Biểu đồ số lượng yêu cầu"
+      title_area: "Biểu đồ số lượng yêu cầu theo ngày"
+      area_x: "Số lượng yêu cầu"
+      area_y: "Thời gian yêu cầu"
+      no_data: "Không có dữ liệu"
+      to: "Tới"
+      submit: "Chọn"
+      noti_day: "Vui lòng chọn ngày bắt đầu sớm hơn ngày kết thúc"

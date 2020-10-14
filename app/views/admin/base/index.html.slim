@@ -13,8 +13,8 @@
     .col-8
       .row
         = render @budgets
-  .row
-    .col-lg-4.col-4
+  .row.mt-3
+    .col-4
       .small-box.bg-success
         .inner
           h3
@@ -24,6 +24,18 @@
         = link_to admin_requests_path, class: "small-box-footer" do
           = t "admin.view.more_info"
           i.fas.fa-arrow-circle-right
+      .card.card-success
+        .card-header
+          h3.card-title
+            = t "admin.chart.title"
+          .card-tools
+            button.btn.btn-tool[type="button" data-card-widget="collapse"]
+              i.fas.fa-minus
+            button.btn.btn-tool[type="button" data-card-widget="remove"]
+              i.fas.fa-times
+        .card-body
+          .chart.chart-pie
+            = pie_chart @count_request_chart, donut: true, height: "300px", title: t("admin.chart.title_pie")
     .col-8
       .card.card-success
         .card-header
@@ -43,7 +55,35 @@
                 th = t "admin.request.view.updated_at"
             tbody
               = render partial: "admin/base/paid_request", collection: @paid_requests
-  .row
+      .card.card-success
+        .card-header
+          h3.card-title
+            = t "admin.chart.title_area"
+          .card-tools
+            button.btn.btn-tool[type="button" data-card-widget="collapse"]
+              i.fas.fa-minus
+            button.btn.btn-tool[type="button" data-card-widget="remove"]
+              i.fas.fa-times
+            button.btn.btn-tool[type="button" data-card-widget="maximize"]
+              i.fas.fa-expand
+        .card-body
+          .chart
+            #range
+              #show-form
+                = form_with url: admin_range_path, method: :get do |f|
+                  .input-group
+                    span.input-group-text
+                      i.far.fa-calendar-alt
+                    .col-4
+                      = f.date_field :first_day, class: "form-control"
+                    .col-2
+                      .to-date.text-center.mt-1 = t "admin.chart.to"
+                    .col-4
+                      = f.date_field :last_day, class: "form-control"
+                    .col-1
+                      = submit_tag t("admin.chart.submit"), class: "btn btn-success"
+              #show-chart-range
+  .row.mt-3
     .col-lg-4.col-4
           .small-box.bg-warning
             .inner

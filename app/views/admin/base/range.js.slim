@@ -1,0 +1,8 @@
+- if @messages.present?
+  | toastr.warning("
+  = @messages
+  | ");
+- else
+  | $("#show-chart-range").html("
+  = j (render "chart_range")
+  | ");

@@ -68,7 +68,8 @@ end
     content: Faker::Lorem.sentence(word_count: 15),
     reason: Faker::Lorem.sentence(word_count: 40),
     total_amount: rand(1..500),
-    budget_id: 1
+    budget_id: 1,
+    created_at: Faker::Date.between(from: "2020-09-01", to: Time.zone.now)
   )
   request_ids << request.id
 end
