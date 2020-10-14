@@ -4,8 +4,7 @@ class Accountant::RequestsController < RequestsController
   authorize_resource
 
   def index
-    @requests = Request.eager_load(:budget, :user, :paider, :approver,
-                                   :rejecter).by_date
+    @requests = Request.eager_load(Request::REQUEST_LOAD).by_date
                        .requests_by_group(current_user.group_id)
                        .page(params[:page]).per Settings.request.per_page
   end
