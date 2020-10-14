@@ -78,3 +78,14 @@ en:
       request: "Request: "
       rq_paid: "Has been paid by: "
       rq_rejected: "Has been rejected by: "
+# Chart
+    chart:
+      title: "Chart"
+      title_pie: "Required quantity chart"
+      title_area: "Chart of required quantity by day"
+      area_x: "Number of requests"
+      area_y: "Time required"
+      no_data: "No data"
+      to: "To"
+      submit: "Choose"
+      noti_day: "Please select start date earlier than end date"

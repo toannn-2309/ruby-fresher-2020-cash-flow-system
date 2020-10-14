@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
     namespace :admin do
       root "base#index"
+      get "/range", to: "base#range"
 
       resources :users
       resources :requests do 

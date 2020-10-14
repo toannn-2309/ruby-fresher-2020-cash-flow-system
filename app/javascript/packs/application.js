@@ -4,6 +4,8 @@ require('@rails/activestorage').start()
 require('channels')
 require('bootstrap')
 require('admin-lte')
+require('chartkick')
+require('chart.js')
 
 var jQuery = require('jquery')
 
