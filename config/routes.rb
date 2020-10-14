@@ -1,3 +1,5 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
     devise_for :users, controllers: {registrations: :registrations}
@@ -59,5 +61,6 @@ Rails.application.routes.draw do
         end
       end
     end
+    mount Sidekiq::Web, at: "/sidekiq"
   end
 end

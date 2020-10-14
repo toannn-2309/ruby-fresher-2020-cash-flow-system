@@ -1,0 +1,13 @@
+p 
+  = t "admin.mail.hello"
+  = @user.name
+p 
+  = t "admin.mail.request"
+  = @request.title
+span
+- if @type.zero?
+  = t "admin.mail.rq_paid"
+  = @request.paider_name
+- else
+  = t "admin.mail.rq_rejected"
+  = @request.rejecter_name

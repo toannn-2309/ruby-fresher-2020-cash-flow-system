@@ -6,7 +6,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "rspec/rails"
 require "shoulda/matchers"
 Dir[Rails.root.join("spec", "support", "**", "*.rb")].each { |f| require f }
-require 'devise'
+require "devise"
+require "sidekiq/testing"
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -28,4 +29,10 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+RSpec::Sidekiq.configure do |config|
+  config.clear_all_enqueued_jobs = true 
+  config.enable_terminal_colours = true 
+  config.warn_when_jobs_not_processed_by_sidekiq = true
 end

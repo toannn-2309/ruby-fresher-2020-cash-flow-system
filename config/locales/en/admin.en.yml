@@ -70,3 +70,11 @@ en:
       name: "Name or email"
       role: "Select role"
       group: "Select group"
+# Mailer
+    sbj_paid: "Request paid"
+    sbj_rejected: "Request rejected"
+    mail:
+      hello: "Hello "
+      request: "Request: "
+      rq_paid: "Has been paid by: "
+      rq_rejected: "Has been rejected by: "

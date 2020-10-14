@@ -11,6 +11,7 @@ en:
       show_fail: "Request was not found"
       no_edit: "You cannot edit this request"
       budget_fail: "The budget is not enough to do the transaction"
+      updated_mail: "Update request and send mail successfully"
 # View
     view:
       content: "Content"
