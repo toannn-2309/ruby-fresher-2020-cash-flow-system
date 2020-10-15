@@ -24,7 +24,8 @@ class User < ApplicationRecord
   validate :password_regex
 
   devise :database_authenticatable, :registerable, :rememberable, :validatable,
-         :confirmable, :recoverable, :lockable
+         :confirmable, :recoverable, :lockable,
+         :omniauthable, omniauth_providers: [:facebook]
 
   scope :by_date, ->{order(created_at: :desc)}
   scope :filter_by_name_or_email, (lambda do |obj|
@@ -32,6 +33,26 @@ class User < ApplicationRecord
   end)
   scope :by_role, ->(role){where role: role if role.present?}
   scope :by_group, ->(group_id){where group_id: group_id if group_id.present?}
+
+  # rubocop:disable Metrics/AbcSize
+  def self.from_omniauth access_token
+    data = access_token.info
+    result = User.find_by email: data.email
+    return result if result
+
+    where(provider: access_token.provider,
+      uid: access_token.uid).first_or_create do |user|
+      user.email = data.email
+      user.password = Devise.friendly_token[0, 20]
+      user.name = data.name
+      user.uid = access_token.uid
+      user.role = Settings.user.role
+      user.group_id = Settings.user.group
+      user.provider = access_token.provider
+      user.skip_confirmation!
+    end
+  end
+  # rubocop:enable Metrics/AbcSize
 
   private
 

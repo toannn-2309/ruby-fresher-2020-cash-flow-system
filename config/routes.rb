@@ -2,7 +2,7 @@ require "sidekiq/web"
 
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
-    devise_for :users, controllers: {registrations: :registrations}
+    devise_for :users, skip: :omniauth_callbacks, controllers: {registrations: :registrations}
 
     devise_scope :user do
       root to: "devise/sessions#new"
@@ -64,4 +64,5 @@ Rails.application.routes.draw do
     end
     mount Sidekiq::Web, at: "/sidekiq"
   end
+  devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 end
