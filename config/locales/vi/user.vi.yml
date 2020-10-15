@@ -15,6 +15,8 @@ vi:
       destroy_fail: "Xóa người dùng thất bại"
       pw_update_fail: "không được trùng với mật khẩu cũ"
       check_pw: "chúng tôi cần kiểm tra mật khẩu cũ của bạn để xác nhận thay đổi"
+      login_fb: "Đăng nhập tài khoản facebook thành công"
+      not_edit: "Bạn không thể chỉnh sửa tài khoản"
 # View sigup
     sigup: "Đăng ký"
     name: "Tên"
@@ -31,6 +33,7 @@ vi:
     role: "Chức vụ"
     pl_role: "Lựa chọn chức vụ"
     er_regex: "phaỉ có ít nhất một chữ hoa, một chữ thường và một số"
+    login_fb: "Đăng nhập bằng Facebook"
 # View login
     login: "Đăng nhập"
     sigup_new: "Tạo tài khoản mới"

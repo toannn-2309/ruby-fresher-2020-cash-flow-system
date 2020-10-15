@@ -14,5 +14,5 @@ nav.main-header.navbar.navbar-expand.navbar-white.navbar-light.border-bottom.fix
       .dropdown-menu[aria-labelledby="navbarDropdownXL"]
           = link_to t("header.profile"), current_user, class: "dropdown-item", "data-toggle": "modal", "data-target": "#exampleModalCenter"
           = link_to t("admin.sidebar.dashboard"), admin_root_path, class: "dropdown-item" if current_user.admin?
-          = link_to t("header.setting"), edit_user_registration_path, class: "dropdown-item"
+          = link_to t("header.setting"), edit_user_registration_path, class: "dropdown-item" unless current_user.provider == "facebook"
           = link_to t("header.log_out"), destroy_user_session_path, method: :delete, class: "dropdown-item"

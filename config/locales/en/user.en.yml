@@ -15,6 +15,8 @@ en:
       destroy_fail: "User delete failed!"
       pw_update_fail: "cannot be the same as the old one"
       check_pw: "we need your current password to confirm your changes"
+      login_fb: "Login with your facebook account successfully"
+      not_edit: "You cannot edit the account"
 # View sigup
     sigup: "Sign Up"
     name: "Name"
@@ -31,6 +33,7 @@ en:
     role: "Role"
     pl_role: "Selection role"
     er_regex: "at least one uppercase letter, one lowercase letter and one number"
+    login_fb: "Login Facebook"
 # View login
     login: "Log in"
     sigup_new: "Create new user!"

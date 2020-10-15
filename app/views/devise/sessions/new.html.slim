@@ -11,3 +11,4 @@ h2
   .form-actions
     = f.button :submit, t(".sign_in"), class: "btn btn-success mb-1"
 = render "devise/shared/links"
+= link_to t("user.login_fb"), user_facebook_omniauth_authorize_path
