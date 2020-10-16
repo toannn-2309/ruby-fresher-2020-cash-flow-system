@@ -6,10 +6,10 @@ class Admin::IncomesController < Admin::BaseController
   before_action :income_not_pending, only: :edit
 
   def index
-    @incomes_search = Income.search(params[:query], fields: [:title],
-      match: :word_start, highlight: {tag: "<mark>"},
-      page: params[:page], per_page: Settings.income.per_page,
-      includes: [Income::INCOME_LOAD])
+    # @incomes_search = Income.search(params[:query], fields: [:title],
+    #   match: :word_start, highlight: {tag: "<mark>"},
+    #   page: params[:page], per_page: Settings.income.per_page,
+    #   includes: [Income::INCOME_LOAD])
     @incomes = Income.eager_load(Income::INCOME_LOAD)
                      .by_date
                      .page(params[:page]).per Settings.income.per_page

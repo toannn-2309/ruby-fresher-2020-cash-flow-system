@@ -28,9 +28,10 @@
         th.with-15 = t "income.view.action"
         th.with-15 = t "income.view.option"
     tbody
-    - if @incomes_search.present?
-      = render "incomes_search"
-    - else
-      = render @incomes
+    / - if @incomes_search.present?
+    /   = render "incomes_search"
+    / - else
+    = render @incomes
   .pt-4
-    = paginate @incomes_search.presence || @incomes, theme: "twitter-bootstrap-4"
+    / = paginate @incomes_search.presence || @incomes, theme: "twitter-bootstrap-4"
+    = paginate @incomes, theme: "twitter-bootstrap-4"

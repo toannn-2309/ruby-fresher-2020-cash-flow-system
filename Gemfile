@@ -19,7 +19,7 @@ gem "groupdate"
 gem "html2slim", "~> 0.2.0"
 gem "jbuilder", "~> 2.7"
 gem "kaminari"
-gem "mysql2", ">= 0.4.4"
+# gem "mysql2", ">= 0.4.4"
 gem "omniauth"
 gem "omniauth-facebook"
 gem "puma", "~> 4.1"
@@ -49,6 +49,7 @@ group :development do
   gem "binding_of_caller"
   gem "bullet"
   gem "listen", "~> 3.2"
+  gem "mysql2", ">= 0.4.4"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "web-console", ">= 3.3.0"
@@ -63,6 +64,10 @@ group :test do
   gem "simplecov", require: false
   gem "simplecov-rcov"
   gem "webdrivers"
+end
+
+group :production do
+  gem "pg"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

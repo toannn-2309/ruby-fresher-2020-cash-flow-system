@@ -25,7 +25,7 @@ class Income < ApplicationRecord
   validates :content, presence: true,
     length: {maximum: Settings.validate.content.length}
 
-  searchkick word_start: [:title], highlight: [:title], callbacks: :async
+  # searchkick word_start: [:title], highlight: [:title], callbacks: :async
 
   scope :by_date, ->{order created_at: :desc}
   scope :incomes_by_group, ->(group_id){where(users: {group_id: group_id})}
@@ -54,7 +54,7 @@ class Income < ApplicationRecord
     budget.update total_budget: result
   end
 
-  def search_data
-    {title: title}
-  end
+  # def search_data
+  #   {title: title}
+  # end
 end
