@@ -25,8 +25,6 @@ class Income < ApplicationRecord
   validates :content, presence: true,
     length: {maximum: Settings.validate.content.length}
 
-  searchkick word_start: [:title], highlight: [:title], callbacks: :async
-
   scope :by_date, ->{order created_at: :desc}
   scope :incomes_by_group, ->(group_id){where(users: {group_id: group_id})}
   scope :by_updated, ->{order updated_at: :desc}
@@ -54,6 +52,18 @@ class Income < ApplicationRecord
     budget.update total_budget: result
   end
 
+  searchkick word_start: [:title], highlight: [:title], callbacks: :async
+
+  after_commit :reset_index, if: ->(model){model.previous_changes.key?("title")}
+
+  # đánh lại index
+  def reset_index
+    Income.search_index.delete
+    # Income.reindex
+    Income.reindex async: true
+  end
+
+  # Kiểm soát những dữ liệu nào sẽ được đánh index
   def search_data
     {title: title}
   end

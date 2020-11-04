@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   scope :by_date, ->{order(created_at: :desc)}
   scope :filter_by_name_or_email, (lambda do |obj|
-    where("name like ? OR email like ?", "#{obj}%", "#{obj}%") if obj.present?
+    where("name like ? OR email like ?", "%#{obj}%", "%#{obj}%") if obj.present?
   end)
   scope :by_role, ->(role){where role: role if role.present?}
   scope :by_group, ->(group_id){where group_id: group_id if group_id.present?}

@@ -66,3 +66,11 @@ Rails.application.routes.draw do
   end
   devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 end
+
+module Sidekiq
+  module WebHelpers
+    def locale
+      "en"
+    end
+  end
+end
