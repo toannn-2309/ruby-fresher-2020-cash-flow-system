@@ -21,6 +21,7 @@ user:
   per_page: 10
   role: 2
   group: 1
+  role_manager: 3
 request:
   per_page: 6
   aasm_search: {"Pending": "pending", "Approve": "approve", "Paid": "paid", "Rejected": "rejected"}
@@ -31,3 +32,4 @@ income:
 format_date: "%d-%m-%Y"
 min_value: 0
 limit_request: 3
+limit_noti: 5

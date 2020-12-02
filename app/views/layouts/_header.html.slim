@@ -8,6 +8,21 @@ nav.main-header.navbar.navbar-expand.navbar-white.navbar-light.border-bottom.fix
   ul.navbar-nav.ml-auto
     li.nav-item.icon-lg.d-none.d-sm-inline-block
       = locale_image
+    li.nav-item.dropdown
+      a.nav-link[data-toggle="dropdown" href="#"]
+        i.far.fa-bell
+        span.badge.badge-warning.navbar-badge
+          #notification-counter 
+            = current_user.notifications.unread.size
+      .dropdown-menu.dropdown-menu-lg.dropdown-menu-right.w-500
+        .dropdown-divide#notification-list.notifications
+          = render partial: "layouts/notifications",
+            collection: @notifications.includes(:sender).order_created_at_desc.limit(Settings.limit_noti),
+            as: :noti
+        .dropdown-divide
+        - if current_user.notifications.present?
+          a.dropdown-item.dropdown-footer
+            = button_to t("seen_noti"), notifications_path, method: :patch , class: "btn btn-success btn-block btn-sm"
     li.nav-item.d-none.d-sm-inline-block.dropdown
       a#navbarDropdownXL.nav-link.dropdown-toggle[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
         = current_user.name.capitalize

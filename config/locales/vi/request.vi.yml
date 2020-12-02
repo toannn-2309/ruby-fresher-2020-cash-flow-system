@@ -25,3 +25,8 @@ vi:
       created_at: "Thời gian"
       action: "Hoạt động"
       delete?: "Bạn có chắc không?"
+# Notification
+  noti_create_request: "%{name} đã tạo yêu cầu"
+  ago: " trước"
+  notifications: " Thông báo"
+  seen_noti: "Xem tất cả thông báo"

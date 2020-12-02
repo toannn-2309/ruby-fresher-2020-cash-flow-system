@@ -262,7 +262,7 @@ Style/LineEndConcatenation:
   Enabled: true
 
 Metrics/LineLength:
-  Description: "Limit lines to 80 characters."
+  Description: "Limit lines to 120 characters."
   Enabled: true
 
 Style/MethodCallWithoutArgsParentheses:

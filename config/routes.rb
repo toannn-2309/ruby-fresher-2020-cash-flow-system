@@ -63,6 +63,10 @@ Rails.application.routes.draw do
       end
     end
     mount Sidekiq::Web, at: "/sidekiq"
+
+    mount ActionCable.server => "/cable"
+
+    resource :notifications, only: :update
   end
   devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 end

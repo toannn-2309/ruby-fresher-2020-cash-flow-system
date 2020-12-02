@@ -49,6 +49,7 @@ group :development do
   gem "binding_of_caller"
   gem "bullet"
   gem "listen", "~> 3.2"
+  gem "pry-rails"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "web-console", ">= 3.3.0"

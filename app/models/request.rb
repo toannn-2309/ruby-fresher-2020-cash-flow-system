@@ -35,6 +35,8 @@ class Request < ApplicationRecord
   validates :total_amount, presence: true,
     numericality: {greater_than: Settings.validate.number_min}
 
+  after_create :create_notification
+
   scope :by_date, ->{order created_at: :desc}
   scope :by_date_and_state_asc, ->{order aasm_state: :asc, created_at: :desc}
   scope :requests_by_group, ->(group_id){where(users: {group_id: group_id})}
@@ -79,5 +81,16 @@ class Request < ApplicationRecord
 
   ransacker :created_at, type: :date do
     Arel.sql "date(requests.created_at)"
+  end
+
+  def create_notification
+    current_user = User.find user_id
+    receivers = User.by_role(Settings.user.role_manager).by_group(current_user.group_id).ids - [user_id]
+    receivers.each do |receiver_id|
+      Notification.create sender_id: user_id,
+                          receiver_id: receiver_id,
+                          content: "#{current_user.name} created the request"
+      NotificationsJob.perform_now receiver_id
+    end
   end
 end

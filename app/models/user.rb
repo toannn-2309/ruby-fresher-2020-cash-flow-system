@@ -7,7 +7,8 @@ class User < ApplicationRecord
   belongs_to :group
   has_many :requests, dependent: :destroy
   has_many :incomes, dependent: :destroy
-  has_many :notifications, dependent: :destroy
+  has_many :notifications, foreign_key: :receiver_id, dependent: :destroy
+  has_many :send_notifications, foreign_key: :sender_id, dependent: :destroy
 
   enum role: {admin: 1, staff: 2, manager: 3, accountant: 4}
 

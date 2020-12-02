@@ -1,3 +1,4 @@
+@import 'color';
 // side bar
 .slimScrollDiv {
   position: relative;
@@ -16,4 +17,26 @@
 // header
 .navbar-nav .icon-lg {
   padding-top: 7px;
+}
+
+.w-500 {
+  width: 350px;
+}
+
+.dropdown-menu-lg {
+  max-width: 350px;
+  min-width: 280px;
+  padding: 0;
+}
+
+.unread {
+  background-color: $green-bc;
+}
+
+.notifications {
+  list-style-type: none;
+  max-height: 200px;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding-left: 0;
 }

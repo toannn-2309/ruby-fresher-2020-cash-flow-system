@@ -25,3 +25,8 @@ en:
       created_at: "Created at"
       action: "Action"
       delete?: "Are you sure?"
+# Notification
+  noti_create_request: "%{name} created the request"
+  ago: " ago"
+  notifications: " Notifications"
+  seen_noti: "See All Notifications"

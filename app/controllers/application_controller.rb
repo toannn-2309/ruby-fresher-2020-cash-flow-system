@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :set_locale, :authenticate_user!
+  before_action :set_locale, :authenticate_user!, :load_noti
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
 
   def get_budget
     @budget_view = Budget.pluck(:name, :id).to_h
+  end
+
+  def load_noti
+    @notifications = current_user.notifications if current_user.present?
   end
 
   # Check request not pending

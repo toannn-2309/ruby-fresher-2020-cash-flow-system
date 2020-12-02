@@ -1,0 +1,5 @@
+a.dropdown-item [class="#{noti.status}"]
+  small = t("noti_create_request", name: noti.sender_name)
+  small.float-right.text-muted.text-sm
+    small = time_ago_in_words noti.created_at
+    small = t("ago")
